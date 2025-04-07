@@ -1,1 +1,33 @@
 @charset "UTF-8";
+
+#wrap{
+	width: 1200px;
+
+}
+header{
+	height:80px;
+}
+.header-bar {
+	height:80px;
+}
+nav{
+
+}
+section{
+	height: 600px;
+}
+.bar{
+	height: 60px;
+}
+article{
+	 height: 500px;
+}
+.main-zone{
+	height: 400px;
+}
+.btn-zone{
+
+}
+footer{
+
+}
