@@ -1,6 +1,7 @@
 package com.ryu.escaping.admin;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -11,6 +12,7 @@ public class AdminController {
 	// 관리자 메인
 	@GetMapping("/main-view")
 	public String manager() {
+		
 		return "admin/main";
 	}
 	// 지점 추가

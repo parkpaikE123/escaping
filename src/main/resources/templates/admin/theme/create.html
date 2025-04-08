@@ -41,53 +41,7 @@
 	<script layout:fragment="script">
 		
 		$(function() {
-			$("#createBtn").on("click", function() {
-				let name = $("#branchName").val();
-				let location = $("#location").val();
-				let file = $("#fileInput")[0].files[0];
-				
-				if(name == "") {
-					alert("지점 이름을 입력해 주세요");
-					return;
-				}
-				
-				if(location == "") {
-					alert("지점 위치를 입력해 주세요");
-					return;
-				}
-				
-				if(file == null) {
-					alert("사진을 첨부해주세요");
-					return;
-				}
-				
-				let formData = new FormData();
-   				formData.append("branchName", name);
-   				formData.append("location", location);
-   				formData.append("imageFile", file);
-				
-				$.ajax({
-					type:"post"
-					,url:"/admin/create-branch"
-					,data:formData
-					, enctype:"multipart/form-data" // 파일 업로드시 추가 옵션
-           			, processData:false // 파일 업로드시 추가 옵션
-           			, contentType:false // 파일 업로드시 추가 옵션
-        			,success:function(response){
-        				if(response.result == "success") {
-        					
-        					location.href="/admin/main-view";
-        					
-        				} else {
-        					alert("지점 추가 실패");
-        				}
-        			}
-					,error:function() {
-						alert("지점추가 에러!");
-					}
-				});
-				
-			});
+			
 		});
 	
 	</script>
