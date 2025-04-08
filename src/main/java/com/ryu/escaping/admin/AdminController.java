@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
 
 	// 관리자 메인
-	@GetMapping("/theme/main-view")
+	@GetMapping("/main-view")
 	public String manager() {
 		return "admin/main";
 	}
