@@ -11,31 +11,82 @@
 		<section>
 			<article class="d-flex justify-content-around mt-4 branch-create">
 				<div>
-					<h2>찾아오시는 길 약도</h2>
-					<div class="image-zone">이미지 공간</div>
+					<h2>지점 로고</h2>
+					<input type="file" id="fileInput">
 				</div>
 				<div class="display-4 mr-4">
 					<div class="d-flex">
-						<h5>지점명</h5>
-						<label class="bg-secondary ml-4 form-control">~~~</label>
+						<span class="small-font">지점이름</span>
+						<input type="text" class="text-white bg-secondary ml-4 form-control" id="branchName">
 					</div>
 					<br>
 					<div class="d-flex">
-						<h5>보유 테마</h5>
-						<a class="btn btn-secondary ml-4 form-control">테마 추가</a>
+						<span class="small-font">보유테마</span>
+						<a href="*" class="btn btn-secondary ml-4 form-control">테마 추가</a>
 					</div>
 					<br>
 					<div class="d-flex">
-						<h5>지점 위치</h5>
-						<label class="bg-secondary ml-4 form-control">~~~</label>
+						<span class="small-font">지점위치</span>
+						<input type="text" class="text-white bg-secondary ml-4 form-control" id="location">
 					</div>
 				</div>
 				<div class="d-flex align-items-end mb-4">
-					<button class="btn btn-secondary rounded">지점 추가하기</button>
+					<button class="btn btn-secondary rounded" id="createBtn" >지점 추가하기</button>
 				</div>
 			</article>
 		</section>
 		<hr>
 	</div>
 	
+	<script layout:fragment="script">
+		
+		$(function() {
+			$("#createBtn").on("click", function() {
+				let name = $("#branchName").val();
+				let location = $("#location").val();
+				let file = $("#fileInput")[0].files[0];
+				
+				if(name == "") {
+					alert("지점 이름을 입력해 주세요");
+					return;
+				}
+				
+				if(location == "") {
+					alert("지점 위치를 입력해 주세요");
+					return;
+				}
+				
+				if(file == null) {
+					alert("사진을 첨부해주세요");
+					return;
+				}
+				
+				let formData = new FormData();
+   				formData.append("branchName", name);
+   				formData.append("location", location);
+   				formData.append("imageFile", file);
+				
+				$.ajax({
+					type:"post"
+					,url:"/admin/create-branch"
+					,data:formData
+					, enctype:"multipart/form-data" // 파일 업로드시 추가 옵션
+           			, processData:false // 파일 업로드시 추가 옵션
+           			, contentType:false // 파일 업로드시 추가 옵션
+        			,success:function(response){
+        				if(response.result == "success") {
+        					location.href="/admin/main-view";
+        				} else {
+        					alert("지점 추가 실패");
+        				}
+        			}
+					,error:function() {
+						alert("지점추가 에러!");
+					}
+				});
+				
+			});
+		});
+	
+	</script>
 </html>

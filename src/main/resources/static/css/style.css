@@ -28,6 +28,10 @@ article{
 .main-zone{
 	height: 400px;
 }
+.small-font {
+	font-size:20px;
+	font-weight:bold;
+}
 .btn-zone{
 
 }
