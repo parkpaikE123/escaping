@@ -12,7 +12,7 @@ import jakarta.persistence.PersistenceException;
 @Service
 public class BranchService {
 
-	public final BranchRepository branchRepository;
+	private final BranchRepository branchRepository;
 	
 	public BranchService(BranchRepository branchRepository) {
 		this.branchRepository = branchRepository;

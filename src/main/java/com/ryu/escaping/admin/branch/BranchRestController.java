@@ -15,7 +15,7 @@ import com.ryu.escaping.admin.branch.service.BranchService;
 @RequestMapping("/admin")
 public class BranchRestController {
 
-	public final BranchService branchService;
+	private final BranchService branchService;
 	
 	public BranchRestController(BranchService branchService) {
 		this.branchService = branchService;
