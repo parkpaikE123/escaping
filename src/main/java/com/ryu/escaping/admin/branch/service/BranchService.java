@@ -26,31 +26,35 @@ public class BranchService {
 		this.themeRepository = themeRepository;
 	}
 	
-//	public boolean deleteBranch(int id, String branchName) {
-//		Optional<Branch> optionalBranch = branchRepository.findById(id);
-//		
-//		if(optionalBranch.isPresent()) {
-//			
-//			Branch branch = optionalBranch.get();
-//			
-//			
-//			Theme theme = null;
-//			
-//			String themeImage = theme.getImagePath();
-//			
-//			// 삭제 대상 게시글 정보의 작성자와 로그인한 사용자가 일치하지 않는 경우
-//			// 삭제 실패
-//			
-//			if(branch.getId() != id) {
-//				return false;
-//			}
-//			// 지점 사진파일 삭제
-//			FileManager.removeBranchFile(branch.getBranchPath());
-//		
-//		
-//		}
-//		
-//	}
+		public boolean deleteBranch(int id) {
+		Optional<Branch> optionalBranch = branchRepository.findById(id);
+		
+		if(optionalBranch.isPresent()) {
+			
+			Branch branch = optionalBranch.get();
+			
+			
+			// 삭제 대상 게시글 정보의 작성자와 로그인한 사용자가 일치하지 않는 경우
+			// 삭제 실패
+			
+			if(branch.getId() != id) {
+				return false;
+			}
+			// 지점 사진파일 삭제
+			FileManager.removeBranchFile(branch.getBranchPath());
+			
+			try {
+			branchRepository.delete(branch);
+			} catch(PersistenceException e) {
+				return false;
+			}
+		
+		} else {
+			return false;
+		}
+		
+		return true;
+	}
 	
 	
 	public List<Branch> getBranch(

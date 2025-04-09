@@ -41,7 +41,17 @@ public class BranchRestController {
 	}
 	
 	// 지점 삭제 API
-
+	@DeleteMapping("/delete-branch")
+	public Map<String, String> deleteBranch(@RequestParam int id) {
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(branchService.deleteBranch(id)) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		return resultMap;
+	}
 	
 	
 	

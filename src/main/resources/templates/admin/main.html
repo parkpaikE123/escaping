@@ -26,7 +26,7 @@
 								<td th:src="${branch.branchPath}">사진 자리<small th:text="${branch.name}">사파리 홍대점</small></td>
 								<td class="ml-2">3<a class="btn ml-2 btn-info" href="/admin/theme/create-view" id="addTheme" th:data-branch-name="${branch.name}">테마 추가</a></td>
 								<td th:text="${branch.location}">서울</td>
-								<td><button class="btn btn-danger" th:data-branch-id="${branch.id}">지점 삭제</button></td>
+								<td><button id="deleteBtn" class="btn btn-danger" th:data-branch-id="${branch.id}">지점 삭제</button></td>
 							</tr>
 						</tbody>
 					</table>
@@ -40,7 +40,26 @@
 	</div>
 	<script layout:fragment="script">
 		$(function() {
-			
+			$("#deleteBtn").on("click", function() {
+				let id = $(this).data("branch-id");
+				
+				$.ajax({
+					type:"delete"
+					,url:"/admin/delete-branch"
+					,data:{"id" : id}
+					,success:function(response){
+						if(response.result == "success") {
+							location.reload();
+						}else {
+							alert("삭제 실패!");
+						}
+					}
+					,error:function() {
+						alert("삭제 에러!");
+					}
+				});
+				
+			});
 		});
 	</script>
 </html>
