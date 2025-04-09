@@ -17,6 +17,14 @@ public class BranchService {
 	public BranchService(BranchRepository branchRepository) {
 		this.branchRepository = branchRepository;
 	}
+	public Branch setBranch(
+							int branchId) {
+				
+				Branch branch = branchRepository.selectById(branchId);
+				
+					return branch;		
+				
+				}
 	
 	public boolean addBranch(
 							String branchName

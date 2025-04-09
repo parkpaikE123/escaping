@@ -4,14 +4,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.ryu.escaping.admin.branch.domain.Branch;
+import com.ryu.escaping.admin.branch.service.BranchService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
+	private final BranchService branchService;
+	public AdminController(BranchService branchService) {
+		this.branchService = branchService;
+	}
+	
 	// 관리자 메인
 	@GetMapping("/main-view")
-	public String manager() {
+	public String manager(Model model
+						,@RequestParam int branchId) {
+		
+		Branch branch = branchService.setBranch(branchId);
+		
+		model.addAttribute(branch);
 		
 		return "admin/main";
 	}
