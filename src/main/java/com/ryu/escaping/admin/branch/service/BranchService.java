@@ -1,5 +1,7 @@
 package com.ryu.escaping.admin.branch.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,10 +19,10 @@ public class BranchService {
 	public BranchService(BranchRepository branchRepository) {
 		this.branchRepository = branchRepository;
 	}
-	public Branch setBranch(
-							int branchId) {
+	public List<Branch> getBranch(
+							) {
 				
-				Branch branch = branchRepository.selectById(branchId);
+				List<Branch> branch = branchRepository.findAll();
 				
 					return branch;		
 				

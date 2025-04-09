@@ -1,31 +1,40 @@
 package com.ryu.escaping.admin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ryu.escaping.admin.branch.domain.Branch;
 import com.ryu.escaping.admin.branch.service.BranchService;
+import com.ryu.escaping.admin.theme.service.ThemeService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
-	private final BranchService branchService;
-	public AdminController(BranchService branchService) {
+	private BranchService branchService;
+	private ThemeService themeService;
+	public AdminController(BranchService branchService, ThemeService themeService) {
 		this.branchService = branchService;
+		this.themeService = themeService;
 	}
 	
 	// 관리자 메인
 	@GetMapping("/main-view")
-	public String manager(Model model
-						,@RequestParam int branchId) {
+	public String manager(Model model) {
+		List<Branch> branchList = new ArrayList<>();
 		
-		Branch branch = branchService.setBranch(branchId);
+		branchList = branchService.getBranch();
 		
-		model.addAttribute(branch);
+//		int themeCount = themeService.countByTheme("");
+		
+		model.addAttribute("branch", branchList);
+		
+//		model.addAttribute("themeCount",themeCount);
 		
 		return "admin/main";
 	}

@@ -3,6 +3,7 @@ package com.ryu.escaping.admin.theme.service;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ryu.escaping.admin.branch.repository.BranchRepository;
 import com.ryu.escaping.admin.theme.domain.Theme;
 import com.ryu.escaping.admin.theme.repository.ThemeRepository;
 import com.ryu.escaping.common.FileManager;
@@ -13,10 +14,15 @@ import jakarta.persistence.PersistenceException;
 public class ThemeService {
 
 	private final ThemeRepository themeRepository;
-	public ThemeService(ThemeRepository themeRepository) {
+	private BranchRepository branchRepository;
+	public ThemeService(ThemeRepository themeRepository, BranchRepository branchRepository) {
 		this.themeRepository = themeRepository;
+		this.branchRepository = branchRepository;
 	}
 	
+	public int countByTheme(String branchName) {
+		return themeRepository.countByBranchName(branchName);
+	}
 	
 	public boolean addTheme(String branchName
 							,String themeName
@@ -24,6 +30,7 @@ public class ThemeService {
 							,String genre
 							,int runningTime
 							,MultipartFile imagefile) {
+		
 		String themeImagePath = FileManager.saveTheme(imagefile);
 		
 		

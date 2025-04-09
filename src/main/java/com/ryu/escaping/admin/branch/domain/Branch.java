@@ -28,6 +28,7 @@ public class Branch {
 	private String name;
 	private String location;
 	
+	
 	@Column(name="branchPath")
 	private String branchPath;
 	

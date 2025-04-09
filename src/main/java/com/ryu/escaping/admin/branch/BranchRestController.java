@@ -37,7 +37,8 @@ public class BranchRestController {
 		}
 		
 		return resultMap;
-		
 	}
+	
+	// 지점 삭제 API
 	
 }

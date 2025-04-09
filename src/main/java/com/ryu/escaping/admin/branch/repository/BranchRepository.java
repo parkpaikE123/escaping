@@ -7,8 +7,6 @@ import com.ryu.escaping.admin.branch.domain.Branch;
 
 public interface BranchRepository extends JpaRepository<Branch, Integer> {
 
-	// SELECT  FROM `id`
-	public Branch selectById(@Param int branchId);
 	
 	
 	

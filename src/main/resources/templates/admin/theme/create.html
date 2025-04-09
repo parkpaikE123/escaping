@@ -16,28 +16,36 @@
 				</div>
 				<div class="display-4 mr-4 text-center">
 					<div class="d-flex justify-content-between">
-						<span class="small-font">운영지점(가맹점)</span>
-						<input type="text" class="text-white bg-secondary ml-4 form-control col-5" id="branchName">
+						<span class="small-font">운영지점<br>(가맹점)</span>
+						<input type="text" class="text-white bg-secondary ml-4 form-control col-6" id="branchName">
 					</div>
 					<br>
 					<div class="d-flex justify-content-between">
-						<span class="small-font">테마이름(소제목)</span>
-						<input type="text" class="text-white bg-secondary ml-4 form-control col-5" id="location">
+						<span class="small-font">테마이름<br>(소제목)</span>
+						<input type="text" class="text-white bg-secondary ml-4 form-control col-6" id="themeName">
 					</div>
 					<br>
 					<div class="d-flex justify-content-between">
-						<span class="small-font">가격(원)</span>
-						<input type="text" class="text-white bg-secondary ml-4 form-control col-5" id="location">
+						<span class="small-font">가격<br>(원)</span>
+						<input type="text" class="text-white bg-secondary ml-4 form-control col-6" id="price">
 					</div>
 					<br>
 					<div class="d-flex justify-content-between">
-						<span class="small-font">시간(분)</span>
-						<input type="text" class="text-white bg-secondary ml-4 form-control col-5" id="location">
+						<span class="small-font">제한시간<br>(분)</span>
+						<input type="text" class="text-white bg-secondary ml-4 form-control col-6" id="runningTime">
 					</div>
 					<br>
 					<div class="d-flex justify-content-between">
 						<span class="small-font">장르<br>(종류)</span>
-						<input type="text" class="text-white bg-secondary ml-4 form-control col-5" id="location">
+						<select class="text-white bg-secondary ml-4 form-control col-6 text-center" id="genre">
+						
+							<option value="horror"> 공포
+							<option value="reasoning"> 추리
+							<option value="mystery"> 미스테리
+							<option value="fantasy"> 판타지
+							<option value="comedy"> 코미디
+						
+						</select>
 					</div>
 				</div>
 				<div class="d-flex align-items-end mb-4">
@@ -51,7 +59,68 @@
 	<script layout:fragment="script">
 		
 		$(function() {
-			$("#createBtn")
+			$("#createBtn").on("click", function() {
+				let file = $("#fileInput")[0].files[0];
+				let branchName = $("#branchName").val();
+				let themeName = $("#themeName").val();
+				let price = $("#price").val();
+				let runningTime = $("#runningTime").val();
+				let genre = $("#genre").val();
+				
+				if(file == null) {
+					alert("로고 사진을 첨부해주세요");
+					return;
+				}
+				if(branchName == "") {
+					alert("운영지점을 입력해주세요");
+					return;
+				}
+				if(themeName == "") {
+					alert("테마이름을 입력해주세요");
+					return;
+				}
+				if(price == "") {
+					alert("가격을 입력해주세요");
+					return;
+				}
+				if(runningTime == "") {
+					alert("제한 시간을 입력해주세요");
+					return;
+				}
+				if(genre == "") {
+					alert("테마 장르를 입력해주세요");
+					return;
+				}
+				
+				let formData = new FormData();
+				formData.append("imagePath", file);
+				formData.append("branchName", branchName);
+				formData.append("themeName", themeName);
+				formData.append("price", price);
+				formData.append("runningTime", runningTime);
+				formData.append("genre", genre);
+				
+				$.ajax({
+					type:"post"
+					,url:"/admin/create-theme"
+					,data:formData
+					, enctype:"multipart/form-data" // 파일 업로드시 추가 옵션
+	           		, processData:false // 파일 업로드시 추가 옵션
+	           		, contentType:false // 파일 업로드시 추가 옵션
+	           		,success:function(response){
+	           			if(response.result == "success") {
+	           				location.reload();
+	           			} else {
+	           				alert("테마 추가 실패");
+	           			}
+	           		}
+					,error:function() {
+						alert("테마 추가 오류!");
+					}
+				});
+				
+				
+			});
 		});
 	
 	</script>
