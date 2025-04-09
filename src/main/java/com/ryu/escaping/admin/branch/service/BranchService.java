@@ -1,12 +1,16 @@
 package com.ryu.escaping.admin.branch.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ryu.escaping.admin.branch.domain.Branch;
 import com.ryu.escaping.admin.branch.repository.BranchRepository;
+import com.ryu.escaping.admin.theme.domain.Theme;
+import com.ryu.escaping.admin.theme.repository.ThemeRepository;
 import com.ryu.escaping.common.FileManager;
 
 import jakarta.persistence.PersistenceException;
@@ -15,10 +19,40 @@ import jakarta.persistence.PersistenceException;
 public class BranchService {
 
 	private final BranchRepository branchRepository;
+	private ThemeRepository themeRepository;
 	
-	public BranchService(BranchRepository branchRepository) {
+	public BranchService(BranchRepository branchRepository, ThemeRepository themeRepository) {
 		this.branchRepository = branchRepository;
+		this.themeRepository = themeRepository;
 	}
+	
+//	public boolean deleteBranch(int id, String branchName) {
+//		Optional<Branch> optionalBranch = branchRepository.findById(id);
+//		
+//		if(optionalBranch.isPresent()) {
+//			
+//			Branch branch = optionalBranch.get();
+//			
+//			
+//			Theme theme = null;
+//			
+//			String themeImage = theme.getImagePath();
+//			
+//			// 삭제 대상 게시글 정보의 작성자와 로그인한 사용자가 일치하지 않는 경우
+//			// 삭제 실패
+//			
+//			if(branch.getId() != id) {
+//				return false;
+//			}
+//			// 지점 사진파일 삭제
+//			FileManager.removeBranchFile(branch.getBranchPath());
+//		
+//		
+//		}
+//		
+//	}
+	
+	
 	public List<Branch> getBranch(
 							) {
 				

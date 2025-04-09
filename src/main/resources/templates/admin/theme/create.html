@@ -93,7 +93,7 @@
 				}
 				
 				let formData = new FormData();
-				formData.append("imagePath", file);
+				formData.append("imageFile", file);
 				formData.append("branchName", branchName);
 				formData.append("themeName", themeName);
 				formData.append("price", price);
@@ -109,7 +109,7 @@
 	           		, contentType:false // 파일 업로드시 추가 옵션
 	           		,success:function(response){
 	           			if(response.result == "success") {
-	           				location.reload();
+	           				location.href="/admin/main-view";
 	           			} else {
 	           				alert("테마 추가 실패");
 	           			}
