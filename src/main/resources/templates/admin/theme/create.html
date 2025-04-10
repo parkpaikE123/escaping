@@ -16,8 +16,8 @@
 				</div>
 				<div class="display-4 mr-4 text-center">
 					<div class="d-flex justify-content-between">
-						<span class="small-font">운영지점<br>(가맹점)</span>
-						<input type="text" class="text-white bg-secondary ml-4 form-control col-6" id="branchName">
+						<span class="small-font" id="idBar" th:data-branch-id="${branch.id}">운영지점<br>(가맹점)</span>
+						<label class="small-font" th:text="${branch.name}" id="branchName"></label>
 					</div>
 					<br>
 					<div class="d-flex justify-content-between">
@@ -60,8 +60,9 @@
 		
 		$(function() {
 			$("#createBtn").on("click", function() {
+				let branchId = $("#idBar").data("branch-id");
+				let branchName = $("branchName").val();
 				let file = $("#fileInput")[0].files[0];
-				let branchName = $("#branchName").val();
 				let themeName = $("#themeName").val();
 				let price = $("#price").val();
 				let runningTime = $("#runningTime").val();
@@ -71,10 +72,7 @@
 					alert("로고 사진을 첨부해주세요");
 					return;
 				}
-				if(branchName == "") {
-					alert("운영지점을 입력해주세요");
-					return;
-				}
+				
 				if(themeName == "") {
 					alert("테마이름을 입력해주세요");
 					return;
@@ -93,6 +91,8 @@
 				}
 				
 				let formData = new FormData();
+				
+				formData.append("branchId", branchId);
 				formData.append("imageFile", file);
 				formData.append("branchName", branchName);
 				formData.append("themeName", themeName);

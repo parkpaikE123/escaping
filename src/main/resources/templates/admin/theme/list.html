@@ -23,7 +23,7 @@
 						</thead>
 						<tbody>
 							<tr th:each="theme:${theme}" class="mt-4 d-flex justify-content-around">
-								<td><img ><span th:text="${theme.themeName}">테마이름</span></td>
+								<td><img th:src="${theme.}"><span th:text="${theme.themeName}">테마이름</span></td>
 								<td th:text="${theme.branchName}">룸이스케이프</td>
 								<td th:text="${theme.price}">45,000원</td>
 								<td th:text="${theme.runningTime}">80분</td>

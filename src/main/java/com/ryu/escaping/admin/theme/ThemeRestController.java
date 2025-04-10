@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ryu.escaping.admin.branch.service.BranchService;
 import com.ryu.escaping.admin.theme.service.ThemeService;
 
 @RestController
@@ -17,20 +18,23 @@ import com.ryu.escaping.admin.theme.service.ThemeService;
 public class ThemeRestController {
 
 	private final ThemeService themeService;
-	public ThemeRestController(ThemeService themeService) {
+	private BranchService branchService;
+	public ThemeRestController(ThemeService themeService, BranchService branchService) {
 		this.themeService = themeService;
+		this.branchService = branchService;
 	}
 	
 	// 테마추가 API
 	@PostMapping("/create-theme")
-	public Map<String, String> addTheme(
-										@RequestParam String branchName
+	public Map<String, String> addTheme(@RequestParam int branchId
+										,@RequestParam String branchName
 										,@RequestParam String themeName
 										,@RequestParam int price
 										,@RequestParam String genre
 										,@RequestParam int runningTime
 										,@RequestParam MultipartFile imageFile) {
 		Map<String, String>resultMap = new HashMap<>();
+		
 		
 		if(themeService.addTheme(branchName, themeName, price, genre, runningTime, imageFile)) {
 			resultMap.put("result", "success");

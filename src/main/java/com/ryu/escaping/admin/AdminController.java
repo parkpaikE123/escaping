@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ryu.escaping.admin.branch.domain.Branch;
 import com.ryu.escaping.admin.branch.service.BranchService;
@@ -19,6 +20,7 @@ public class AdminController {
 
 	private BranchService branchService;
 	private ThemeService themeService;
+	
 	public AdminController(BranchService branchService, ThemeService themeService) {
 		this.branchService = branchService;
 		this.themeService = themeService;
@@ -28,9 +30,7 @@ public class AdminController {
 	@GetMapping("/main-view")
 	public String manager(Model model) {
 		List<Branch> branchList = new ArrayList<>();
-		
-		branchList = branchService.getBranch();
-		
+		branchList = branchService.getBranchList();
 		model.addAttribute("branch", branchList);
 		
 		return "admin/main";
@@ -49,13 +49,16 @@ public class AdminController {
 		themeList = themeService.getTheme();
 		model.addAttribute("theme", themeList);
 		
-		
 		return "admin/theme/list";
 	}
 	
 	// 테마 추가
 	@GetMapping("/theme/create-view")
-	public String createTheme() {
+	public String createTheme(@RequestParam int branchId
+							, Model model) {
+		Branch branch = branchService.getBranchById(branchId);
+		
+		model.addAttribute("branch", branch);
 		return "admin/theme/create";
 	}
 	

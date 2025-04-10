@@ -25,8 +25,10 @@ public class BranchService {
 		this.branchRepository = branchRepository;
 		this.themeRepository = themeRepository;
 	}
+
 	
-		public boolean deleteBranch(int id) {
+	
+	public boolean deleteBranch(int id) {
 		Optional<Branch> optionalBranch = branchRepository.findById(id);
 		
 		if(optionalBranch.isPresent()) {
@@ -55,8 +57,19 @@ public class BranchService {
 		return true;
 	}
 	
+	public Branch getBranchById(int id) {
+		Optional<Branch>optionalBranch = branchRepository.findById(id);
+		
+		if(optionalBranch.isPresent()) {
+			Branch branch = optionalBranch.get();
+			return branch;
+		} else {
+			return null;
+		}
+		
+	}
 	
-	public List<Branch> getBranch(
+	public List<Branch> getBranchList(
 							) {
 				
 				List<Branch> branch = branchRepository.findAll();

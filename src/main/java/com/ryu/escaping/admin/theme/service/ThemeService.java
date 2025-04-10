@@ -35,7 +35,6 @@ public class ThemeService {
 			Theme theme = optionalTheme.get();
 			
 			// 삭제 실패
-			
 			if(theme.getId() != id) {
 				return false;
 			}
