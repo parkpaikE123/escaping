@@ -12,8 +12,8 @@
 		<section>
 			<article class="">
 				<div class="main-zone">
-					<table class="w-100 mt-4">
-						<thead>
+					<table class="w-100 mt-4 table">
+						<thead class="bg-secondary">
 							<tr class="d-flex justify-content-around">
 								<th>지점</th>
 								<th>보유 테마 수</th>
@@ -22,11 +22,15 @@
 							</tr>
 						</thead>
 						<tbody th:each="branch:${branch}">
-							<tr class="mt-4 d-flex justify-content-around">
-								<td th:src="${branch.branchPath}">사진 자리<small th:text="${branch.name}">사파리 홍대점</small></td>
-								<td class="ml-2">3<a class="btn ml-2 btn-info" href="/admin/theme/create-view" id="addTheme" th:data-branch-name="${branch.name}">테마 추가</a></td>
+							<tr class="d-flex justify-content-around align-items-center">
+								<td><img th:src="${branch.branchPath}">사진 자리<small th:text="${branch.name}">사파리 홍대점</small></td>
+								<td class="ml-2">3</td>
 								<td th:text="${branch.location}">서울</td>
-								<td><button id="deleteBtn" class="btn btn-danger" th:data-branch-id="${branch.id}">지점 삭제</button></td>
+								<td>
+									<a class="btn mb-2 btn-info" href="/admin/theme/create-view" id="addTheme" th:data-branch-name="${branch.name}">테마 추가</a>
+									<br>
+									<button id="deleteBtn" class="btn btn-danger" th:data-branch-id="${branch.id}">지점 삭제</button>
+								</td>
 							</tr>
 						</tbody>
 					</table>

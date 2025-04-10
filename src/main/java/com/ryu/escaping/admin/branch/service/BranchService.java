@@ -34,7 +34,6 @@ public class BranchService {
 			Branch branch = optionalBranch.get();
 			
 			
-			// 삭제 대상 게시글 정보의 작성자와 로그인한 사용자가 일치하지 않는 경우
 			// 삭제 실패
 			
 			if(branch.getId() != id) {

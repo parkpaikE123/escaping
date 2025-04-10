@@ -22,11 +22,11 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="mt-4 d-flex justify-content-around">
-								<td><img src="*"><span>테마이름</span></td>
-								<td>룸이스케이프</td>
-								<td>45,000원</td>
-								<td>80분</td>
+							<tr th:each="theme:${theme}" class="mt-4 d-flex justify-content-around">
+								<td><img ><span th:text="${theme.themeName}">테마이름</span></td>
+								<td th:text="${theme.branchName}">룸이스케이프</td>
+								<td th:text="${theme.price}">45,000원</td>
+								<td th:text="${theme.runningTime}">80분</td>
 								<td><button id="deleteBtn" class="btn btn-danger">삭제</button></td>
 							</tr>
 						</tbody>
@@ -38,5 +38,13 @@
 			</article>
 		</section>
 	</div>
+	
+	<script layout:fragment="script">
+		$(function() {
+			$("deleteBtn").on("click", function() {
+				
+			});
+		});
+	</script>
 	
 </html>

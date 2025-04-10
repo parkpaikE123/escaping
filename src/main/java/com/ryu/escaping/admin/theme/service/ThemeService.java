@@ -1,5 +1,8 @@
 package com.ryu.escaping.admin.theme.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +22,38 @@ public class ThemeService {
 		this.themeRepository = themeRepository;
 		this.branchRepository = branchRepository;
 	}
+	
+	public List<Theme> getTheme() {
+		List<Theme> themeList = themeRepository.findAll();
+		return themeList;
+	}
+	
+	public boolean deleteTheme(int id) {
+		Optional<Theme> optionalTheme = themeRepository.findById(id);
+		
+		if(optionalTheme.isPresent()) {
+			Theme theme = optionalTheme.get();
+			
+			// 삭제 실패
+			
+			if(theme.getId() != id) {
+				return false;
+			}
+			// 테마 사진파일 삭제
+			FileManager.removeThemeFile(theme.getImagePath());
+						
+			try {
+			themeRepository.delete(theme);
+			} catch(PersistenceException e) {
+				return false;
+			}
+			
+		} else {
+			return false;
+		}
+		return true;
+	}
+	
 	
 	public int countByTheme(String branchName) {
 		return themeRepository.countByBranchName(branchName);

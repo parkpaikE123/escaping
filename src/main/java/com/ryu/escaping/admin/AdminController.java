@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ryu.escaping.admin.branch.domain.Branch;
 import com.ryu.escaping.admin.branch.service.BranchService;
+import com.ryu.escaping.admin.theme.domain.Theme;
 import com.ryu.escaping.admin.theme.service.ThemeService;
 
 @Controller
@@ -30,11 +31,7 @@ public class AdminController {
 		
 		branchList = branchService.getBranch();
 		
-//		int themeCount = themeService.countByTheme("");
-		
 		model.addAttribute("branch", branchList);
-		
-//		model.addAttribute("themeCount",themeCount);
 		
 		return "admin/main";
 	}
@@ -46,7 +43,13 @@ public class AdminController {
 	
 	// 테마 관리
 	@GetMapping("/theme/list-view")
-	public String adminTheme() {
+	public String adminTheme(Model model) {
+		
+		List<Theme> themeList = new ArrayList<>();
+		themeList = themeService.getTheme();
+		model.addAttribute("theme", themeList);
+		
+		
 		return "admin/theme/list";
 	}
 	
