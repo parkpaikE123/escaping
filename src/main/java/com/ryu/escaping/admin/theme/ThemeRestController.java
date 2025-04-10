@@ -35,8 +35,7 @@ public class ThemeRestController {
 										,@RequestParam MultipartFile imageFile) {
 		Map<String, String>resultMap = new HashMap<>();
 		
-		
-		if(themeService.addTheme(branchName, themeName, price, genre, runningTime, imageFile)) {
+		if(themeService.addTheme(branchId,branchName, themeName, price, genre, runningTime, imageFile)) {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");

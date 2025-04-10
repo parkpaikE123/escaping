@@ -33,6 +33,7 @@ public class AdminController {
 		branchList = branchService.getBranchList();
 		model.addAttribute("branch", branchList);
 		
+		
 		return "admin/main";
 	}
 	// 지점 추가
@@ -43,10 +44,11 @@ public class AdminController {
 	
 	// 테마 관리
 	@GetMapping("/theme/list-view")
-	public String adminTheme(Model model) {
+	public String adminTheme(Model model
+							,@RequestParam int branchId) {
 		
-		List<Theme> themeList = new ArrayList<>();
-		themeList = themeService.getTheme();
+		List<Theme> themeList = themeService.getTheme();
+		
 		model.addAttribute("theme", themeList);
 		
 		return "admin/theme/list";

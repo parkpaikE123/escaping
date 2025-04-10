@@ -27,9 +27,10 @@
 								<td class="ml-2">3</td>
 								<td th:text="${branch.location}">서울</td>
 								<td>
-									<a class="btn mb-2 btn-info" th:href="|/admin/theme/create-view?branchId=${branch.id}|" id="addTheme">테마 추가</a>
+									<a class="btn mb-2 btn-info" th:href="|/admin/theme/list-view?branchId=${branch.id}|" id="addTheme">테마 관리</a>
 									<br>
 									<button id="deleteBtn" class="btn btn-danger" th:data-branch-id="${branch.id}">지점 삭제</button>
+									<br>
 								</td>
 							</tr>
 						</tbody>

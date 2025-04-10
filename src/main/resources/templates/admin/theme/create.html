@@ -17,7 +17,7 @@
 				<div class="display-4 mr-4 text-center">
 					<div class="d-flex justify-content-between">
 						<span class="small-font" id="idBar" th:data-branch-id="${branch.id}">운영지점<br>(가맹점)</span>
-						<label class="small-font" th:text="${branch.name}" id="branchName"></label>
+						<div class="small-font" th:text="${branch.name}" th:value="${branch.name}" id="branchName"></div>
 					</div>
 					<br>
 					<div class="d-flex justify-content-between">
@@ -61,7 +61,7 @@
 		$(function() {
 			$("#createBtn").on("click", function() {
 				let branchId = $("#idBar").data("branch-id");
-				let branchName = $("branchName").val();
+				let branchName = $("#branchName").text();
 				let file = $("#fileInput")[0].files[0];
 				let themeName = $("#themeName").val();
 				let price = $("#price").val();

@@ -23,6 +23,10 @@ public class ThemeService {
 		this.branchRepository = branchRepository;
 	}
 	
+	public int countTheme(int branchId) {
+		return themeRepository.countByBranchId(branchId);
+	}
+	
 	public List<Theme> getTheme() {
 		List<Theme> themeList = themeRepository.findAll();
 		return themeList;
@@ -54,11 +58,9 @@ public class ThemeService {
 	}
 	
 	
-	public int countByTheme(String branchName) {
-		return themeRepository.countByBranchName(branchName);
-	}
 	
-	public boolean addTheme(String branchName
+	public boolean addTheme(int branchId
+							,String branchName
 							,String themeName
 							,int price
 							,String genre
@@ -67,8 +69,8 @@ public class ThemeService {
 		
 		String themeImagePath = FileManager.saveTheme(imagefile);
 		
-		
 		Theme theme = Theme.builder()
+				.branchId(branchId)
 				.branchName(branchName)
 				.themeName(themeName)
 				.price(price)

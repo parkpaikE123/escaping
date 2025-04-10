@@ -8,8 +8,10 @@ import com.ryu.escaping.admin.theme.domain.Theme;
 
 public interface ThemeRepository extends JpaRepository<Theme, Integer> {
 
-	public int countByBranchName(@Param("branchId") String branchName);
+	public int countByBranchId(@Param("branchId") int branchId);
 
 	public Theme findAllByBranchName(@Param("branchName") String brnachName);
+	
+	
 	
 }

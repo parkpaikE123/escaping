@@ -5,7 +5,7 @@
      <div layout:fragment="contents">
 		<nav class="mt-2 d-flex justify-content-center align-items-center">
 			<hr>
-			<b><span class="w-100 text-center">테마 관리(지점명)</span></b>
+			<b><span class="w-100 text-center">테마 관리<span>(지점명)</span></span></b>
 			<hr>
 		</nav>
 		<section>
@@ -21,9 +21,9 @@
 								<th>edit</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr th:each="theme:${theme}" class="mt-4 d-flex justify-content-around">
-								<td><img th:src="${theme.}"><span th:text="${theme.themeName}">테마이름</span></td>
+						<tbody th:each="theme:${theme}">
+							<tr class="mt-4 d-flex justify-content-around">
+								<td><img th:src="${theme.imagePath}"><span th:text="${theme.themeName}">테마이름</span></td>
 								<td th:text="${theme.branchName}">룸이스케이프</td>
 								<td th:text="${theme.price}">45,000원</td>
 								<td th:text="${theme.runningTime}">80분</td>
