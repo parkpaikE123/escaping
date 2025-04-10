@@ -1,6 +1,5 @@
 package com.ryu.escaping.admin;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -8,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ryu.escaping.admin.branch.domain.Branch;
 import com.ryu.escaping.admin.branch.service.BranchService;
@@ -29,8 +29,7 @@ public class AdminController {
 	// 관리자 메인
 	@GetMapping("/main-view")
 	public String manager(Model model) {
-		List<Branch> branchList = new ArrayList<>();
-		branchList = branchService.getBranchList();
+		List<Branch> branchList = branchService.getBranchList();
 		model.addAttribute("branch", branchList);
 		
 		
@@ -46,11 +45,8 @@ public class AdminController {
 	@GetMapping("/theme/list-view")
 	public String adminTheme(Model model
 							,@RequestParam int branchId) {
-		
-		List<Theme> themeList = themeService.getTheme();
-		
+		List<Theme> themeList = themeService.selectTheme(branchId);
 		model.addAttribute("theme", themeList);
-		
 		return "admin/theme/list";
 	}
 	
@@ -59,7 +55,6 @@ public class AdminController {
 	public String createTheme(@RequestParam int branchId
 							, Model model) {
 		Branch branch = branchService.getBranchById(branchId);
-		
 		model.addAttribute("branch", branch);
 		return "admin/theme/create";
 	}

@@ -5,7 +5,7 @@
      <div layout:fragment="contents">
 		<nav class="mt-2 d-flex justify-content-center align-items-center">
 			<hr>
-			<b><span class="w-100 text-center">테마 관리<span>(지점명)</span></span></b>
+			<b><span class="w-100 text-center">테마 관리<span th:text="${branch?.name}">(지점명)</span></span></b>
 			<hr>
 		</nav>
 		<section>
@@ -21,8 +21,8 @@
 								<th>edit</th>
 							</tr>
 						</thead>
-						<tbody th:each="theme:${theme}">
-							<tr class="mt-4 d-flex justify-content-around">
+						<tbody>
+							<tr class="mt-4 d-flex justify-content-around" th:if="${theme != null}">
 								<td><img th:src="${theme.imagePath}"><span th:text="${theme.themeName}">테마이름</span></td>
 								<td th:text="${theme.branchName}">룸이스케이프</td>
 								<td th:text="${theme.price}">45,000원</td>
@@ -33,6 +33,7 @@
 					</table>
 				</div>
 				<div class="btn-zone d-flex justify-content-around">
+					<a class="mt-4 btn btn-primary" th:href="|/admin/theme/create-view?branchId=${branch?.id}|">테마 추가</a>
 					<a class="mt-4 btn rounded btn-secondary" href="/admin/main-view">관리자 메인화면</a>
 				</div>
 			</article>

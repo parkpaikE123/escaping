@@ -27,6 +27,14 @@ public class ThemeService {
 		return themeRepository.countByBranchId(branchId);
 	}
 	
+	public List<Theme> selectTheme(int branchId) {
+		List<Theme> themeList = themeRepository.findByBranchId(branchId);
+		if(themeList == null || themeList.isEmpty()) {
+			return null;
+		}
+		return themeList;
+	}
+	
 	public List<Theme> getTheme() {
 		List<Theme> themeList = themeRepository.findAll();
 		return themeList;
