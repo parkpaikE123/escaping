@@ -14,4 +14,24 @@ public class UserController {
 		return"/user/first";
 	}
 	
+	// openAPI 화면
+	@GetMapping("/open-login-view")
+	public String openApi() {
+		return "/user/open-api";
+	}
+	
+	// 로그인 화면
+	@GetMapping("/login-view")
+	public String login() {
+		return "/user/login";
+	}
+	
+	// 회원가입 화면
+	@GetMapping("/join-view")
+	public String join() {
+		return "/user/join";
+	}
+	
+	
+	
 }

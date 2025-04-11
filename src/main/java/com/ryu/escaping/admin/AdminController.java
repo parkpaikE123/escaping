@@ -30,8 +30,7 @@ public class AdminController {
 	@GetMapping("/main-view")
 	public String manager(Model model) {
 		List<Branch> branchList = branchService.getBranchList();
-		model.addAttribute("branch", branchList);
-		
+		model.addAttribute("branchList", branchList);
 		
 		return "admin/main";
 	}
@@ -42,15 +41,13 @@ public class AdminController {
 	}
 	
 	// 테마 관리
-	@ResponseBody
 	@GetMapping("/theme/list-view")
 	public String adminTheme(Model model
 							,@RequestParam int branchId) {
 		List<Theme> themeList = themeService.getTheme(branchId);
-		if(themeList == null) {
-			return "전달안됨";
-		}
-		model.addAttribute("theme", themeList);
+		
+		model.addAttribute("themeList", themeList);
+		model.addAttribute("branchId", branchId);
 		return "admin/theme/list";
 	}
 	

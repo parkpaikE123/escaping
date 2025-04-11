@@ -15,19 +15,27 @@ header{
 	height:80px;
 }
 .logo-zone {
-	height:300px;
+	height:100px;
 }
 section{
-	height: 600px;
+
+}
+.middle-box{
+	height:500px;
+}
+.login-box {
+	width:500px;
+	height:400px;
 }
 .bar{
 	height: 60px;
 }
 article{
-	 height: 500px;
+	
 }
-.main-zone{
-
+.choice-zone{
+	width:400px;
+	height:500px;
 }
 .small-font {
 	font-size:20px;
@@ -37,5 +45,5 @@ article{
 
 }
 footer{
-
+	height:100px;
 }

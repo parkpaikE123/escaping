@@ -22,28 +22,42 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="mt-4 d-flex justify-content-around" th:if="${theme != null}">
-								<td><img th:src="${theme.imagePath}"><span th:text="${theme.themeName}">테마이름</span></td>
+							<tr class="mt-4 d-flex justify-content-around" th:each="theme:${themeList}">
+								<td><img width=100 th:src="${theme.imagePath}"><span th:text="${theme.themeName}">테마이름</span></td>
 								<td th:text="${theme.branchName}">룸이스케이프</td>
 								<td th:text="${theme.price}">45,000원</td>
 								<td th:text="${theme.runningTime}">80분</td>
-								<td><button id="deleteBtn" class="btn btn-danger">삭제</button></td>
+								<td><button  class="btn delete-btn btn-danger" th:data-theme-id="${theme.id}">삭제</button></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 				<div class="btn-zone d-flex justify-content-around">
-					<a class="mt-4 btn btn-primary" th:href="|/admin/theme/create-view?branchId=${branch?.id}|">테마 추가</a>
+					<a class="mt-4 btn btn-primary" th:href="|/admin/theme/create-view?branchId=${branchId}|">테마 추가</a>
 					<a class="mt-4 btn rounded btn-secondary" href="/admin/main-view">관리자 메인화면</a>
 				</div>
 			</article>
 		</section>
 	</div>
-	
 	<script layout:fragment="script">
 		$(function() {
-			$("deleteBtn").on("click", function() {
-				
+			$(".delete-btn").on("click", function() {
+				let id = $(this).data("theme-id");
+				$.ajax({
+					type:"delete"
+					,url:"/admin/delete-branch"
+					,data:{"id":id}
+					,success:function(response){
+						if(response.result == "success") {
+							location.reload();
+						} else {
+							alert("삭제 실패!");
+						}
+					}
+					,error:function() {
+						alert("삭제 에러!");
+					}
+				});
 			});
 		});
 	</script>

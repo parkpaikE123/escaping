@@ -59,12 +59,11 @@ public class FileManager {
 		// D:\\jung20241114\\project\\upload\\memo/5_1432352/test.png
 		// /images/5_1432352/test.png
 		
-		return "/images" + directoryName + "/" + file.getOriginalFilename();
+		return "/branch/image" + directoryName + "/" + file.getOriginalFilename();
 		
 	}
 	
 	// 파일 삭제 기능
-	
 	public static boolean removeBranchFile(String imagePath) {
 		if(imagePath == null) {
 			return false;
@@ -132,7 +131,7 @@ public class FileManager {
 			// D:\\jung20241114\\project\\upload\\memo/5_1432352/test.png
 			// /images/5_1432352/test.png
 			
-			return "/images" + directoryName + "/" + file.getOriginalFilename();
+			return "/theme/image" + directoryName + "/" + file.getOriginalFilename();
 			
 		}
 		

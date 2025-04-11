@@ -46,6 +46,7 @@ public class ThemeService {
 			if(theme.getId() != id) {
 				return false;
 			}
+			
 			// 테마 사진파일 삭제
 			FileManager.removeThemeFile(theme.getImagePath());
 						
@@ -60,7 +61,6 @@ public class ThemeService {
 		}
 		return true;
 	}
-	
 	
 	
 	public boolean addTheme(int branchId
