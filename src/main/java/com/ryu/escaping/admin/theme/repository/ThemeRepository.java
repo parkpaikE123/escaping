@@ -14,6 +14,7 @@ public interface ThemeRepository extends JpaRepository<Theme, Integer> {
 
 	public Theme findAllByBranchName(@Param("branchName") String brnachName);
 	
+	
 	public List<Theme> findByBranchId(@Param("branchId") int branchId);
 	
 	

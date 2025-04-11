@@ -14,7 +14,8 @@ header{
 .header-bar {
 	height:80px;
 }
-nav{
+.logo-zone {
+	height:300px;
 }
 section{
 	height: 600px;
