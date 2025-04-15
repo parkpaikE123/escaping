@@ -4,12 +4,14 @@
         layout:decorate="~{layout/compliance}">
      <div layout:fragment="contents">
 		<section>
+		<hr>
 			<div class="logo-zone text-center mt-4 d-flex justify-content-center align-items-center">
 				<h2><i class="bi bi-door-open-fill"></i></h2>
 				<div>
 					<b>welcome escaping</b>
 				</div>	
 			</div>
+		<hr>
 			<div class="my-4 middle-box d-flex justify-content-center align-items-center">
 				<div></div>
 				<div></div>
@@ -64,6 +66,40 @@
 	
 	<script layout:fragment="script">
 		$(function() {
+			
+			// 중복 검사 여부
+			var isDuplicateCheck = false;
+			
+			// 중복체크
+			$("#duplicationBtn").on("click", function() {
+				let loginId = $("#loginIdInput").val();
+				
+				if(loginId == null) {
+					alert("아이디를 입력해주세요");
+					return;
+				}
+				
+				$.ajax({
+					type:"get"
+					,url:"/user/duplicate-id"
+					,data:{"loginId":loginId}
+					,success:function(response){
+						if(response.result == true) {
+							alert("중복된 아이디 입니다 다른 아이디를 사용해주세요");
+							return;
+						} else {
+							alert("사용 가능한 아이디입니다");
+							isDuplicateCheck = true;
+						}
+					}
+					,error:function(){
+						alert("중복체크 에러");
+					}
+				});
+				
+			});
+			
+			// 회원가입 
 			$("#joinBtn").on("click", function() {
 				let loginId = $("#loginIdInput").val();
 				let password = $("#passwordInput").val();
@@ -101,6 +137,10 @@
 					alert("정확한 생년월일을 입력해주세요");
 					return;
 				}
+				if(isDuplicateCheck == false) {
+					alert("아이디 중복확인을 해주세요");
+					return;
+				}
 				
 				$.ajax({
 					type:"post"
@@ -108,7 +148,8 @@
 					,data:{"loginId":loginId,"password": password,"userName": userName,"name": name,"age": age,"phoneNumber":phoneNumber}
 					,success:function(response){
 						if(response.result == "success") {
-							
+							alert("환영합니다" + name + "님");
+							location.href="/user/login-view";
 						} else{
 							alert("회원가입 실패");
 						}

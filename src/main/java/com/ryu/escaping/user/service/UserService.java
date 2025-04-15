@@ -17,6 +17,19 @@ public class UserService {
 		this.userRepository = userRepository;
 	}
 	
+	// 아이디 중복체크 서비스
+	public boolean isDuplicateId(String loginId) {
+		int count = userRepository.countByLoginId(loginId);
+		
+		if(count == 0) {
+			return false;
+		} else {
+			return true;
+		}
+		
+	}
+	
+	// 회원가입 서비스
 	public boolean addUser(String loginId
 							, String password
 							, String userName
