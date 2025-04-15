@@ -2,6 +2,7 @@ package com.ryu.escaping.user;
 
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,5 +26,10 @@ public class UserRestController {
 	
 	// 로그인 API
 	
+	// 카카오 로그인 API
+	@GetMapping("/kakao")
+	public Map<String, String> kakaoLogin() {
+		
+	}
 	
 }

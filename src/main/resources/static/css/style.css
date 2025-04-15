@@ -9,6 +9,7 @@
 	width: 1200px;
 }
 header{
+	background-color:#A2D5F2;
 	height:80px;
 }
 .header-bar {
@@ -18,14 +19,16 @@ header{
 	height:100px;
 }
 section{
+	
+}
+.middle-box {
+	background-color:#A2D5F2;
 
 }
-.middle-box{
-	height:500px;
-}
 .login-box {
-	width:500px;
-	height:400px;
+	width:1200px;
+	height:500px;
+	background-color:#A2D5F2;
 }
 .bar{
 	height: 60px;

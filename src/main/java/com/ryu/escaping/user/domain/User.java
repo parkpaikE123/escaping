@@ -25,11 +25,15 @@ public class User {
 	
 	@Column(name="loginId")
 	private String loginId;
+	
 	private String password;
+	
 	@Column(name="userName")
 	private String userName;
+	
 	private String name;
 	private int age;
+	
 	@Column(name="phoneNumber")
 	private String phoneNumber;
 	
