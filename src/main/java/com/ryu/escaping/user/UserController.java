@@ -12,6 +12,7 @@ public class UserController {
 	@GetMapping("/first-view")
 	public String welcome() {
 		return"/user/first";
+		
 	}
 	
 	// openAPI 화면

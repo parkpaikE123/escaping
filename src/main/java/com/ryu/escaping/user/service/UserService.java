@@ -19,11 +19,14 @@ public class UserService {
 	
 	// 아이디 중복체크 서비스
 	public boolean isDuplicateId(String loginId) {
+		
 		int count = userRepository.countByLoginId(loginId);
 		
 		if(count == 0) {
+			// 중복 안됨
 			return false;
 		} else {
+			// 중복됨
 			return true;
 		}
 		

@@ -41,21 +41,21 @@ public class UserRestController {
 	}
 	
 	// 중복 체크 API
-		@GetMapping("/duplicate-id")
-		public Map<String, Boolean> isDuplicateId(@RequestParam String loginId) {
+	@GetMapping("/duplicate-id")
+	public Map<String, Boolean> isDuplicateId(@RequestParam String loginId) {
 			
-			Map<String, Boolean> resultMap = new HashMap<>();
+		Map<String, Boolean> resultMap = new HashMap<>();
 			
-			if(userService.isDuplicateId(loginId)) {
-				// 중복
-				resultMap.put("isDuplicate", true);
-			} else {
-				// 중복 안됨
-				resultMap.put("isDuplicate", false);
-			}
-			
-			return resultMap;
+		if(userService.isDuplicateId(loginId)) {
+			// 중복
+			resultMap.put("isDuplicate", true);
+		} else {
+			// 중복 안됨
+			resultMap.put("isDuplicate", false);
 		}
+			
+		return resultMap;
+	}
 	
 	// 로그인 API
 	
