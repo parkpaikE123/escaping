@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ryu.escaping.user.domain.User;
 import com.ryu.escaping.user.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/user")
@@ -58,7 +61,27 @@ public class UserRestController {
 	}
 	
 	// 로그인 API
-	
+	@PostMapping("/login")
+	public Map<String, String> login(@RequestParam String loginId
+									,@RequestParam String password
+									,HttpSession session) {
+		
+		Map<String, String>resultMap = new HashMap<>();
+		
+		User user = userService.userLogin(loginId, password);
+		
+		if(user != null) {
+			// 세션에 필요한 사용자 정보 저장
+			session.setAttribute("loginId", user.getLoginId());
+			session.setAttribute("age", user.getAge());
+			
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		return resultMap;
+		
+	}
 	
 	
 	// 카카오 로그인 API

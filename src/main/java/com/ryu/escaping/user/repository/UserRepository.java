@@ -9,4 +9,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	public int countByLoginId(@Param("loginId") String loginId);
 	
+	public User findByLoginIdAndPassword(@Param("loginId") String loginId,@Param("password") String password);
+	
 }

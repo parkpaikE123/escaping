@@ -17,6 +17,14 @@ public class UserService {
 		this.userRepository = userRepository;
 	}
 	
+	// 로그인 서비스
+	public User userLogin(String loginId, String password) {
+		
+		String encryptPassword = MD5HashingEncoder.encode(password);
+
+		return userRepository.findByLoginIdAndPassword(loginId, encryptPassword);
+	}
+	
 	// 아이디 중복체크 서비스
 	public boolean isDuplicateId(String loginId) {
 		
