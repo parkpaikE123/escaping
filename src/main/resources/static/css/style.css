@@ -19,14 +19,15 @@ header{
 	height:100px;
 }
 section{
-	
+
 }
 .middle-box {
+	width:1200px;
 	background-color:#A2D5F2;
 
 }
 .login-box {
-	width:1200px;
+	width:800px;
 	height:500px;
 	background-color:#A2D5F2;
 }

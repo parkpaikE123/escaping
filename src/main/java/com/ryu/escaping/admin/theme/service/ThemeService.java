@@ -17,7 +17,7 @@ import jakarta.persistence.PersistenceException;
 public class ThemeService {
 
 	private final ThemeRepository themeRepository;
-	private BranchRepository branchRepository;
+	private final BranchRepository branchRepository;
 	public ThemeService(ThemeRepository themeRepository, BranchRepository branchRepository) {
 		this.themeRepository = themeRepository;
 		this.branchRepository = branchRepository;
