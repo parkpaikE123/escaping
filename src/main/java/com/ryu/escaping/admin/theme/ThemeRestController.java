@@ -18,7 +18,7 @@ import com.ryu.escaping.admin.theme.service.ThemeService;
 public class ThemeRestController {
 
 	private final ThemeService themeService;
-	private BranchService branchService;
+	private final BranchService branchService;
 	public ThemeRestController(ThemeService themeService, BranchService branchService) {
 		this.themeService = themeService;
 		this.branchService = branchService;

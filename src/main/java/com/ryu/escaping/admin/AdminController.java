@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ryu.escaping.admin.branch.domain.Branch;
 import com.ryu.escaping.admin.branch.service.BranchService;
@@ -31,7 +30,6 @@ public class AdminController {
 	public String manager(Model model) {
 		List<Branch> branchList = branchService.getBranchList();
 		model.addAttribute("branchList", branchList);
-		
 		return "admin/main";
 	}
 	// 지점 추가
@@ -45,7 +43,6 @@ public class AdminController {
 	public String adminTheme(Model model
 							,@RequestParam int branchId) {
 		List<Theme> themeList = themeService.getTheme(branchId);
-		
 		model.addAttribute("themeList", themeList);
 		model.addAttribute("branchId", branchId);
 		return "admin/theme/list";

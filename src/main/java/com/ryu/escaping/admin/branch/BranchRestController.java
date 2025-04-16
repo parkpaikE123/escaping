@@ -11,15 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ryu.escaping.admin.branch.service.BranchService;
+import com.ryu.escaping.admin.theme.service.ThemeService;
 
 @RestController
 @RequestMapping("/admin")
 public class BranchRestController {
 
 	private final BranchService branchService;
+	private final ThemeService themeService;
 	
-	public BranchRestController(BranchService branchService) {
+	public BranchRestController(BranchService branchService,ThemeService themeService) {
 		this.branchService = branchService;
+		this.themeService = themeService;
 	}
 	
 	// 지점 추가 API

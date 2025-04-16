@@ -1,6 +1,5 @@
 package com.ryu.escaping.admin.branch.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +18,7 @@ import jakarta.persistence.PersistenceException;
 public class BranchService {
 
 	private final BranchRepository branchRepository;
-	private ThemeRepository themeRepository;
+	private final ThemeRepository themeRepository;
 	
 	public BranchService(BranchRepository branchRepository, ThemeRepository themeRepository) {
 		this.branchRepository = branchRepository;
@@ -29,11 +28,12 @@ public class BranchService {
 	
 	
 	public boolean deleteBranch(int id) {
+		
 		Optional<Branch> optionalBranch = branchRepository.findById(id);
 		
 		if(optionalBranch.isPresent()) {
 			
-			Branch branch = optionalBranch.get();
+		Branch branch = optionalBranch.get();
 			
 			
 			// 삭제 실패
@@ -44,8 +44,16 @@ public class BranchService {
 			// 지점 사진파일 삭제
 			FileManager.removeBranchFile(branch.getBranchPath());
 			
+			List<Theme> themeList= themeRepository.findByBranchId(id);
+			for(Theme theme:themeList) {
+				FileManager.removeThemeFile(theme.getImagePath());
+			}
 			try {
-			branchRepository.delete(branch);
+				
+				themeRepository.deleteAllByBranchId(themeList);
+				
+				branchRepository.delete(branch);
+				
 			} catch(PersistenceException e) {
 				return false;
 			}
@@ -69,14 +77,13 @@ public class BranchService {
 		
 	}
 	
-	public List<Branch> getBranchList(
-							) {
+	public List<Branch> getBranchList() {
 				
-				List<Branch> branch = branchRepository.findAll();
+			List<Branch> branch = branchRepository.findAll();
 				
-					return branch;		
+			return branch;		
 				
-				}
+		}
 	
 	public boolean addBranch(
 							String branchName

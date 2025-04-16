@@ -10,12 +10,17 @@ import com.ryu.escaping.admin.theme.domain.Theme;
 
 public interface ThemeRepository extends JpaRepository<Theme, Integer> {
 
-	public int countByBranchId(@Param("branchId") int branchId);
+	public int countByBranchId(int branchId);
+	
+	public Theme findAllByBranchName(String brnachName);
+	
+	
+	public List<Theme> findByBranchId(int branchId);
 
-	public Theme findAllByBranchName(@Param("branchName") String brnachName);
+	// 지점 종속 삭제
+	// SELECT * FROM `theme` WHERE `brachId` = #{}
+	public void deleteAllByBranchId(List<Theme> themeList);
 	
-	
-	public List<Theme> findByBranchId(@Param("branchId") int branchId);
-	
+	public List<Theme> findAllByBranchId(int branchId);
 	
 }

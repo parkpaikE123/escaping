@@ -23,7 +23,7 @@
 						</thead>
 						<tbody th:each="branch:${branchList}">
 							<tr class="d-flex justify-content-around align-items-center">
-								<td><img width="100px" th:src="${branch.branchPath}"><small th:text="${branch.name}">사파리 홍대점</small></td>
+								<td><img width="80px" th:src="${branch.branchPath}"><b class="ml-2" th:text="${branch.name}">사파리 홍대점</b></td>
 								<td class="ml-2">3</td>
 								<td th:text="${branch.location}">서울</td>
 								<td>

@@ -23,6 +23,21 @@ public class ThemeService {
 		this.branchRepository = branchRepository;
 	}
 	
+	
+//	// 지점삭제로 인한 테마 삭제
+//	public boolean deleteThemeByBranch(int branchId) {
+//		
+//		List<Theme> themeList = themeRepository.findAllByBranchId(branchId);
+//		
+//		if(themeList.isEmpty()) {
+//			return false;
+//		} else {
+//		themeRepository.deleteAll(themeList);
+//		}
+//		return true;
+//	}
+	
+	
 	public int countTheme(int branchId) {
 		return themeRepository.countByBranchId(branchId);
 	}
@@ -34,7 +49,6 @@ public class ThemeService {
 		}
 		return themeList;
 	}
-	
 	
 	public boolean deleteTheme(int id) {
 		Optional<Theme> optionalTheme = themeRepository.findById(id);
