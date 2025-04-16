@@ -10,18 +10,27 @@
 }
 header{
 	background-color:#A2D5F2;
-	height:80px;
 }
 .header-bar {
 	height:80px;
+}
+.main-zone {
+
+}
+.location-zone{
+	height:200px;
+}
+.genre-zone{
+	height:200px;
+}
+.down-zone {
+
 }
 .logo-zone {
 	height:100px;
 	background-color:#A2D5F2;
 }
-section{
 
-}
 .middle-box {
 	width:1200px;
 	background-color:#A2D5F2;
@@ -34,8 +43,9 @@ section{
 .bar{
 	height: 60px;
 }
-article{
-	
+article1{
+	width:1200px;
+	height:400px;
 }
 .choice-zone{
 	width:400px;
@@ -45,9 +55,9 @@ article{
 	font-size:20px;
 	font-weight:bold;
 }
-.btn-zone{
+.recommend-theme {
 
 }
 footer{
-	height:100px;
+
 }

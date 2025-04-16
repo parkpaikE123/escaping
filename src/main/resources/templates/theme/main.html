@@ -3,41 +3,49 @@
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorate="~{layout/compliance}">
      <div layout:fragment="contents">
-		<nav class="mt-2 d-flex justify-content-center align-items-center">
-			<hr>
-			<b><span class="w-100 text-center">테마 관리<span th:text="${branch?.name}">(지점명)</span></span></b>
-			<hr>
-		</nav>
-		<section>
-			<article class="">
-				<div class="main-zone">
-					<table class="w-100 mt-4">
-						<thead>
-							<tr class="d-flex justify-content-around">
-								<th>테마</th>
-								<th>운영지점</th>
-								<th>최소가격(2인)</th>
-								<th>제한시간</th>
-								<th>edit</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="mt-4 d-flex justify-content-around" th:each="theme:${themeList}">
-								<td><img width=100 th:src="${theme.imagePath}"><span th:text="${theme.themeName}">테마이름</span></td>
-								<td th:text="${theme.branchName}">룸이스케이프</td>
-								<td th:text="${theme.price}">45,000원</td>
-								<td th:text="${theme.runningTime}">80분</td>
-								<td><button  class="btn delete-btn btn-danger" th:data-theme-id="${theme.id}">삭제</button></td>
-							</tr>
-						</tbody>
-					</table>
+		<div class="main-zone">
+		<div class="search-zone">
+			<div class="d-flex justify-content-center mt-4">
+				<input type="text" class="form-control col-5"><label class="ml-2 btn btn-info form-control col-1">검색</label>
+			</div>
+		</div>
+		<hr>
+		<div class="location-zone d-flex align-items-center">
+			<div class="w-100 d-flex justify-content-around align-items-center">
+				<label>위치</label>
+				<a href="/theme/search-view?keyword=강남" class="btn btn-info">강남</a>
+				<a href="/theme/search-view?keyword=홍대" class="btn btn-info">홍대</a>
+				<a href="/theme/search-view?keyword=신촌" class="btn btn-info">신촌</a>
+				<a href="/theme/search-view?keyword=건대" class="btn btn-info">건대</a>
+			</div>
+		</div>
+		<hr>
+		<div class="genre-zone d-flex align-items-center">
+			<div class="w-100 d-flex justify-content-around">
+				<label>장르</label>
+				<a href="/theme/search-view?keyword=horror" class="btn btn-info">공포</a>
+				<a href="/theme/search-view?keyword=resoning" class="btn btn-info">추리</a>
+				<a href="/theme/search-view?keyword=mystery" class="btn btn-info">미스테리</a>
+				<a href="/theme/search-view?keyword=fantasy" class="btn btn-info">판타지</a>
+				<a class="btn btn-info">코미디</a>
+			</div>
+		</div>
+		</div>
+		<div class="down-zone">
+		<hr>
+			<div class="recommend text-center">
+				추천테마
+			</div>
+		<hr>
+			<div class="w-100 recommend-theme d-flex align-items-center">
+				<div class="w-100 d-flex justify-content-around align-items-center">
+					<a href="*"><img width="80" src="https://cdn.pixabay.com/photo/2025/02/25/16/36/bird-9431014_1280.jpg"></a>
+					<a href="*"><img width="80" src="https://cdn.pixabay.com/photo/2025/02/25/16/36/bird-9431014_1280.jpg"></a>
+					<a href="*"><img width="80" src="https://cdn.pixabay.com/photo/2025/02/25/16/36/bird-9431014_1280.jpg"></a>
+					<a href="*"><img width="80" src="https://cdn.pixabay.com/photo/2025/02/25/16/36/bird-9431014_1280.jpg"></a>
 				</div>
-				<div class="btn-zone d-flex justify-content-around">
-					<a class="mt-4 btn btn-primary" th:href="|/admin/theme/create-view?branchId=${branchId}|">테마 추가</a>
-					<a class="mt-4 btn rounded btn-secondary" href="/admin/main-view">관리자 메인화면</a>
-				</div>
-			</article>
-		</section>
+			</div>
+		</div>
 	</div>
 	<script layout:fragment="script">
 		$(function() {
