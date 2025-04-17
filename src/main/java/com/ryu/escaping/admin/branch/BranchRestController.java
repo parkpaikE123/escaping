@@ -16,7 +16,7 @@ import com.ryu.escaping.admin.theme.service.ThemeService;
 @RestController
 @RequestMapping("/admin")
 public class BranchRestController {
-
+	
 	private final BranchService branchService;
 	private final ThemeService themeService;
 	
