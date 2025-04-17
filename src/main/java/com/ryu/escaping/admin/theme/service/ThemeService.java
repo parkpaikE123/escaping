@@ -12,6 +12,8 @@ import com.ryu.escaping.admin.theme.repository.ThemeRepository;
 import com.ryu.escaping.common.FileManager;
 
 import jakarta.persistence.PersistenceException;
+import jakarta.transaction.Transactional;
+
 
 @Service
 public class ThemeService {
@@ -29,11 +31,6 @@ public class ThemeService {
 //		
 //		List<Theme> themeList = themeRepository.findAllByBranchId(branchId);
 //		
-//		if(themeList.isEmpty()) {
-//			return false;
-//		} else {
-//		themeRepository.deleteAll(themeList);
-//		}
 //		return true;
 //	}
 	

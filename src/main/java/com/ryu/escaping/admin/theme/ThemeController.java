@@ -19,6 +19,7 @@ public class ThemeController {
 		
 		String userId = "" + session.getAttribute(loginId);
 		
+		
 		return "/theme/main";
 	}
 	

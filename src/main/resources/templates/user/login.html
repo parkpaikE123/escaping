@@ -55,7 +55,7 @@
 					,data:{"loginId":loginId, "password":password}
 					,success:function(response){
 						if(response.result == "success") {
-							location.href="/theme/main-view?loginId=" + loginId;
+							location.href="/theme/main-view";
 						} else {
 							alert("아이디, 비밀번호를 확인해주세요");
 						}

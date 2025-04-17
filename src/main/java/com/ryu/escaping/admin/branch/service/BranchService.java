@@ -13,6 +13,7 @@ import com.ryu.escaping.admin.theme.repository.ThemeRepository;
 import com.ryu.escaping.common.FileManager;
 
 import jakarta.persistence.PersistenceException;
+import jakarta.transaction.Transactional;
 
 @Service
 public class BranchService {
@@ -26,7 +27,7 @@ public class BranchService {
 	}
 
 	
-	
+	@Transactional
 	public boolean deleteBranch(int id) {
 		
 		Optional<Branch> optionalBranch = branchRepository.findById(id);
@@ -35,23 +36,21 @@ public class BranchService {
 			
 		Branch branch = optionalBranch.get();
 			
-			
 			// 삭제 실패
-			
 			if(branch.getId() != id) {
 				return false;
 			}
 			// 지점 사진파일 삭제
 			FileManager.removeBranchFile(branch.getBranchPath());
 			
-			List<Theme> themeList = themeRepository.findAllByBranchId(id);
+			List<Theme> themeList = themeRepository.findByBranchId(id);
 			
 			for(Theme theme:themeList) {
 				FileManager.removeThemeFile(theme.getImagePath());
-				themeRepository.deleteByBranchId(theme);
 			}
 			try {
 				
+				themeRepository.deleteByBranchId(id);
 				branchRepository.delete(branch);
 				
 			} catch(PersistenceException e) {

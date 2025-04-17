@@ -82,9 +82,6 @@ public class UserRestController {
 		
 	}
 	
-	// 로그아웃 API
-	
-	
 	
 	// 카카오 로그인 API
 	
