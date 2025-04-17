@@ -6,16 +6,16 @@
 		<div class="main-zone">
 		<div class="search-zone">
 			<div class="d-flex justify-content-center mt-4">
-				<select name="detail" class="form-control col-5">
-					<option value="none">상세검색</option>
-				</select><label class="ml-2 btn btn-info form-control col-1">검색결과</label>
+				<input type="text" class="form-control col-5">
+				<label class="ml-2 btn btn-info form-control col-1">검색</label>
 			</div>
 		</div>
 		<hr>
 		<div class="d-flex justify-content-end mr-4">
-			<select class="mr-2 form-control col-1">
-				<option value="genre">장르</option>
-				<option value="location">지역</option>
+			<select class="mr-2 form-control col-2 text-center">
+				<option value="none">정렬기준</option>
+				<option value="genre">장르별</option>
+				<option value="location">지역별</option>
 				<option value="time">시간순</option>
 				<option value="name">이름순</option>
 				<option value="price">가격순</option>
@@ -88,6 +88,7 @@
 			</div>
 		</div>
 		<hr>
+	</div>
 	</div>
 	<script layout:fragment="script">
 		$(function() {

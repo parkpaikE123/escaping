@@ -16,6 +16,7 @@ public interface ThemeRepository extends JpaRepository<Theme, Integer> {
 	// SELECT * FROM `theme` WHERE `branchName` = #{}
 	public Theme findByBranchName(String brnachName);
 	
+	public List<Theme> findByGenre(String genre);
 	
 	public List<Theme> findByBranchId(int branchId);
 	

@@ -25,6 +25,9 @@ public class ThemeService {
 		this.branchRepository = branchRepository;
 	}
 	
+	public List<Theme> getThemeByGenre(String Genre) {
+		return themeRepository.findByGenre(Genre);
+	}
 	
 	public List<Theme> getThemeList() {
 		List<Theme> themeList = themeRepository.findAll();
