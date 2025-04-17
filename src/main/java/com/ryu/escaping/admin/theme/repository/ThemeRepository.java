@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.ryu.escaping.admin.theme.domain.Theme;
 
+import jakarta.transaction.Transactional;
+
 
 public interface ThemeRepository extends JpaRepository<Theme, Integer> {
 	
@@ -18,6 +20,7 @@ public interface ThemeRepository extends JpaRepository<Theme, Integer> {
 	
 	// 지점 종속 삭제
 	// SELECT * FROM `theme` WHERE `brachId` = #{}
+	@Transactional
 	public void deleteByBranchId(int branchId);
 	
 	

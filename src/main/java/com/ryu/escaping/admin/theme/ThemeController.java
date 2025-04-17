@@ -13,12 +13,12 @@ import jakarta.servlet.http.HttpSession;
 public class ThemeController {
 
 	@GetMapping("/main-view")
-	public String mainTheme(@RequestParam String loginId
-							,Model model
-							,HttpSession session) {
-		
-		String userId = "" + session.getAttribute(loginId);
-		
+	public String mainTheme(Model model
+			, HttpSession session) {
+		String loginId =  "" +session.getAttribute("loginId");
+		String userName = "" + session.getAttribute("userName");
+		model.addAttribute("loginId", loginId);
+		model.addAttribute("name", userName);
 		
 		return "/theme/main";
 	}
