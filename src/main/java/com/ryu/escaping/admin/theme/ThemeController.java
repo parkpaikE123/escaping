@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -24,7 +23,7 @@ public class ThemeController {
 	}
 	
 	@GetMapping("/search-view")
-	public String searchTheme(@RequestParam String keyword) {
+	public String searchTheme() {
 		return "/theme/search";
 	}
 	
