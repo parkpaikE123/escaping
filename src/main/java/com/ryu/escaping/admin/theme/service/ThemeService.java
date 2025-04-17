@@ -51,6 +51,7 @@ public class ThemeService {
 	}
 	
 	public boolean deleteTheme(int id) {
+		
 		Optional<Theme> optionalTheme = themeRepository.findById(id);
 		
 		if(optionalTheme.isPresent()) {

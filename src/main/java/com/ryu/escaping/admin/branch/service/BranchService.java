@@ -44,13 +44,13 @@ public class BranchService {
 			// 지점 사진파일 삭제
 			FileManager.removeBranchFile(branch.getBranchPath());
 			
-			List<Theme> themeList= themeRepository.findByBranchId(id);
+			List<Theme> themeList = themeRepository.findAllByBranchId(id);
+			
 			for(Theme theme:themeList) {
 				FileManager.removeThemeFile(theme.getImagePath());
+				themeRepository.deleteByBranchId(theme);
 			}
 			try {
-				
-				themeRepository.deleteAllByBranchId(themeList);
 				
 				branchRepository.delete(branch);
 				

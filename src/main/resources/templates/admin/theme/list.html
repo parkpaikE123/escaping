@@ -43,6 +43,7 @@
 		$(function() {
 			$(".delete-btn").on("click", function() {
 				let id = $(this).data("theme-id");
+				
 				$.ajax({
 					type:"delete"
 					,url:"/admin/delete-branch"

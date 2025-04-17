@@ -14,12 +14,11 @@ public interface ThemeRepository extends JpaRepository<Theme, Integer> {
 	
 	public Theme findAllByBranchName(String brnachName);
 	
-	
 	public List<Theme> findByBranchId(int branchId);
 
 	// 지점 종속 삭제
 	// SELECT * FROM `theme` WHERE `brachId` = #{}
-	public void deleteAllByBranchId(List<Theme> themeList);
+	public void deleteByBranchId(Theme theme);
 	
 	public List<Theme> findAllByBranchId(int branchId);
 	
