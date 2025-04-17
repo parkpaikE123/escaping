@@ -26,13 +26,10 @@ public class ThemeService {
 	}
 	
 	
-//	// 지점삭제로 인한 테마 삭제
-//	public boolean deleteThemeByBranch(int branchId) {
-//		
-//		List<Theme> themeList = themeRepository.findAllByBranchId(branchId);
-//		
-//		return true;
-//	}
+	public List<Theme> getThemeList() {
+		List<Theme> themeList = themeRepository.findAll();
+		return themeList;
+	}
 	
 	
 	public int countTheme(int branchId) {

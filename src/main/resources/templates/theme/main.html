@@ -37,12 +37,9 @@
 				추천테마
 			</div>
 		<hr>
-			<div class="w-100 recommend-theme d-flex align-items-center">
-				<div class="w-100 d-flex justify-content-around align-items-center">
-					<a href="*"><img width="80" src="https://cdn.pixabay.com/photo/2025/02/25/16/36/bird-9431014_1280.jpg"></a>
-					<a href="*"><img width="80" src="https://cdn.pixabay.com/photo/2025/02/25/16/36/bird-9431014_1280.jpg"></a>
-					<a href="*"><img width="80" src="https://cdn.pixabay.com/photo/2025/02/25/16/36/bird-9431014_1280.jpg"></a>
-					<a href="*"><img width="80" src="https://cdn.pixabay.com/photo/2025/02/25/16/36/bird-9431014_1280.jpg"></a>
+			<div  class="w-100 recommend-theme d-flex align-items-center">
+				<div th:each="theme:${themeList}"  class="w-100 d-flex justify-content-around align-items-center">
+					<a th:href="|/theme/detail-view?id=${theme.id}|"><img width="80" th:src="${theme.imagePath}"></a>
 				</div>
 			</div>
 		</div>
