@@ -69,7 +69,7 @@ public class FileManager {
 			return false;
 		}
 		
-		String fullFilePath = FILE_UPLOAD_PATH + imagePath.replace("/images", "");
+		String fullFilePath = FILE_UPLOAD_PATH + imagePath.replace("/branch", "");
 		
 		Path path = Paths.get(fullFilePath);
 		
@@ -142,7 +142,7 @@ public class FileManager {
 				return false;
 			}
 			
-			String fullFilePath = FILE_UPLOAD_PATH_THEME + imagePath.replace("/images", "");
+			String fullFilePath = FILE_UPLOAD_PATH_THEME + imagePath.replace("/theme/images", "");
 			
 			Path path = Paths.get(fullFilePath);
 			
