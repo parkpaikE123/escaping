@@ -26,6 +26,13 @@ public class BranchService {
 		this.themeRepository = themeRepository;
 	}
 
+	public List<Branch> getListBySearch(String keyword) {
+		
+		List<Branch> branchList = branchRepository.findByLocation(keyword);
+		return branchList;
+		
+	}
+	
 	
 	@Transactional
 	public boolean deleteBranch(int id) {

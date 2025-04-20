@@ -23,13 +23,13 @@
 			<button class="btn btn-warning forn-control array-btn">정렬</button>
 		</div>
 		<hr>
-		<div class="location-zone d-flex align-items-center">
+		<div class="location-zone d-flex align-items-center" th:if="${themeList} != null">
 			<div class="w-100 d-flex justify-content-around align-items-center">
 				<div class="d-flex">
 					<a href="/theme/search-view?keyword=강남" class="btn btn-info">테마1</a>
 					<div class="ml-2">
-						<div>테마 이름</div>
-						<div>테마 장르</div>
+						<div th:text="${theme.name}">테마 이름</div>
+						<div th:text="${theme.genre}">테마 장르</div>
 					</div>
 				</div>
 				<div class="d-flex">

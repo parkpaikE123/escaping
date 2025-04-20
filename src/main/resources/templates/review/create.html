@@ -1,0 +1,118 @@
+<html lang="ko" 
+		xmlns:th="http://www.thymeleaf.org" 
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/compliance}">
+     <div layout:fragment="contents">
+		<div class="main-box d-flex justify-content-around">
+			<div class="review-1 bg-info">포스터이미지 이만~큼</div>
+			<div class="review-2 bg-primary text-center d-flex align-items-center">
+				<div class="review-2-1">
+					<div>
+						<span>이 테마의 리뷰를 남겨주세요!</span>
+					</div>
+					<div class="star-zone">
+						<button class="btn" id="white-star-1"><i class="bi bi-star"></i></button>
+						<button class="btn d-none" id="black-star-1"><i class="bi bi-star-fill"></i></button>
+						<button class="btn" id="white-star-2"><i class="bi bi-star"></i></button>
+						<button class="btn d-none" id="black-star-2"><i class="bi bi-star-fill"></i></button>
+						<button class="btn" id="white-star-3"><i class="bi bi-star"></i></button>
+						<button class="btn d-none" id="black-star-3"><i class="bi bi-star-fill"></i></button>
+						<button class="btn" id="white-star-4"><i class="bi bi-star"></i></button>
+						<button class="btn d-none" id="black-star-4"><i class="bi bi-star-fill"></i></button>
+						<button class="btn" id="white-star-5"><i class="bi bi-star"></i></button>
+						<button class="btn d-none" id="black-star-5"><i class="bi bi-star-fill"></i></button>
+					</div>
+					<div class="d-flex alignitems-center justify-content-center">
+						<div>
+							<label>클리어 당시날짜</label><br>
+							<input class="form-control col-3" type="date"
+							       id="dateInput"
+							       max="2030-06-20"
+							       min="2025-02-05">
+							<span></span>
+						</div>
+					</div>
+					<div>
+						<label>난이도</label>
+						<div class="d-flex justify-content-around">
+							<label>너무 쉬움</label>
+							<label>너무 쉬움</label>
+							<label>너무 쉬움</label>
+							<label>너무 쉬움</label>
+							<label>너무 쉬움</label>
+						</div>
+						<div class="d-flex justify-content-around">
+							<input type="radio" class="form-control" name="level"> 
+							<input type="radio" class="form-control" name="level"> 
+							<input type="radio" class="form-control" name="level"> 
+							<input type="radio" class="form-control" name="level">
+							<input type="radio" class="form-control" name="level">
+						</div>
+					</div>
+					<div>
+						<label>성공, 실패 여부</label> <br>
+						<div class="d-flex justify-content-around">
+							<div><input type="radio" class="form-control" name="success" value="success"> 성공</div> 
+							<div><input type="radio" class="form-control" name="success" value="fail"> 실패</div>
+						</div>
+					</div>
+					<div class="text-left ml-2">
+						<label>후기 내용</label> <br>
+						<textarea class="form-control" rows="3" cols="60"></textarea>
+					</div>
+					<div>
+						<button class="btn form-control">후기 등록하기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<hr>
+	</div>
+	<script layout:fragment="script">
+		$(function() {
+			$("#white-star-1").on("click",function() {
+				$("#black-star-1").removeClass("d-none");
+				$(this).addClass("d-none");
+			});
+			$("#white-star-2").on("click",function() {
+				$("#black-star-2").removeClass("d-none");
+				$(this).addClass("d-none");
+			});
+			$("#white-star-3").on("click",function() {
+				$("#black-star-3").removeClass("d-none");
+				$(this).addClass("d-none");
+			});
+			$("#white-star-4").on("click",function() {
+				$("#black-star-4").removeClass("d-none");
+				$(this).addClass("d-none");
+			});
+			$("#white-star-5").on("click",function() {
+				$("#black-star-5").removeClass("d-none");
+				$(this).addClass("d-none");
+			});
+			$("#black-star-5").on("click",function() {
+				$("#white-star-5").removeClass("d-none");
+				$(this).addClass("d-none");
+			});
+			$("#black-star-4").on("click",function() {
+				$("#white-star-4").removeClass("d-none");
+				$(this).addClass("d-none");
+			});
+			$("#black-star-3").on("click",function() {
+				$("#white-star-3").removeClass("d-none");
+				$(this).addClass("d-none");
+			});
+			$("#black-star-2").on("click",function() {
+				$("#white-star-2").removeClass("d-none");
+				$(this).addClass("d-none");
+			});
+			$("#black-star-1").on("click",function() {
+				$("#white-star-1").removeClass("d-none");
+				$(this).addClass("d-none");
+			});
+		});
+	</script>
+	
+</html>

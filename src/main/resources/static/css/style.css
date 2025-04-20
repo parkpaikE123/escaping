@@ -14,8 +14,26 @@ header{
 .header-bar {
 	height:80px;
 }
-.main-zone {
-
+.main-box {
+	width:1200px;
+	height:700px;
+}
+.review-1{
+	width:500px;
+	height:650px;
+}
+.review-2{
+	width:500px;
+	height:650px;
+}
+.review-2-1 {
+	height:600px;
+}
+.bi-star{
+	font-size:50px;
+}
+.bi-star-fill {
+	font-size:50px;
 }
 .location-zone{
 	height:200px;
@@ -23,8 +41,20 @@ header{
 .genre-zone{
 	height:200px;
 }
-.down-zone {
 
+.poster-zone {
+	width:500px;
+	height:230px;
+}
+.info-zone {
+	width:600px;
+	height:150px;
+}
+
+
+.btn-bar {
+	width:1200px;
+	height:70px;
 }
 .logo-zone {
 	height:100px;

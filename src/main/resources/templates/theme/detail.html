@@ -1,0 +1,66 @@
+<html lang="ko" 
+		xmlns:th="http://www.thymeleaf.org" 
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/compliance}">
+     <div layout:fragment="contents">
+		<div class="detail-zone d-flex justify-content-center align-items-center">
+			<div>
+				<div class="poster-zone bg-success"></div>
+				<div class="info-zone bg-secondary"></div>
+			</div>
+		</div>
+		<hr>
+		<div class="detail-bottom">
+			<nav>
+				<div class="btn-bar d-flex align-items-center d-none">
+					<button class="btn form-control btn-danger col-4" id="infoBtn">정보</button>
+					<button class="btn form-control btn-danger col-4" id="reviewBtn">리뷰</button>
+					<button class="btn form-control btn-danger col-4" id="comuBtn">커뮤니티</button>
+				</div>
+				<div class="info-section">
+					<div>매장이름</div>
+					<div>매장위치</div>
+				</div>
+				<div class="review-section w-100 text-center d-none">
+					<div>리뷰 테이블내에 리뷰 내용1</div>
+					<div>리뷰 테이블내에 리뷰 내용2</div>
+					<div class="d-flex justify-content-around">
+						<div></div>
+						<div></div>
+						<a class="btn-primary btn form-control col-2" href="/review/create-view">리뷰 작성하기</a>
+					</div>
+				</div>
+				<div class="comunity-section w-100 text-center d-none">
+					<div>커뮤니티 테이블내에 contents 내용1</div>
+					<div>커뮤니티 테이블내에 contents 내용2</div>
+					<div class="d-flex justify-content-around">
+						<div></div>
+						<div></div>
+						<a class="btn-primary btn form-control col-2" href="/review/create-view">커뮤니티 작성하기</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<hr>
+	</div>
+	<script layout:fragment="script">
+		$(function() {
+			$("#infoBtn").on("click", function() {
+				$(".info-section").removeClass("d-none");
+				$(".review-section").addClass("d-none");
+				$(".comunity-section").addClass("d-none");
+			});
+			$("#reviewBtn").on("click", function() {
+				$(".review-section").removeClass("d-none");
+				$(".info-section").addClass("d-none");
+				$(".comunity-section").addClass("d-none");
+			});
+			$("#comuBtn").on("click",function() {
+				$(".comunity-section").removeClass("d-none");
+				$(".review-section").addClass("d-none");
+				$(".info-section").addClass("d-none");
+			});
+		});
+	</script>
+	
+</html>

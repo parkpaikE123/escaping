@@ -12,7 +12,6 @@ import com.ryu.escaping.admin.theme.repository.ThemeRepository;
 import com.ryu.escaping.common.FileManager;
 
 import jakarta.persistence.PersistenceException;
-import jakarta.transaction.Transactional;
 
 
 @Service
@@ -25,9 +24,12 @@ public class ThemeService {
 		this.branchRepository = branchRepository;
 	}
 	
-	public List<Theme> getThemeByGenre(String Genre) {
-		return themeRepository.findByGenre(Genre);
+
+	public List<Theme> getThemeListBySearch(String keyword) {
+		List<Theme>themeList = themeRepository.findByGenre(keyword);
+		return themeList;
 	}
+	
 	
 	public List<Theme> getThemeList() {
 		List<Theme> themeList = themeRepository.findAll();
