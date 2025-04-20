@@ -69,7 +69,11 @@ public class FileManager {
 			return false;
 		}
 		
+<<<<<<< HEAD
 		String fullFilePath = FILE_UPLOAD_PATH + imagePath.replace("/branch/iamge", "");
+=======
+		String fullFilePath = FILE_UPLOAD_PATH + imagePath.replace("/branch", "");
+>>>>>>> ba6cac792dea63a201ff3a877d475799e80b2e05
 		
 		Path path = Paths.get(fullFilePath);
 		
@@ -142,7 +146,11 @@ public class FileManager {
 				return false;
 			}
 			
+<<<<<<< HEAD
 			String fullFilePath = FILE_UPLOAD_PATH_THEME + imagePath.replace("/theme/image", "");
+=======
+			String fullFilePath = FILE_UPLOAD_PATH_THEME + imagePath.replace("/theme/images", "");
+>>>>>>> ba6cac792dea63a201ff3a877d475799e80b2e05
 			
 			Path path = Paths.get(fullFilePath);
 			

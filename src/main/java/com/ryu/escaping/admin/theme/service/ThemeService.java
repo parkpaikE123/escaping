@@ -12,6 +12,8 @@ import com.ryu.escaping.admin.theme.repository.ThemeRepository;
 import com.ryu.escaping.common.FileManager;
 
 import jakarta.persistence.PersistenceException;
+import jakarta.transaction.Transactional;
+
 
 @Service
 public class ThemeService {
@@ -23,19 +25,14 @@ public class ThemeService {
 		this.branchRepository = branchRepository;
 	}
 	
+	public List<Theme> getThemeByGenre(String Genre) {
+		return themeRepository.findByGenre(Genre);
+	}
 	
-//	// 지점삭제로 인한 테마 삭제
-//	public boolean deleteThemeByBranch(int branchId) {
-//		
-//		List<Theme> themeList = themeRepository.findAllByBranchId(branchId);
-//		
-//		if(themeList.isEmpty()) {
-//			return false;
-//		} else {
-//		themeRepository.deleteAll(themeList);
-//		}
-//		return true;
-//	}
+	public List<Theme> getThemeList() {
+		List<Theme> themeList = themeRepository.findAll();
+		return themeList;
+	}
 	
 	
 	public int countTheme(int branchId) {

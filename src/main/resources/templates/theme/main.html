@@ -27,7 +27,7 @@
 				<a href="/theme/search-view?keyword=resoning" class="btn btn-info">추리</a>
 				<a href="/theme/search-view?keyword=mystery" class="btn btn-info">미스테리</a>
 				<a href="/theme/search-view?keyword=fantasy" class="btn btn-info">판타지</a>
-				<a class="btn btn-info">코미디</a>
+				<a href="/theme/search-view?keyword=comedy" class="btn btn-info">판타지</a>
 			</div>
 		</div>
 		</div>
@@ -37,12 +37,9 @@
 				추천테마
 			</div>
 		<hr>
-			<div class="w-100 recommend-theme d-flex align-items-center">
-				<div class="w-100 d-flex justify-content-around align-items-center">
-					<a href="*"><img width="80" src="https://cdn.pixabay.com/photo/2025/02/25/16/36/bird-9431014_1280.jpg"></a>
-					<a href="*"><img width="80" src="https://cdn.pixabay.com/photo/2025/02/25/16/36/bird-9431014_1280.jpg"></a>
-					<a href="*"><img width="80" src="https://cdn.pixabay.com/photo/2025/02/25/16/36/bird-9431014_1280.jpg"></a>
-					<a href="*"><img width="80" src="https://cdn.pixabay.com/photo/2025/02/25/16/36/bird-9431014_1280.jpg"></a>
+			<div  class="w-100 recommend-theme d-flex align-items-center">
+				<div th:each="theme:${themeList}"  class="w-100 d-flex justify-content-around align-items-center">
+					<a th:href="|/theme/detail-view?id=${theme.id}|"><img width="80" th:src="${theme.imagePath}"></a>
 				</div>
 			</div>
 		</div>

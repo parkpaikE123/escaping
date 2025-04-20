@@ -72,9 +72,8 @@ public class UserRestController {
 		
 		if(user != null) {
 			// 세션에 필요한 사용자 정보 저장
+			session.setAttribute("name", user.getName());
 			session.setAttribute("loginId", user.getLoginId());
-			session.setAttribute("age", user.getAge());
-			
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");

@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -32,6 +34,14 @@ public class UserController {
 		return "/user/join";
 	}
 	
+	// 로그아웃
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		
+		session.removeAttribute("loginId");
+		
+		return "redirect:/user/login-view";
+	}
 	
 	
 }

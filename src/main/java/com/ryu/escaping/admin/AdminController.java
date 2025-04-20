@@ -32,6 +32,7 @@ public class AdminController {
 		model.addAttribute("branchList", branchList);
 		return "admin/main";
 	}
+	
 	// 지점 추가
 	@GetMapping("/branch/create-view")
 	public String addBranch() {
