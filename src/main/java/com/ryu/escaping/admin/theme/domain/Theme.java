@@ -31,7 +31,7 @@ public class Theme {
 	
 	@Column(name="themeName")
 	private String themeName;
-	
+		
 	@Column(name="imagePath")
 	private String imagePath;
 	

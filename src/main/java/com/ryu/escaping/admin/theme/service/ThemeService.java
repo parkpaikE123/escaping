@@ -26,8 +26,17 @@ public class ThemeService {
 	
 	public Theme getThemeById(int id) {
 		Optional<Theme> optionalTheme = themeRepository.findById(id);
+		if(optionalTheme.isPresent()) {
 			
-		return optionalTheme.orElse(null);
+			Theme theme = optionalTheme.get();
+			
+			return theme;
+			
+		} else {
+			return null;
+		}
+		
+		
 	}
 	
 	public List<Theme> getThemeListBySearch(String keyword) {
