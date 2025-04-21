@@ -43,7 +43,7 @@ public class AdminController {
 	@GetMapping("/theme/list-view")
 	public String adminTheme(Model model
 							,@RequestParam int branchId) {
-		List<Theme> themeList = themeService.getTheme(branchId);
+		List<Theme> themeList = themeService.getThemeByBranchId(branchId);
 		model.addAttribute("themeList", themeList);
 		model.addAttribute("branchId", branchId);
 		return "admin/theme/list";

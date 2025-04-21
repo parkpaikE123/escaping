@@ -25,7 +25,10 @@ public class ThemeController {
 	}
 
 	@GetMapping("/main-view")
-	public String mainTheme() {
+	public String mainTheme(Model model) {
+		List<Theme>themeList = themeService.getThemeList();
+		model.addAttribute("themeList", themeList);
+		
 		return "/theme/main";
 	}
 	
@@ -39,8 +42,12 @@ public class ThemeController {
 		model.addAttribute("branchList", branchList);
 		return "/theme/search";
 	}
+	
 	@GetMapping("/detail-view")
-	public String detailTheme() {
+	public String detailTheme(@RequestParam int id
+							,Model model) {
+		Theme theme = themeService.getThemeById(id);
+		model.addAttribute("theme", theme);
 		return "/theme/detail";
 	}
 	

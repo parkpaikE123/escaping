@@ -4,7 +4,9 @@
         layout:decorate="~{layout/compliance}">
      <div layout:fragment="contents">
 		<div class="main-box d-flex justify-content-around">
-			<div class="review-1 bg-info">포스터이미지 이만~큼</div>
+			<div class="review-1">
+				<img th:src="${theme.imagePath}" alt="테마 포스터 이미지">
+			</div>
 			<div class="review-2  text-center d-flex align-items-center">
 				<div class="review-2-1">
 					<div>
@@ -76,8 +78,7 @@
 		$(function() {
 			
 			$("#createBtn").on("click", function() {
-				let level = 5 - document.getElementsByTagName('button');
-				alert(level);
+				
 			});
 			
 			$("#white-star-1").on("click",function() {
