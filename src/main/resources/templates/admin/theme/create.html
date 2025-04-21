@@ -10,9 +10,16 @@
 		</nav>
 		<section>
 			<article class="d-flex justify-content-around mt-4 branch-create">
-				<div class="text-center">
-					<h2>테마</h2>
-					<input type="file" id="fileInput">
+				<div class="text-center d-flex justify-content-around">
+					<div>
+						<h2>테마</h2>
+						<input type="file" id="fileInput">
+					</div>
+					<div></div>
+					<div>
+						<span class="small-font">테마스토리<br></span>
+						<textarea cols="30" rows="4" class="text-white bg-secondary ml-4 form-control" id="themeStory"></textarea>
+					</div>
 				</div>
 				<div class="display-4 mr-4 text-center">
 					<div class="d-flex justify-content-between">
@@ -58,6 +65,7 @@
 		
 		$(function() {
 			$("#createBtn").on("click", function() {
+				let themeStory = $("#themeStory").val();
 				let branchId = $("#idBar").data("branch-id");
 				let branchName = $("#branchName").text();
 				let file = $("#fileInput")[0].files[0];
@@ -66,11 +74,15 @@
 				let runningTime = $("#runningTime").val();
 				let genre = $("#genre").val();
 				
+				
 				if(file == null) {
 					alert("로고 사진을 첨부해주세요");
 					return;
 				}
-				
+				if(themeStory == "") {
+					alert("테마 스토리를 입력해주세요");
+					return;
+				}
 				if(themeName == "") {
 					alert("테마이름을 입력해주세요");
 					return;
@@ -90,6 +102,7 @@
 				
 				let formData = new FormData();
 				
+				formData.append("themeStory", themeStory);
 				formData.append("branchId", branchId);
 				formData.append("imageFile", file);
 				formData.append("branchName", branchName);

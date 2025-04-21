@@ -5,11 +5,11 @@
      <div layout:fragment="contents">
 		<div class="detail-zone d-flex justify-content-center align-items-center">
 			<div>
-				<div class="poster-zone d-flex justify-content-center">
-					<img width="400" th:src="${theme.imagePath}">
+				<div class="poster-zone d-flex justify-content-center align-items-center">
+					<img width="300" height="300" th:src="${theme.imagePath}">
 				</div>
-				<div class="info-zone bg-secondary">
-					<comment></comment>
+				<div class="info-zone mt-4">
+					<p th:text="${theme.themeStory}"></p>
 				</div>
 			</div>
 		</div>

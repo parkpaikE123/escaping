@@ -24,7 +24,6 @@ public class ThemeService {
 		this.branchRepository = branchRepository;
 	}
 	
-
 	public Theme getThemeById(int id) {
 		Optional<Theme> optionalTheme = themeRepository.findById(id);
 			
@@ -35,7 +34,6 @@ public class ThemeService {
 		List<Theme>themeList = themeRepository.findByGenre(keyword);
 		return themeList;
 	}
-	
 	
 	public List<Theme> getThemeList() {
 		List<Theme> themeList = themeRepository.findAll();
@@ -88,6 +86,7 @@ public class ThemeService {
 							,String themeName
 							,int price
 							,String genre
+							,String themeStory
 							,int runningTime
 							,MultipartFile imagefile) {
 		
@@ -98,6 +97,7 @@ public class ThemeService {
 				.branchName(branchName)
 				.themeName(themeName)
 				.price(price)
+				.themeStory(themeStory)
 				.genre(genre)
 				.runningTime(runningTime)
 				.imagePath(themeImagePath)

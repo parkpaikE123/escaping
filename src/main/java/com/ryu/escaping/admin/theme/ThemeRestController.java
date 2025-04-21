@@ -30,12 +30,13 @@ public class ThemeRestController {
 										,@RequestParam String branchName
 										,@RequestParam String themeName
 										,@RequestParam int price
+										,@RequestParam String themeStory
 										,@RequestParam String genre
 										,@RequestParam int runningTime
 										,@RequestParam MultipartFile imageFile) {
 		Map<String, String>resultMap = new HashMap<>();
 		
-		if(themeService.addTheme(branchId,branchName, themeName, price, genre, runningTime, imageFile)) {
+		if(themeService.addTheme(branchId, branchName, themeName, price, genre, themeStory, runningTime, imageFile)) {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");

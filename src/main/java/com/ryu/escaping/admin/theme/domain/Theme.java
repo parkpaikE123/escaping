@@ -26,6 +26,9 @@ public class Theme {
 	@Column(name="branchId")
 	private int branchId;
 	
+	@Column(name="themeStory")
+	private String themeStory;
+	
 	@Column(name="themeName")
 	private String themeName;
 	
