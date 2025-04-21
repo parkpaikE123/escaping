@@ -5,8 +5,12 @@
      <div layout:fragment="contents">
 		<div class="detail-zone d-flex justify-content-center align-items-center">
 			<div>
-				<div class="poster-zone bg-success"></div>
-				<div class="info-zone bg-secondary"></div>
+				<div class="poster-zone d-flex justify-content-center">
+					<img width="400" th:src="${theme.imagePath}">
+				</div>
+				<div class="info-zone bg-secondary">
+					<comment></comment>
+				</div>
 			</div>
 		</div>
 		<hr>
@@ -27,7 +31,7 @@
 					<div class="d-flex justify-content-around">
 						<div></div>
 						<div></div>
-						<a class="btn-primary btn form-control col-2" href="/review/create-view">리뷰 작성하기</a>
+						<a class="btn-primary btn form-control col-2" th:href="|/review/create-view?id=${theme.id}|">리뷰 작성하기</a>
 					</div>
 				</div>
 				<div class="comunity-section w-100 text-center d-none">
@@ -36,7 +40,7 @@
 					<div class="d-flex justify-content-around">
 						<div></div>
 						<div></div>
-						<a class="btn-primary btn form-control col-2" href="/review/create-view">커뮤니티 작성하기</a>
+						<a class="btn-primary btn form-control col-2" th:href="|/review/create-view?id=${theme.id}|">커뮤니티 작성하기</a>
 					</div>
 				</div>
 			</nav>
