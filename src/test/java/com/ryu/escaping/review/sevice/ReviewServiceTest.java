@@ -19,11 +19,11 @@ class ReviewServiceTest {
 	@Test
 	public void createReview() {
 		int themeId = 1;
-		String reviewUserName = "asdf";
+		String reviewUserName = "qwer";
 		int point = 4;
-		String contents = "asdf";
-		String level ="asdf";
-		String success = "asdf";
+		String contents = "어렵다";
+		String level ="지옥";
+		String success = "fail";
 		
 		boolean success1 = reviewService.addReview(themeId, reviewUserName, point, contents, level, success);
 		
