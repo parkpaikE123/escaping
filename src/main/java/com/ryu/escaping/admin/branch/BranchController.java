@@ -20,15 +20,14 @@ public class BranchController {
 		this.branchService = branchService;
 	}
 	
-//	@GetMapping("/search-view")
-//	public String searchBranch(@RequestParam String keyword
-//							,Model model) {
-//		
-//		List<Branch> branchList = branchService.getListBySearch(keyword);
-//		
-//		model.addAttribute("branchList", branchList);
-////		
-//		return "/branch/search";
-//	}
+	@GetMapping("/search-view")
+	public String searchBranch(@RequestParam String locationKey
+							,Model model) {
+		
+		List<Branch> branchList = branchService.getListBySearch(locationKey);
+		
+		model.addAttribute("branchList", branchList);		
+		return "/branch/search";
+	}
 	
 }
