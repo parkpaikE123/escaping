@@ -1,0 +1,47 @@
+<html lang="ko" 
+		xmlns:th="http://www.thymeleaf.org" 
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/compliance}">
+     <div layout:fragment="contents">
+		<nav class="mt-2 d-flex justify-content-center align-items-center">
+			<hr>
+			<b><span class="w-100 text-center">테마 관리<span th:text="${branch?.name}">(지점명)</span></span></b>
+			<hr>
+		</nav>
+		<section>
+			<article class="">
+				<div class="main-zone">
+					<table class="table w-100 mt-4 text-center">
+						<thead>
+							<tr class="">
+								<th>테마</th>
+								<th>최소가격(2인)</th>
+								<th>제한시간</th>
+								<th>edit</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="theme:${themeList}" class="mt-4 text-center" >
+								<td>
+									<a th:href="|/theme/detail-view?id=${theme.id}|">
+										<img width=100 th:src="${theme.imagePath}">
+									</a>
+									<span th:text="${theme.themeName}">테마이름</span>
+								</td>
+								<td th:text="|${theme.price}원|">45,000원</td>
+								<td th:text="|${theme.runningTime}분|">80분</td>
+								<td><a class="btn btn-info">예약하기</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</article>
+		</section>
+	</div>
+	<script layout:fragment="script">
+		$(function() {
+			
+		});
+	</script>
+	
+</html>

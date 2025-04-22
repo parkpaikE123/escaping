@@ -18,7 +18,7 @@
 		<div class="location-zone d-flex align-items-center" th:if="${branchList} != null">
 			<div class="w-100 d-flex justify-content-around align-items-center" th:each="branch:${branchList}">
 				<div class="d-flex">
-					<a th:href="|/theme/search-view?keyword=${branch.id}|" class="btn">
+					<a th:href="|/branch/detail-view?id=${branch.id}|" class="btn">
 						<img width="80" th:src="${branch.branchPath}">
 					</a>
 					<div class="ml-2">
