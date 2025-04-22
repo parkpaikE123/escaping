@@ -37,9 +37,7 @@ public class ThemeController {
 							,Model model) {
 		
 		List<Theme> themeList =themeService.getThemeListBySearch(keyword);
-		List<Branch> branchList = branchService.getListBySearch(keyword);
 		model.addAttribute("themeList",themeList);
-		model.addAttribute("branchList", branchList);
 		return "/theme/search";
 	}
 	

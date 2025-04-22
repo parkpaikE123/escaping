@@ -26,13 +26,13 @@ public class BranchService {
 		this.themeRepository = themeRepository;
 	}
 
-	public List<Branch> getListBySearch(String keyword) {
-		
-		List<Branch> branchList = branchRepository.findByLocation(keyword);
-		return branchList;
-		
-	}
-	
+//	public List<Branch> getListBySearch(String keyword) {
+//		
+//		List<Branch> branchList = branchRepository.findByLocationContain(keyword);
+//		return branchList;
+//		
+//	}
+//	
 	
 	@Transactional
 	public boolean deleteBranch(int id) {
@@ -94,13 +94,15 @@ public class BranchService {
 	public boolean addBranch(
 							String branchName
 							, MultipartFile imageFile
-							, String location) {
+							, String location
+							, String locationKey) {
 		String branchImagePath = FileManager.saveBranch(imageFile);
 		
 		
 		Branch branch = Branch.builder()
 				.name(branchName)
 				.location(location)
+				.locationKey(locationKey)
 				.branchPath(branchImagePath)
 				.build();
 		try {

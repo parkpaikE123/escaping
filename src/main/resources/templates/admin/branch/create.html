@@ -20,11 +20,21 @@
 						<input type="text" class="text-white bg-secondary ml-4 form-control" id="branchName">
 					</div>
 					<br>
-					<div class="d-flex">
+					<div class="d-flex mb-4">
 						<span class="small-font">지점위치</span>
 						<input type="text" class="text-white bg-secondary ml-4 form-control" id="location">
 					</div>
 				</div>
+					<div class="mt-4">
+						<div class="small-font">키워드</div>
+						<select class="form-control text-center" id="locationKey">
+							<option value="">고르시오
+							<option value="강남">강남
+							<option value="홍대">홍대
+							<option value="신촌">신촌
+							<option value="건대">건대
+						</select>
+					</div>
 				<div class="d-flex align-items-end mb-4">
 					<button class="btn btn-secondary rounded" id="createBtn" >지점 추가하기</button>
 				</div>
@@ -37,9 +47,11 @@
 		
 		$(function() {
 			$("#createBtn").on("click", function() {
+				let locationKey = $("#locationKey").val();
 				let name = $("#branchName").val();
 				let branchLocation = $("#location").val();
 				let file = $("#fileInput")[0].files[0];
+				
 				
 				if(name == "") {
 					alert("지점 이름을 입력해 주세요");
@@ -55,8 +67,13 @@
 					alert("사진을 첨부해주세요");
 					return;
 				}
+				if(location == "") {
+					alert("키워드 필수");
+					return;
+				}
 				
 				let formData = new FormData();
+				formData.append("locationKey", locationKey);
    				formData.append("branchName", name);
    				formData.append("location", branchLocation);
    				formData.append("imageFile", file);

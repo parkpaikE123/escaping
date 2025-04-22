@@ -1,0 +1,38 @@
+<html lang="ko" 
+		xmlns:th="http://www.thymeleaf.org" 
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/compliance}">
+     <div layout:fragment="contents">
+		<div class="main-zone">
+		<div class="search-zone">
+			<div class="d-flex justify-content-center mt-4">
+				<input type="text" class="form-control col-5">
+				<label class="ml-2 btn btn-info form-control col-1">검색</label>
+			</div>
+		</div>
+		<hr>
+		<div class="d-flex justify-content-end mr-4">
+
+		</div>
+		<hr>
+		<div class="location-zone d-flex align-items-center" th:if="${branchList} != null">
+			<div class="w-100 d-flex justify-content-around align-items-center" th:each="branch:${branchList}">
+				<div class="d-flex">
+					<a th:href="|/theme/search-view?keyword=${branch.id}|" class="btn btn-info">테마1</a>
+					<div class="ml-2">
+						<div th:text="${branch.name}">지점 이름</div>
+						<div th:text="${branch.location}">테마 장르</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+	</div>
+	</div>
+	<script layout:fragment="script">
+		$(function() {
+			
+		});
+	</script>
+	
+</html>

@@ -30,11 +30,12 @@ public class BranchRestController {
 	public Map<String, String> addBranch(
 					@RequestParam String branchName
 					,@RequestParam MultipartFile imageFile
-					,@RequestParam String location) {
+					,@RequestParam String location
+					,@RequestParam String locationKey) {
 		
 		Map<String, String>resultMap = new HashMap<>();
 		
-		if(branchService.addBranch(branchName, imageFile, location)) {
+		if(branchService.addBranch(branchName, imageFile, location, locationKey)) {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");
