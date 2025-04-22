@@ -33,10 +33,10 @@ public class ThemeController {
 	}
 	
 	@GetMapping("/search-view")
-	public String searchTheme(@RequestParam String keyword
+	public String searchTheme(@RequestParam String genre
 							,Model model) {
 		
-		List<Theme> themeList =themeService.getThemeListBySearch(keyword);
+		List<Theme> themeList =themeService.getThemeListBySearch(genre);
 		model.addAttribute("themeList",themeList);
 		return "/theme/search";
 	}

@@ -39,8 +39,8 @@ public class ThemeService {
 		
 	}
 	
-	public List<Theme> getThemeListBySearch(String keyword) {
-		List<Theme>themeList = themeRepository.findByGenre(keyword);
+	public List<Theme> getThemeListBySearch(String genre) {
+		List<Theme>themeList = themeRepository.findByGenre(genre);
 		return themeList;
 	}
 	
