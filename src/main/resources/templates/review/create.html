@@ -3,9 +3,9 @@
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorate="~{layout/compliance}">
      <div layout:fragment="contents">
-		<div class="main-box d-flex justify-content-around">
-			<div class="review-1">
-				<img th:src="${theme.imagePath}" alt="테마 포스터 이미지">
+		<div class="main-box d-flex justify-content-around align-items-center">
+			<div class="review-1 mt-4">
+				<img width="400" height="500" th:src="${theme.imagePath}" alt="테마 포스터 이미지">
 			</div>
 			<div class="review-2 text-center d-flex align-items-center">
 				<div class="review-2-1">
@@ -14,15 +14,15 @@
 					</div>
 					<div class="star-zone">
 						<label class="w-100 text-white bg-info form-control">별점</label>
-						<button class="btn" id="white-star-1"><i class="bi bi-star"></i></button>
+						<button class="white-star btn" id="white-star-1"><i class="bi bi-star"></i></button>
 						<button class="black-star btn d-none" id="black-star-1"><i class="bi bi-star-fill"></i></button>
-						<button class="btn" id="white-star-2"><i class="bi bi-star"></i></button>
+						<button class="white-star btn" id="white-star-2"><i class="bi bi-star"></i></button>
 						<button class="black-star btn d-none" id="black-star-2"><i class="bi bi-star-fill"></i></button>
-						<button class="btn" id="white-star-3"><i class="bi bi-star"></i></button>
+						<button class="white-star btn" id="white-star-3"><i class="bi bi-star"></i></button>
 						<button class="black-star btn d-none" id="black-star-3"><i class="bi bi-star-fill"></i></button>
-						<button class="btn" id="white-star-4"><i class="bi bi-star"></i></button>
+						<button class="white-star btn" id="white-star-4"><i class="bi bi-star"></i></button>
 						<button class="black-star btn d-none" id="black-star-4"><i class="bi bi-star-fill"></i></button>
-						<button class="btn" id="white-star-5"><i class="bi bi-star"></i></button>
+						<button class="white-star btn" id="white-star-5"><i class="bi bi-star"></i></button>
 						<button class="black-star btn d-none" id="black-star-5"><i class="bi bi-star-fill"></i></button>
 					</div>
 					<div class="text-center">
@@ -72,46 +72,15 @@
 				
 			});
 			
-			$("#white-star-1").on("click",function() {
-				$("#black-star-1").removeClass("d-none");
+			$(".white-star").on("click",function() {
+				$("#blcak-star-5").removeClass("d-none");
 				$(this).addClass("d-none");
 			});
-			$("#white-star-2").on("click",function() {
-				$("#black-star-2").removeClass("d-none");
-				$(this).addClass("d-none");
-			});
-			$("#white-star-3").on("click",function() {
-				$("#black-star-3").removeClass("d-none");
-				$(this).addClass("d-none");
-			});
-			$("#white-star-4").on("click",function() {
-				$("#black-star-4").removeClass("d-none");
-				$(this).addClass("d-none");
-			});
-			$("#white-star-5").on("click",function() {
-				$("#black-star-5").removeClass("d-none");
-				$(this).addClass("d-none");
-			});
-			$("#black-star-5").on("click",function() {
-				$("#white-star-5").removeClass("d-none");
-				$(this).addClass("d-none");
-			});
-			$("#black-star-4").on("click",function() {
-				$("#white-star-4").removeClass("d-none");
-				$(this).addClass("d-none");
-			});
-			$("#black-star-3").on("click",function() {
-				$("#white-star-3").removeClass("d-none");
-				$(this).addClass("d-none");
-			});
-			$("#black-star-2").on("click",function() {
-				$("#white-star-2").removeClass("d-none");
-				$(this).addClass("d-none");
-			});
-			$("#black-star-1").on("click",function() {
+			$(".black-star").on("click", function() {
 				$("#white-star-1").removeClass("d-none");
 				$(this).addClass("d-none");
 			});
+			
 		});
 	</script>
 	
