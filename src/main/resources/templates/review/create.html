@@ -61,7 +61,7 @@
 		$(function() {
 			
 			var startNumber = 0;
-			
+
 			$(".star").on("click", function() {
 				startNumber = $(this).data("star-id")
 				$(".star").each(function (index, item) {
@@ -107,7 +107,7 @@
 					,data:{"themeId":themeId, "userName":userName, "level":level, "point":point, "contents":contents, "success":success}
 					,success:function(response) {
 						if(response.result == "success") {
-							location.reload();
+							location.href="/theme/detail-view?id=" + themeId;
 						} else {
 							alert("리뷰 생성 실패!");
 						}

@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ryu.escaping.admin.branch.domain.Branch;
 import com.ryu.escaping.admin.branch.service.BranchService;
 import com.ryu.escaping.admin.theme.domain.Theme;
 import com.ryu.escaping.admin.theme.service.ThemeService;
+import com.ryu.escaping.review.domain.Review;
+import com.ryu.escaping.review.sevice.ReviewService;
 
 @Controller
 @RequestMapping("/theme")
@@ -19,9 +20,11 @@ public class ThemeController {
 	
 	private final ThemeService themeService;
 	private final BranchService branchService;
-	public ThemeController(ThemeService themeService, BranchService branchService) {
+	private final ReviewService reviewService;
+	public ThemeController(ThemeService themeService, BranchService branchService,ReviewService reviewService) {
 		this.themeService = themeService;
 		this.branchService = branchService;
+		this.reviewService = reviewService;
 	}
 
 	@GetMapping("/main-view")
@@ -44,7 +47,9 @@ public class ThemeController {
 	@GetMapping("/detail-view")
 	public String detailTheme(@RequestParam int id
 							,Model model) {
+		List<Review>reviewList = reviewService.getReviewList(id);
 		Theme theme = themeService.getThemeById(id);
+		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("theme", theme);
 		return "/theme/detail";
 	}

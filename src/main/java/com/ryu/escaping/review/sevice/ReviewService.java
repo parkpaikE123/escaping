@@ -1,5 +1,8 @@
 package com.ryu.escaping.review.sevice;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.ryu.escaping.review.domain.Review;
@@ -13,6 +16,30 @@ public class ReviewService {
 	private final ReviewRepository reviewRepository;
 	public ReviewService (ReviewRepository reviewRepository) {
 		this.reviewRepository = reviewRepository;
+	}
+	
+	// 리뷰 삭제
+	public boolean deleteReivew(int id) {
+		Optional<Review>optionalReview = reviewRepository.findById(id);
+		if(optionalReview.isPresent()) {
+			Review review = optionalReview.get();
+			if(review.getId() != id) {
+				return false;
+			}
+			try {
+				reviewRepository.delete(review);
+			} catch(PersistenceException e) {
+				return false;
+			}
+		} else {
+			return false;
+		}
+		return true;
+	}
+	
+	// 리뷰 리스트 불러오기
+	public List<Review> getReviewList(int themeId) {
+		return reviewRepository.findByThemeId(themeId);
 	}
 	
 	// 리뷰 작성

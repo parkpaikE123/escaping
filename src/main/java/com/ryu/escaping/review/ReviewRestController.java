@@ -3,6 +3,7 @@ package com.ryu.escaping.review;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +29,17 @@ public class ReviewRestController {
 										,@RequestParam String success) {
 		Map<String,String> resultMap = new HashMap<>();
 		if(reviewService.addReview(themeId, userName, point, contents, level, success)) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		return resultMap;
+	}
+	
+	@DeleteMapping("/delete")
+	public Map<String, String> deleteReview(int id) {
+		Map<String, String>resultMap = new HashMap<>();
+		if(reviewService.deleteReivew(id)) {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");
