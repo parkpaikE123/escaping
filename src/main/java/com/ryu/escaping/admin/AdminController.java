@@ -25,11 +25,13 @@ public class AdminController {
 		this.themeService = themeService;
 	}
 	
+	
 	// 관리자 메인
 	@GetMapping("/main-view")
 	public String manager(Model model) {
 		List<Branch> branchList = branchService.getBranchList();
 		model.addAttribute("branchList", branchList);
+		
 		return "admin/main";
 	}
 	

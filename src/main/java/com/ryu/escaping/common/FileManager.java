@@ -10,8 +10,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileManager {
 
-	public static final String FILE_UPLOAD_PATH = "D:\\jung20241114\\project\\upload\\escaping";
-	public static final String FILE_UPLOAD_PATH_THEME = "D:\\jung20241114\\project\\upload\\escaping\\theme";	
+	public static final String FILE_UPLOAD_PATH = "C:\\Users\\pc\\Desktop\\MegaIt\\eclipse\\project\\upload\\escaping";
+	public static final String FILE_UPLOAD_PATH_THEME = "C:\\Users\\pc\\Desktop\\MegaIt\\eclipse\\project\\upload\\escaping\\theme";	
 	
 	// 지점 로고 파일 저장 기능
 	public static String saveBranch(MultipartFile file) {

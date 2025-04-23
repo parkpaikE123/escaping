@@ -56,7 +56,12 @@ public class BranchRestController {
 		}
 		return resultMap;
 	}
-	
+	//보유테마수 표출용
+		@PostMapping("/count")
+		public int count(@RequestParam int branchId) {
+			int count = branchService.countThemeByBranchId(branchId);
+			return count;
+		}
 	
 	
 	

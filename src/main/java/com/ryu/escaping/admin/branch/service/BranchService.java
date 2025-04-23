@@ -26,6 +26,11 @@ public class BranchService {
 		this.themeRepository = themeRepository;
 	}
 
+	public int countThemeByBranchId(int branchId) {
+		int count = themeRepository.countByBranchId(branchId);
+		return count;
+	}
+	
 	public List<Branch> getListBySearch(String locationKey) {
 		
 		List<Branch> branchList = branchRepository.findByLocationKey(locationKey);
