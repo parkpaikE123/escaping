@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ryu.escaping.admin.branch.domain.Branch;
 import com.ryu.escaping.admin.branch.service.BranchService;
+import com.ryu.escaping.admin.dto.branch.CardView;
 import com.ryu.escaping.admin.theme.domain.Theme;
 import com.ryu.escaping.admin.theme.service.ThemeService;
 
@@ -29,7 +30,7 @@ public class AdminController {
 	// 관리자 메인
 	@GetMapping("/main-view")
 	public String manager(Model model) {
-		List<Branch> branchList = branchService.getBranchList();
+		List<CardView> branchList = branchService.getBranchList();
 		model.addAttribute("branchList", branchList);
 		
 		return "admin/main";

@@ -14,16 +14,11 @@
 					</div>
 					<div class="star-zone">
 						<label class="w-100 text-white bg-info form-control">별점</label>
-						<button class="white-star btn" id="white-star-1"><i class="bi bi-star"></i></button>
-						<button class="black-star btn d-none" id="black-star-1"><i class="bi bi-star-fill"></i></button>
-						<button class="white-star btn" id="white-star-2"><i class="bi bi-star"></i></button>
-						<button class="black-star btn d-none" id="black-star-2"><i class="bi bi-star-fill"></i></button>
-						<button class="white-star btn" id="white-star-3"><i class="bi bi-star"></i></button>
-						<button class="black-star btn d-none" id="black-star-3"><i class="bi bi-star-fill"></i></button>
-						<button class="white-star btn" id="white-star-4"><i class="bi bi-star"></i></button>
-						<button class="black-star btn d-none" id="black-star-4"><i class="bi bi-star-fill"></i></button>
-						<button class="white-star btn" id="white-star-5"><i class="bi bi-star"></i></button>
-						<button class="black-star btn d-none" id="black-star-5"><i class="bi bi-star-fill"></i></button>
+						<i class="star bi bi-star" data-star-id=1></i>
+						<i class="star bi bi-star" data-star-id=2></i>
+						<i class="star bi bi-star" data-star-id=3></i>
+						<i class="star bi bi-star" data-star-id=4></i>
+						<i class="star bi bi-star" data-star-id=5></i>
 					</div>
 					<div class="text-center">
 						<label class="w-100 text-white bg-info form-control">난이도</label>
@@ -65,21 +60,31 @@
 	<script layout:fragment="script">
 		$(function() {
 			
+			$(".star").on("click", function() {
+				var startNumber = $(this).data("star-id")
+				$(".star").each(function (index, item) {
+					if($(item).data("star-id") < startNumber) {
+						$(item).removeClass("bi-star");
+						$(item).addClass("bi-star-fill");
+					} else if($(item).data("star-id") == startNumber) {
+						$(item).removeClass("bi-star");
+						$(item).addClass("bi-star-fill");
+					} else {
+						$(item).removeClass("bi-star-fill");
+						$(item).addClass("bi-star");
+					}
+					
+				});
+				
+			});
+			
 			$("#createBtn").on("click", function() {
 				let level = $("input:radio[name=level]:checked").val();
 				let success = $("input:radio[name=success]:checked").val();
 				let contents = $("#reviewText").val();
-				
+				console.log(point);
 			});
 			
-			$(".white-star").on("click",function() {
-				$("#blcak-star-5").removeClass("d-none");
-				$(this).addClass("d-none");
-			});
-			$(".black-star").on("click", function() {
-				$("#white-star-1").removeClass("d-none");
-				$(this).addClass("d-none");
-			});
 			
 		});
 	</script>

@@ -21,15 +21,15 @@
 								<th>edit</th>
 							</tr>
 						</thead>
-						<tbody th:each="branch:${branchList}">
-							<tr class="d-flex justify-content-around align-items-center">
+						<tbody>
+							<tr th:each="branch:${branchList}" class="d-flex justify-content-around align-items-center">
 								<td><img width="80px" th:src="${branch.branchPath}"><b class="ml-2" th:text="${branch.name}">사파리 홍대점</b></td>
-								<td class="ml-2">3</td>
+								<td th:text="${branch.themeCount}" class="ml-2">3</td>
 								<td th:text="${branch.location}">서울</td>
 								<td>
-									<a class="btn mb-2 btn-info" th:href="|/admin/theme/list-view?branchId=${branch.id}|">테마 관리</a>
+									<a class="btn mb-2 btn-info" th:href="|/admin/theme/list-view?branchId=${branch.branchId}|">테마 관리</a>
 									<br>
-									<button class="btn delete-btn btn-danger" th:data-branch-id="${branch.id}">지점 삭제</button>
+									<button class="btn delete-btn btn-danger" th:data-branch-id="${branch.branchId}">지점 삭제</button>
 									<br>
 								</td>
 							</tr>

@@ -1,6 +1,7 @@
 package com.ryu.escaping.admin.theme;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ryu.escaping.admin.branch.service.BranchService;
+import com.ryu.escaping.admin.theme.domain.Theme;
 import com.ryu.escaping.admin.theme.service.ThemeService;
 
 @RestController
@@ -40,6 +42,19 @@ public class ThemeRestController {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");
+		}
+		return resultMap;
+	}
+	
+	// 테마 검색 API
+	public Map<String, String> themeSearch(@RequestParam String keyword) {
+		Map<String, String> resultMap = new HashMap<>();
+		List<Theme> themeList = themeService.getThemeListByName(keyword);
+		
+		if(themeList.isEmpty()) {
+			resultMap.put("result", "fail");
+		} else {
+			resultMap.put("result", "success");
 		}
 		return resultMap;
 	}
