@@ -1,12 +1,11 @@
-package com.ryu.escaping.admin.dto.branch;
+package com.ryu.escaping.admin.branch.dto;
 
-import jakarta.persistence.Column;
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
 @Builder
-public class CardView {
+public class BranchForAdmin {
 
 	private int branchId;
 	private String name;

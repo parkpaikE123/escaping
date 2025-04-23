@@ -3,12 +3,15 @@ package com.ryu.escaping.review;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ryu.escaping.review.sevice.ReviewService;
 
 @RestController
+@RequestMapping("/review")
 public class ReviewRestController {
 
 	private final ReviewService reviewService;
@@ -16,6 +19,7 @@ public class ReviewRestController {
 		this.reviewService = reviewService;
 	}
 	
+	@PostMapping("/create")
 	public Map<String, String> createReview(@RequestParam int themeId
 										,@RequestParam String userName
 										,@RequestParam int point

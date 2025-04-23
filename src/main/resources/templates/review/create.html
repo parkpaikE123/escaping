@@ -10,7 +10,7 @@
 			<div class="review-2 text-center d-flex align-items-center">
 				<div class="review-2-1">
 					<div class="mb-4">
-						<span>이 테마의 리뷰를 남겨주세요!</span>
+						<span class="review-head" th:text="|${theme.themeName}의 리뷰를 남겨주세요!|" th:data-theme-id="${theme.id}">이 테마의 리뷰를 남겨주세요!</span>
 					</div>
 					<div class="star-zone">
 						<label class="w-100 text-white bg-info form-control">별점</label>
@@ -60,16 +60,15 @@
 	<script layout:fragment="script">
 		$(function() {
 			
+			var startNumber = 0;
+			
 			$(".star").on("click", function() {
-				var startNumber = $(this).data("star-id")
+				startNumber = $(this).data("star-id")
 				$(".star").each(function (index, item) {
-					if($(item).data("star-id") < startNumber) {
+					if($(item).data("star-id") <= startNumber) {
 						$(item).removeClass("bi-star");
 						$(item).addClass("bi-star-fill");
-					} else if($(item).data("star-id") == startNumber) {
-						$(item).removeClass("bi-star");
-						$(item).addClass("bi-star-fill");
-					} else {
+					}  else {
 						$(item).removeClass("bi-star-fill");
 						$(item).addClass("bi-star");
 					}
@@ -79,10 +78,44 @@
 			});
 			
 			$("#createBtn").on("click", function() {
+				let userName = $(".name-tag").text();
 				let level = $("input:radio[name=level]:checked").val();
 				let success = $("input:radio[name=success]:checked").val();
 				let contents = $("#reviewText").val();
-				console.log(point);
+				let themeId = $(".review-head").data("theme-id");
+				let point = startNumber;
+				
+				if(level == null) {
+					alert("난이도를 선택해주세요");
+					return;
+				}
+				if(success == null) {
+					alert("성공,실패 여부를 선택해주세요");
+					return;
+				}
+				if(contents == "") {
+					alert("후기 내용을 입력해주세요");
+					return;
+				}
+				if(startNumber == 0) {
+					alert("별점을 선택해주세요");
+					return;
+				}
+				$.ajax({
+					type:"post"
+					,url:"/review/create"
+					,data:{"themeId":themeId, "userName":userName, "level":level, "point":point, "contents":contents, "success":success}
+					,success:function(response) {
+						if(response.result == "success") {
+							location.reload();
+						} else {
+							alert("리뷰 생성 실패!");
+						}
+					}
+					,error:function() {
+						alert("리뷰생성 에러!");
+					}
+				});
 			});
 			
 			

@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ryu.escaping.admin.branch.domain.Branch;
+import com.ryu.escaping.admin.branch.dto.BranchForAdmin;
 import com.ryu.escaping.admin.branch.repository.BranchRepository;
-import com.ryu.escaping.admin.dto.branch.CardView;
 import com.ryu.escaping.admin.theme.domain.Theme;
 import com.ryu.escaping.admin.theme.repository.ThemeRepository;
 import com.ryu.escaping.common.FileManager;
@@ -91,15 +91,15 @@ public class BranchService {
 		
 	}
 	
-	public List<CardView> getBranchList() {
+	public List<BranchForAdmin> getBranchList() {
 				
 			List<Branch> branchList = branchRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
-			List <CardView> cardList = new ArrayList <>();
+			List <BranchForAdmin> branchDtoList = new ArrayList <>();
 			for(Branch branch:branchList) {
 				
 				int count = themeRepository.countByBranchId(branch.getId());
 				
-				CardView card = CardView.builder()
+				BranchForAdmin card = BranchForAdmin.builder()
 								.branchId(branch.getId())
 								.branchPath(branch.getBranchPath())
 								.themeCount(count)
@@ -107,9 +107,9 @@ public class BranchService {
 								.name(branch.getName())
 								.build();
 			
-				cardList.add(card);
+				branchDtoList.add(card);
 			}		
-			return cardList;
+			return branchDtoList;
 				
 		}
 	
