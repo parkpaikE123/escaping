@@ -11,6 +11,7 @@
 				<div class="review-2-1">
 					<div class="mb-4">
 						<span class="review-head" th:text="|${theme.themeName}의 리뷰를 남겨주세요!|" th:data-theme-id="${theme.id}">이 테마의 리뷰를 남겨주세요!</span>
+						<div class="user-id-bar" th:data-user-id="${session.userId}"></div>
 					</div>
 					<div class="star-zone">
 						<label class="w-100 text-white bg-info form-control">별점</label>
@@ -49,7 +50,7 @@
 						<textarea class="form-control" rows="3" cols="60" id="reviewText"></textarea>
 					</div>
 					<div class="ml-2 mt-4">
-						<button class="btn btn-info form-control" id="createBtn">후기 등록하기</button>
+						<button class="btn btn-info form-control" id="createBtn">리뷰 등록하기</button>
 					</div>
 				</div>
 			</div>
@@ -84,6 +85,7 @@
 				let contents = $("#reviewText").val();
 				let themeId = $(".review-head").data("theme-id");
 				let point = startNumber;
+				let userId = $(".user-id-bar").text();
 				
 				if(level == null) {
 					alert("난이도를 선택해주세요");
@@ -104,7 +106,7 @@
 				$.ajax({
 					type:"post"
 					,url:"/review/create"
-					,data:{"themeId":themeId, "userName":userName, "level":level, "point":point, "contents":contents, "success":success}
+					,data:{"userId":userId, "themeId":themeId, "userName":userName, "level":level, "point":point, "contents":contents, "success":success}
 					,success:function(response) {
 						if(response.result == "success") {
 							location.href="/theme/detail-view?id=" + themeId;

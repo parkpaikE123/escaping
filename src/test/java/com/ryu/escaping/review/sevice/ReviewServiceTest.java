@@ -18,6 +18,7 @@ class ReviewServiceTest {
 	@Transactional
 	@Test
 	public void createReview() {
+		int userId =1;
 		int themeId = 1;
 		String reviewUserName = "qwer";
 		int point = 4;
@@ -25,7 +26,7 @@ class ReviewServiceTest {
 		String level ="지옥";
 		String success = "fail";
 		
-		boolean success1 = reviewService.addReview(themeId, reviewUserName, point, contents, level, success);
+		boolean success1 = reviewService.addReview(userId, themeId, reviewUserName, point, contents, level, success);
 		
 		assertEquals(success1,true);
 	}

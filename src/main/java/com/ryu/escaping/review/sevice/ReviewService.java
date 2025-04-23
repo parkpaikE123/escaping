@@ -43,13 +43,15 @@ public class ReviewService {
 	}
 	
 	// 리뷰 작성
-	public boolean addReview(int themeId
+	public boolean addReview(int userId
+			,int themeId
 			,String reviewUserName
 			,int point
 			,String contents
 			,String level
 			,String success) {
 		Review review = Review.builder()
+						.userId(userId)
 						.themeId(themeId)
 						.reviewUserName(reviewUserName)
 						.point(point)

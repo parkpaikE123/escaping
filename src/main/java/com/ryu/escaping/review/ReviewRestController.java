@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ryu.escaping.review.sevice.ReviewService;
 
+import jakarta.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("/review")
 public class ReviewRestController {
@@ -26,9 +28,11 @@ public class ReviewRestController {
 										,@RequestParam int point
 										,@RequestParam String contents
 										,@RequestParam String level
-										,@RequestParam String success) {
+										,@RequestParam String success
+										,HttpSession session) {
 		Map<String,String> resultMap = new HashMap<>();
-		if(reviewService.addReview(themeId, userName, point, contents, level, success)) {
+		int userId = (Integer)session.getAttribute("userId");
+		if(reviewService.addReview(userId, themeId, userName, point, contents, level, success)) {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");

@@ -23,6 +23,9 @@ public class Review {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(name="userId")
+	private int userId;
+	
 	@Column(name="themeId")
 	private int themeId;
 	

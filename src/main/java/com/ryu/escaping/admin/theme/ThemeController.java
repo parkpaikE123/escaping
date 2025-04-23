@@ -14,6 +14,8 @@ import com.ryu.escaping.admin.theme.service.ThemeService;
 import com.ryu.escaping.review.domain.Review;
 import com.ryu.escaping.review.sevice.ReviewService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/theme")
 public class ThemeController {
@@ -46,7 +48,9 @@ public class ThemeController {
 	
 	@GetMapping("/detail-view")
 	public String detailTheme(@RequestParam int id
+							,HttpSession session
 							,Model model) {
+		
 		List<Review>reviewList = reviewService.getReviewList(id);
 		Theme theme = themeService.getThemeById(id);
 		model.addAttribute("reviewList", reviewList);
