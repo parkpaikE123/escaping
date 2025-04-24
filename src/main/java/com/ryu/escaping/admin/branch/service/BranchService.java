@@ -29,6 +29,18 @@ public class BranchService {
 		this.themeRepository = themeRepository;
 	}
 
+	public Branch getBranchByName(String name) {
+		Optional<Branch> optionalBranch = branchRepository.findByName(name);
+		
+		if(optionalBranch.isPresent()) {
+			Branch branch = optionalBranch.get();
+			return branch;
+		} else {
+			return null;
+		}
+		
+	}
+	
 	public int countThemeByBranchId(int branchId) {
 		int count = themeRepository.countByBranchId(branchId);
 		return count;

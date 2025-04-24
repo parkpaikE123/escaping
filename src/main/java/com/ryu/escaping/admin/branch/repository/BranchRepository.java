@@ -10,4 +10,6 @@ public interface BranchRepository extends JpaRepository<Branch, Integer> {
 	
 	public List<Branch> findByLocationKey(String locationKey);
 	
+	public Branch findByName(String name);
+	
 }

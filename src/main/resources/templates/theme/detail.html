@@ -9,6 +9,7 @@
 					<img width="300" height="300" th:src="${theme.imagePath}">
 				</div>
 				<div class="info-zone mt-4">
+					<h2 th:text="${theme.themeName}"></h2>
 					<p th:text="${theme.themeStory}"></p>
 				</div>
 			</div>
@@ -22,8 +23,14 @@
 					<button class="btn select-menu btn-info form-control col-4" id="comuBtn">커뮤니티</button>
 				</div>
 				<div class="info-section">
-					<div>매장이름</div>
-					<div>매장위치</div>
+					<b th:text="|가격: ${theme.price}원|">가격</b>
+					<br>
+					<b th:text="|장르: ${theme.genre}|">가격</b>
+					<br>
+					<b th:text="|제한시간: ${theme.runningTime}분|">가격</b>
+					<br>
+					<h3 th:text="|매장: ${theme.branchName}|"></h3>
+					<h2>매장위치</h2>
 				</div>
 				<div class="review-section w-100 d-none">
 					<div th:each="review:${reviewList}">

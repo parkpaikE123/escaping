@@ -33,6 +33,7 @@ public class BranchController {
 		model.addAttribute("branchList", branchList);		
 		return "/branch/search";
 	}
+	
 	@GetMapping("/detail-view")
 	public String detailBranch(@RequestParam int id
 							,Model model) {

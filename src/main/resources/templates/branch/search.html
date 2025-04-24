@@ -13,14 +13,16 @@
 		<hr>
 		<hr>
 		<div class="location-zone d-flex align-items-center" th:if="${branchList} != null">
-			<div class="w-100 d-flex justify-content-around align-items-center" th:each="branch:${branchList}">
-				<div class="d-flex">
+			<div class="w-100 d-flex justify-content-around align-items-center">
+				<div class="d-flex" th:each="branch:${branchList}">
 					<a th:href="|/branch/detail-view?id=${branch.id}|" class="btn">
 						<img width="80" th:src="${branch.branchPath}">
 					</a>
-					<div class="ml-2">
-						<div th:text="${branch.name}">지점 이름</div>
-						<div th:text="${branch.location}">테마 장르</div>
+					<div class="ml-2 d-flex align-items-center">
+						<div>
+							<div th:text="|매장명: ${branch.name}|">지점 이름</div>
+							<div th:text="|주소: ${branch.location}|">주소</div>
+						</div>
 					</div>
 				</div>
 			</div>

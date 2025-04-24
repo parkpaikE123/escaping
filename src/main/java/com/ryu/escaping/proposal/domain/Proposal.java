@@ -1,4 +1,4 @@
-package com.ryu.escaping.admin.branch.domain;
+package com.ryu.escaping.proposal.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,23 +13,23 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Table(name="`proposal`")
 @Getter
-@Builder(toBuilder=true)
-@Table(name="`branch`")
 @Entity
-public class Branch {
+public class Proposal {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	private String name;
-	private String location;
+	@Column(name="userId")
+	private int userId;
 	
-	@Column(name="locationKey")
-	private String locationKey;
+	@Column(name="communityId")
+	private int communityId;
 	
-	@Column(name="branchPath")
-	private String branchPath;
+	private String contents;
+	private String state;
 	
 }
