@@ -3,43 +3,84 @@
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorate="~{layout/compliance}">
      <div layout:fragment="contents">
-		<div class="main-zone">
-		<div class="search-zone">
-			<div class="d-flex justify-content-center mt-4">
-				<input type="text" class="form-control col-5">
-				<label class="ml-2 btn btn-info form-control col-1">검색</label>
+		<div class="main-box d-flex justify-content-around align-items-center">
+			<div class="review-1 mt-4">
+				<img width="400" height="500" th:src="${theme.imagePath}" alt="테마 포스터 이미지">
 			</div>
-		</div>
-		<hr>
-		<div class="d-flex justify-content-end mr-4">
-			<select class="mr-2 form-control col-2 text-center">
-				<option value="none">정렬기준</option>
-				<option value="name">이름순</option>
-				<option value="price">가격순</option>
-			</select>
-			<button class="btn btn-warning forn-control array-btn">정렬</button>
-		</div>
-		<hr>
-		<div class="location-zone d-flex align-items-center" th:if="${themeList} != null">
-			<div class="w-100 d-flex justify-content-around align-items-center">
-				<div class="d-flex" th:each="theme:${themeList}">
-					<a th:href="|/theme/detail-view?id=${theme.id}|" class="btn">
-						<img width="80" th:src="${theme.imagePath}">
-					</a>
-					<div class="ml-2 d-flex align-items-center">
-						<div>
-						<div th:text="|테마이름:${theme.themeName}|">테마 이름</div>
-						<div th:text="|테마장르: ${theme.genre}|">테마 장르</div>
-						</div>
+			<div class="review-2 text-center d-flex align-items-center">
+				<div class="review-2-1">
+					<div class="mb-4">
+						<span class="review-head" >이 테마의 리뷰를 남겨주세요!</span>
+						<div class="user-id-bar"></div>
 					</div>
+					<div class="star-zone">
+						<label class="w-100 text-white bg-info form-control" th:text="|지점명: ${theme.branchName}|"></label>
+					</div>
+					<div class="text-center">
+						<label class="w-100 text-white bg-info form-control" th:data-theme-id="${theme.id}" id="themeId" th:text="|예약테마: ${theme.themeName}|">테마명</label>
+					</div>
+					<div class="mt-2">
+						<label class="w-100 text-white bg-info form-control" th:text="|예약자명: ${session.name}|">예약자이름</label>
+					</div>
+					<div class="mt-2 mb-4">
+						<label class="w-100 text-white bg-info form-control"  th:text="|기본가격(2인 기준): ${theme.price}|">가격</label>
+					</div>
+					<div class="text-left mt-4 ml-2">
+						<label class="w-100 text-center text-white bg-info form-control">모집인원</label> <br>
+						<select class="w-100" id="recruitCount">
+							<option value="none">본인제외 명 수입니다.
+							<option value=1>1명
+							<option value=2>2명
+							<option value=3>3명
+							<option value=4>4명
+							<option value=5>5명
+						</select>
+					</div>
+					<div class="ml-2 mt-4">
+						<textarea class="form-control" placeholder="간단한 구인글을 작성해주세요" rows="3" cols="60" id="communityText"></textarea>
+					</div>
+						<button class="btn mt-4 btn-info form-control" id="createBtn">커뮤니티 등록하기</button>
 				</div>
 			</div>
 		</div>
+
 		<hr>
-	</div>
 	</div>
 	<script layout:fragment="script">
 		$(function() {
+		
+			$("#createBtn").on("click", function() {
+				let state = "모집중!";
+				let recruitCount = $("#recruitCount").val();
+				let contents = $("#communityText").val();
+				let themeId = $("#themeId").data("theme-id");
+				
+				if(recruitCount == "none") {
+					alert("모집 인원을 선택해주세요");
+					return;
+				}
+				if(contents == "") {
+					alert("구인글을 작성해주세요");
+					return;
+				}
+				
+				$.ajax({
+					type:"post"
+					,url:"/community/create"
+					,data:{"state":state, "recruitCount":recruitCount, "contents":contents, "themeId":themeId}
+					,success:function(response) {
+						if(response.result == "success") {
+							location.href="/community/main-view?themeId=" + themeId
+						} else {
+							alert("커뮤니티 작성 실패");
+						}
+					}
+					,error:function(){
+						alert("커뮤니티 작성 에러!");
+					}
+				});
+				
+			});
 			
 		});
 	</script>
