@@ -37,6 +37,12 @@ public class ReviewService {
 		return true;
 	}
 	
+	// 리뷰리스트 상위 5개만 불러오기
+	public List<Review> getReviewListTop5(int themeId) {
+		List<Review> reviewList = reviewRepository.findTop5ByThemeIdOrderByIdDesc(themeId);
+		return reviewList;
+	}
+	
 	// 리뷰 리스트 불러오기
 	public List<Review> getReviewList(int themeId) {
 		return reviewRepository.findByThemeId(themeId);

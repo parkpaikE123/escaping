@@ -56,7 +56,7 @@ public class ThemeController {
 							,HttpSession session
 							,Model model) {
 		
-		List<Review>reviewList = reviewService.getReviewList(id);
+		List<Review>reviewList = reviewService.getReviewListTop5(id);
 		Theme theme = themeService.getThemeById(id);
 		List<Community>communityList = communityService.getThreeCommunity(id);
 		model.addAttribute("communityList",communityList);

@@ -33,20 +33,26 @@
 					<h2>매장위치</h2>
 				</div>
 				<div class="review-section w-100 d-none">
-					<div th:each="review:${reviewList}">
-						<div class="review-zone">
-							<b><span th:text="${review.reviewUserName}"></span></b>
-							<div class="d-flex justify-content-around mb-4">
-								<div th:text="${review.contents}" class="mr-4"></div>
-								<div th:text="|탈출: ${review.success}|"></div>
-								<div th:text="|별점: ${review.point}점|"></div>
-								<div th:text="|난이도: ${review.level}|"></div>
-								<div th:if="${review.userId==session.userId}">
-									<button class="btn delete-review-btn btn-danger form-control" th:data-review-id="${review.id}">삭제하기</button>
-								</div>
-							</div>
-						</div>
-					</div>
+					<table class="table">
+						<thead height=100>
+							<tr>
+								<th>정보</th>
+								<th>내용</th>
+								<th>탈출여부</th>
+								<th>별점</th>
+								<th>난이도</th>
+							</tr>
+						</thead>
+						<tbody height=200>
+							<tr th:each="review:${reviewList}">
+								<td th:text="${review.reviewUserName}">작성자 이름</td>
+								<td th:text="${review.contents}"></td>
+								<td th:text="${review.success}">구인글 자리</td>
+								<td th:text="|${review.point}점|">모집인원 수</td>
+								<td th:text="${review.level}">구인중</td>
+							</tr>
+						</tbody>
+					</table>
 					<div class="d-flex justify-content-around">
 						<div></div>
 						<div></div>
@@ -55,25 +61,25 @@
 				</div>
 				<div class="comunity-section w-100 text-center d-none">
 					<table class="table">
-				<thead height=100>
-					<tr>
-						<th>정보</th>
-						<th>구인글</th>
-						<th>모집인원</th>
-						<th>상태</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody height=200>
-					<tr th:each="community:${communityList}">
-						<td th:text="${community.userName}">작성자 이름</td>
-						<td th:text="${community.contents}">구인글 자리</td>
-						<td th:text="|${community.recruitCount}명|">모집인원 수</td>
-						<td th:text="${community.state}">구인중</td>
-						<td><a href="*" class="btn btn-info">참여 할게요!</a></td>
-					</tr>
-				</tbody>
-			</table>
+						<thead height=100>
+							<tr>
+								<th>정보</th>
+								<th>구인글</th>
+								<th>모집인원</th>
+								<th>상태</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody height=200>
+							<tr th:each="community:${communityList}">
+								<td th:text="${community.userName}">작성자 이름</td>
+								<td th:text="${community.contents}">구인글 자리</td>
+								<td th:text="|${community.recruitCount}명|">모집인원 수</td>
+								<td th:text="${community.state}">구인중</td>
+								<td><a href="*" class="btn btn-info">참여 할게요!</a></td>
+							</tr>
+						</tbody>
+					</table>
 					<div class="d-flex justify-content-around">
 						<div></div>
 						<div></div>
