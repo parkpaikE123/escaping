@@ -26,8 +26,7 @@ public class CommunityController {
 	
 	@GetMapping("/main-view")
 	public String mainCommunity(@RequestParam int themeId
-								,Model model
-								) {
+								,Model model) {
 		Theme theme = themeService.getThemeById(themeId);
 		List<Community> communityList = communityService.getCommunity(themeId);
 		model.addAttribute("communityList", communityList);

@@ -1,0 +1,54 @@
+<html lang="ko" 
+		xmlns:th="http://www.thymeleaf.org" 
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/compliance}">
+     <div layout:fragment="contents">
+		<div class="main-zone">
+			<hr>
+			<div>
+			<div class="text-center head-bar">
+				<h2 th:text="|리뷰: ${theme.themeName}(테마)|"></h2>
+			</div>
+				<a class="btn" th:href="|/theme/detail-view?id=${theme.id}|">
+					<img width=200 th:src="${theme.imagePath}" alt="커뮤작성 대상 테마 이미지">
+				</a>
+				<h2 th:text="|플레이타임: ${theme.runningTime}분|">테마 제한시간</h2>
+				<h2 th:text="|장르: ${theme.genre}|"></h2>
+				<div></div>
+			</div>
+			<table class="table">
+				<thead height=100>
+					<tr>
+						<th>정보</th>
+						<th>리뷰내용</th>
+						<th>탈출여부</th>
+						<th>별점</th>
+						<th>난이도</th>
+					</tr>
+				</thead>
+				<tbody height=200>
+					<tr th:each="review:${reviewList}">
+						<td th:text="${review.reviewUserName}">작성자 이름</td>
+						<td th:text="${review.contents}">리뷰내용</td>
+						<td th:text="${review.success}">탈출여부</td>
+						<td th:text="${review.point}">별점</td>
+						<td th:text="${review.level}">난이도</td>
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+		</div>
+		<div class="d-flex justify-content-between">
+			<div></div>
+			<div>
+				<a class="btn btn-info form-control" th:href="|/review/create-view?themeId=${theme.Id}|">리뷰 작성하기</a>
+			</div>
+		</div>
+	</div>
+	<script layout:fragment="script">
+		$(function() {
+			
+		});
+	</script>
+	
+</html>
