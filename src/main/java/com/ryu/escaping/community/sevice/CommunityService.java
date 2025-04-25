@@ -30,12 +30,14 @@ public class CommunityService {
 	}
 	
 	// 커뮤니티 생성
-	public boolean addCommunity(String userName
+	public boolean addCommunity(int userId
+								,String userName
 								,int themeId
 								,String contents
 								,int recruitCount
 								,String state) {
 		Community community = Community.builder()
+								.userId(userId)
 								.userName(userName)
 								.themeId(themeId)
 								.contents(contents)

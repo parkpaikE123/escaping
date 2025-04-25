@@ -19,7 +19,7 @@ class ProposalServiceTest {
 	public void testProposal() {
 		// 준비 
 		int userId = 2;
-		int communityId = 5;
+		int communityId = 5;	
 		String contents = "가나다라마바사";
 		String state = "대기중";
 		

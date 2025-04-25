@@ -23,6 +23,9 @@ public class Community {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(name="userId")
+	private int userId;
+	
 	@Column(name="userName")
 	private String userName;
 	

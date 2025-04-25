@@ -5,6 +5,8 @@
 			<div>
 				<span class="name-tag" th:text="${session.name}"></span>
 				<a href="/user/logout" class="ml-2 btn btn-danger logout-btn" >로그아웃</a>
+				<br>
+				<a class="btn btn-success mt-2" th:href="|/reservation/personal?id=${session.userId}|">나의 예약내역</a>
 			</div>
 		</div>
 </header>

@@ -31,7 +31,8 @@ public class CommunityRestController {
 						,HttpSession session) {
 		Map<String, String> resultMap = new HashMap<>();
 		String userName = (String)session.getAttribute("name");
-		if(communityService.addCommunity(userName, themeId, contents, recruitCount, state)) {
+		int userId = (Integer)session.getAttribute("userId");
+		if(communityService.addCommunity(userId,userName, themeId, contents, recruitCount, state)) {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");

@@ -11,6 +11,7 @@
 			<div>
 				<img width=200 th:src="${theme.imagePath}" alt="커뮤작성 대상 테마 이미지">
 				<h2 th:text="|플레이타임: ${theme.runningTime}분|">테마 제한시간</h2>
+				<h2 th:text="|가격: ${theme.price}원(2인기준)|"></h2>
 				<div></div>
 			</div>
 			<table class="table">
@@ -29,7 +30,7 @@
 						<td th:text="${community.contents}">구인글 자리</td>
 						<td th:text="|${community.recruitCount}명|">모집인원 수</td>
 						<td th:text="${community.state}">구인중</td>
-						<td><a href="*" class="btn btn-info">참여 할게요!</a></td>
+						<td th:if="${session.userId != community.userId}"><a href="*" class="btn btn-info">참여 할게요!</a></td>
 					</tr>
 				</tbody>
 			</table>
