@@ -18,6 +18,7 @@ class CommunityServiceTest {
 	@Test
 	public void addCommunityTest() {
 		// 준비
+		int userId = 1;
 		String userName ="123";
 		int themeId = 2;
 		String contents = "1234252";
@@ -25,7 +26,7 @@ class CommunityServiceTest {
 		String state = "메롱";
 		
 		// 실행
-		boolean success = communityService.addCommunity(userName, themeId, contents, recruitCount, state);
+		boolean success = communityService.addCommunity(userId,userName, themeId, contents, recruitCount, state);
 		
 		// 검증
 		assertEquals(success,true);

@@ -79,7 +79,7 @@
 								<td th:text="${community.contents}">구인글 자리</td>
 								<td th:text="|${community.recruitCount}명|">모집인원 수</td>
 								<td th:text="${community.state}">구인중</td>
-								<td th:if="${session.userId != community.userId}"><a href="*" class="btn btn-info">참여 할게요!</a></td>
+								<td th:if="${session.userId != community.userId}"><a th:href="|/proposal/create-view?communityId=${community.id}|" class="btn btn-info">참여 할게요!</a></td>
 							</tr>
 						</tbody>
 					</table>

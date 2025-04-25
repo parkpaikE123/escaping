@@ -16,6 +16,7 @@ public class ProposalService {
 		this.proposalRepository = proposalRepository;
 	}
 	
+	
 	public boolean addProposal(int userId
 							,int communityId
 							,String contents
