@@ -1,5 +1,8 @@
 package com.ryu.escaping.community.sevice;
 
+import java.util.List;
+
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.ryu.escaping.community.domain.Community;
@@ -15,6 +18,17 @@ public class CommunityService {
 		this.communityRepository = communityRepository;
 	}
 
+	public List<Community> getThreeCommunity(int themeId) {
+		List<Community>communityList = communityRepository.findTop3ListBythemeIdOrderByIdDesc(themeId);
+		return communityList;
+	}
+	
+	public List<Community> getCommunity(int themeId) {
+		List<Community> communityList = communityRepository.findListBythemeIdOrderByIdDesc(themeId);
+		return communityList;
+		
+	}
+	
 	// 커뮤니티 생성
 	public boolean addCommunity(String userName
 								,int themeId

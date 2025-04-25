@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ryu.escaping.admin.branch.service.BranchService;
 import com.ryu.escaping.admin.theme.domain.Theme;
 import com.ryu.escaping.admin.theme.service.ThemeService;
+import com.ryu.escaping.community.domain.Community;
+import com.ryu.escaping.community.sevice.CommunityService;
 import com.ryu.escaping.review.domain.Review;
 import com.ryu.escaping.review.sevice.ReviewService;
 
@@ -23,10 +25,13 @@ public class ThemeController {
 	private final ThemeService themeService;
 	private final BranchService branchService;
 	private final ReviewService reviewService;
-	public ThemeController(ThemeService themeService, BranchService branchService,ReviewService reviewService) {
+	private final CommunityService communityService;
+	public ThemeController(ThemeService themeService, BranchService branchService,ReviewService reviewService
+						,CommunityService communityService) {
 		this.themeService = themeService;
 		this.branchService = branchService;
 		this.reviewService = reviewService;
+		this.communityService = communityService;
 	}
 
 	@GetMapping("/main-view")
@@ -53,6 +58,8 @@ public class ThemeController {
 		
 		List<Review>reviewList = reviewService.getReviewList(id);
 		Theme theme = themeService.getThemeById(id);
+		List<Community>communityList = communityService.getThreeCommunity(id);
+		model.addAttribute("communityList",communityList);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("theme", theme);
 		return "/theme/detail";

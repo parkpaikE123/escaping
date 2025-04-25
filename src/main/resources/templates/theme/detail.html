@@ -54,8 +54,26 @@
 					</div>
 				</div>
 				<div class="comunity-section w-100 text-center d-none">
-					<div>커뮤니티 테이블내에 contents 내용1</div>
-					<div>커뮤니티 테이블내에 contents 내용2</div>
+					<table class="table">
+				<thead height=100>
+					<tr>
+						<th>정보</th>
+						<th>구인글</th>
+						<th>모집인원</th>
+						<th>상태</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody height=200>
+					<tr th:each="community:${communityList}">
+						<td th:text="${community.userName}">작성자 이름</td>
+						<td th:text="${community.contents}">구인글 자리</td>
+						<td th:text="|${community.recruitCount}명|">모집인원 수</td>
+						<td th:text="${community.state}">구인중</td>
+						<td><a href="*" class="btn btn-info">참여 할게요!</a></td>
+					</tr>
+				</tbody>
+			</table>
 					<div class="d-flex justify-content-around">
 						<div></div>
 						<div></div>
