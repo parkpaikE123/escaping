@@ -108,7 +108,7 @@
 					,data:{"themeId":themeId, "userName":userName, "level":level, "point":point, "contents":contents, "success":success}
 					,success:function(response) {
 						if(response.result == "success") {
-							location.href="/theme/detail-view?id=" + themeId;
+							location.href="/review/main-view?themeId=" + themeId;
 						} else {
 							alert("리뷰 생성 실패!");
 						}

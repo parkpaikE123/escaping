@@ -6,7 +6,7 @@
 		<div class="main-zone">
 			<hr>
 			<div>
-			<div class="text-center head-bar">
+			<div class="text-center head-bar" th:data-theme-id="${theme.id}">
 				<h2 th:text="|리뷰: ${theme.themeName}(테마)|"></h2>
 			</div>
 				<a class="btn" th:href="|/theme/detail-view?id=${theme.id}|">
@@ -33,6 +33,7 @@
 						<td th:text="${review.success}">탈출여부</td>
 						<td th:text="${review.point}">별점</td>
 						<td th:text="${review.level}">난이도</td>
+						<td th:if="${review.userId == session.userId}"><button class="btn btn-danger delete-btn" th:data-review-id="${review.id}">삭제</button></td>
 					</tr>
 				</tbody>
 			</table>
@@ -47,7 +48,26 @@
 	</div>
 	<script layout:fragment="script">
 		$(function() {
-			
+			$(".delete-btn").on("click", function() {
+				let id = $(this).data("review-id");
+				let themeId = $(".head-bar").data("theme-id");
+				$.ajax({
+					type:"delete"
+					,url:"/review/delete"
+					,data:{"id":id}
+					,success:function(response){
+						if(reponse.result == "success") {
+							location.href="/review-main-view?themeId="+themeId;
+						} else {
+							alert("리뷰삭제 실패");
+						}
+					}
+					,error:function() {
+						alert("리뷰 삭제에러");
+					}
+				});
+				
+			});
 		});
 	</script>
 	

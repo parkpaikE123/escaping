@@ -52,6 +52,7 @@
 								<td th:text="${review.success}">구인글 자리</td>
 								<td th:text="|${review.point}점|">모집인원 수</td>
 								<td th:text="${review.level}">구인중</td>
+								<td th:if="${review.userId == session.userId}"><button class="btn btn-danger delete-review-btn" th:data-review-id="${review.id}">삭제</button></td>
 							</tr>
 						</tbody>
 					</table>

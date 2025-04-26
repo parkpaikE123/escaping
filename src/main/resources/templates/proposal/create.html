@@ -30,9 +30,8 @@
 	</div>
 	<script layout:fragment="script">
 		$(function() {
-		
+			var themeId = $("#infoBlock").data("theme-id");
 			$("#createBtn").on("click", function() {
-				let themeId = $("#infoBlock").data("theme-id");
 				let communityId = $("#infoBlock").data("community-id");
 				let contents = $("#communityText").val();
 				let state = "진행중";

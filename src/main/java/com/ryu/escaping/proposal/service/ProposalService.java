@@ -16,7 +16,7 @@ public class ProposalService {
 		this.proposalRepository = proposalRepository;
 	}
 	
-	
+	// 참여 제안서 작성
 	public boolean addProposal(int userId
 							,int communityId
 							,String contents
