@@ -7,6 +7,8 @@ import lombok.Getter;
 @Getter
 public class ForReceiveProposalDetail {
 
+	private int proposalId;
+	
 	private String imagePath;
 	private String themeName;
 	private String proposalUserName;

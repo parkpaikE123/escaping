@@ -14,22 +14,17 @@
 			</div>
 			<div class="proposal-2 text-left d-flex">
 				<div>
-					<div class="proposal-box" th:each="proposal:${proposalDetailList}">
+					<div class="proposal-box" th:each="proposal:${proposalDetailList}" th:data-proposal-id="${proposal.proposalId}">
 						<span th:text="|지원자 닉네임: ${proposal.proposalUserName}|">지원자 닉네임: OOO</span>
 						<hr>
 						<span th:text="|지원 내용: ${proposal.contents}|">지원내용 가나다마람난아ㅏㅇ라</span>
-						<div class="d-flex justify-content-between mt-4">
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<button class="btn btn-success">수락하기</button>
-							<button class="btn btn-danger">거절하기</button>
+						<div class="d-flex justify-content-end mt-4">
+							<div id="btn-zone" th:data-btn-id="${proposal.proposalId}">
+								<button class="btn mr-2 agree-btn btn-success" th:data-btn-id="${proposal.proposalId}">수락하기</button>
+								<button class="btn refuse-btn btn-danger" th:data-btn-id="${proposal.proposalId}">거절하기</button>
+							</div>
 						</div>
+						<span class="d-none close-proposal">선택이 완료된 제안입니다</span>
 					</div>
 				</div>	
 			</div>
@@ -38,7 +33,16 @@
 	</div>
 	<script layout:fragment="script">
 		$(function() {
-			
+			$(".agree-btn").on("click", function () {
+				alert("수락하였습니다");
+				$("#btnZone").addClass("d-none");
+				return;
+				
+			});
+			$(".refuse-btn").on("click", function() {
+				alert("거절하였습니다");
+				return;
+			});
 		});
 	</script>
 	

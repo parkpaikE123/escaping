@@ -54,6 +54,7 @@ public class UserService {
 			User user = optionalUser.get();
 			
 			ForReceiveProposalDetail forDetail = ForReceiveProposalDetail.builder()
+												.proposalId(proposal.getId())
 												.imagePath(theme.getImagePath())
 												.themeName(theme.getThemeName())
 												.proposalUserName(user.getUserName())
