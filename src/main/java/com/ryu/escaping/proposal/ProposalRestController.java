@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,6 +13,7 @@ import com.ryu.escaping.proposal.service.ProposalService;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
+@RequestMapping("/proposal")
 public class ProposalRestController {
 
 	private final ProposalService proposalService;
@@ -19,7 +21,8 @@ public class ProposalRestController {
 		this.proposalService = proposalService;
 	}
 	
-	@PostMapping("/propoasl/create")
+	// 생성
+	@PostMapping("/create")
 	public Map<String, String> createProposal(@RequestParam int communityId
 											,@RequestParam String contents
 											,@RequestParam String state
