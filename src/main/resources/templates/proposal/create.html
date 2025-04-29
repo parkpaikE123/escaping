@@ -3,7 +3,7 @@
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorate="~{layout/compliance}">
      <div layout:fragment="contents">
-		<div class="main-box d-flex justify-content-around align-items-center">
+		<div class="main-box d-flex justify-content-around align-items-center" th:data-user-id=${session.userId}>
 			<div class="review-1 mt-4" id="infoBlock" th:data-theme-id="${theme.id}" th:data-community-id="${community.id}">
 				<img width="500" height="500" alt="테마 포스터 이미지" th:src="${theme.imagePath}">
 				<label class="mt-4 w-100 text-white bg-info form-control" th:text="|작성자 명: ${community.userName}|">작성자 명</label>
@@ -32,6 +32,7 @@
 		$(function() {
 			var themeId = $("#infoBlock").data("theme-id");
 			$("#createBtn").on("click", function() {
+				let userId = $(".main-box").data("user-id");
 				let communityId = $("#infoBlock").data("community-id");
 				let contents = $("#communityText").val();
 				let state = "진행중";
@@ -45,7 +46,7 @@
 					,data:{"communityId":communityId, "contents":contents, "state":state}
 					,success:function(response){
 						if(response.result == "success") {
-							location.href="/user/my-proposal-view";
+							location.href="/user/my-proposal-view?userId=" + userId;
 						} else{
 							alert("제안서 작성 실패");
 						}

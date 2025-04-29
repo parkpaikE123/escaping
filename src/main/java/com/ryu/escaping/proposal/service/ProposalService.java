@@ -1,5 +1,7 @@
 package com.ryu.escaping.proposal.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.ryu.escaping.proposal.domain.Proposal;
@@ -15,6 +17,11 @@ public class ProposalService {
 	
 	public ProposalService(ProposalRepository proposalRepository) {
 		this.proposalRepository = proposalRepository;
+	}
+	
+	public List<Proposal> getProposalList(int userId) {
+		List<Proposal> proposalList = proposalRepository.findByUserId(userId);
+		return proposalList;
 	}
 	
 	
