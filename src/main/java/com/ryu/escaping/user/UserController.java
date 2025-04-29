@@ -34,6 +34,12 @@ public class UserController {
 		return "/user/join";
 	}
 	
+	// 내가 작성한 제안서
+	@GetMapping("/my-proposal-view")
+	public String proposal() {
+		return "/proposal/mine";
+	}
+	
 	// 로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {

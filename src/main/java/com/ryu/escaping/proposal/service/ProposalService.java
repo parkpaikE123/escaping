@@ -11,12 +11,13 @@ import jakarta.persistence.PersistenceException;
 public class ProposalService {
 
 	private final ProposalRepository proposalRepository;
+
 	
 	public ProposalService(ProposalRepository proposalRepository) {
 		this.proposalRepository = proposalRepository;
 	}
 	
-	// 참여 제안서 작성
+	
 	public boolean addProposal(int userId
 							,int communityId
 							,String contents

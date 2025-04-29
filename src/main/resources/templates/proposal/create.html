@@ -45,7 +45,7 @@
 					,data:{"communityId":communityId, "contents":contents, "state":state}
 					,success:function(response){
 						if(response.result == "success") {
-							alert();
+							location.href="/user/my-proposal-view";
 						} else{
 							alert("제안서 작성 실패");
 						}
