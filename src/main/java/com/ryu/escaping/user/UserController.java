@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ryu.escaping.proposal.domain.Proposal;
-import com.ryu.escaping.proposal.service.ProposalService;
+import com.ryu.escaping.user.dto.ForMyProposal;
+import com.ryu.escaping.user.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -17,10 +17,10 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/user")
 public class UserController {
 
-	private final ProposalService proposalService;
+	private final UserService userService;
 	
-	public UserController(ProposalService proposalService) {
-		this.proposalService = proposalService;
+	public UserController(UserService userService) {
+		this.userService = userService;
 	}
 	
 	// 첫 화면
@@ -53,7 +53,7 @@ public class UserController {
 						, HttpSession session
 						, Model model) {
 		int userId1 = (Integer)session.getAttribute("userId");
-		List<Proposal> proposalList = proposalService.getProposalList(userId1);
+		List<ForMyProposal> proposalList = userService.getMyProposal(userId1);
 		model.addAttribute("proposalList",proposalList);
 		return "/proposal/mine";
 	}

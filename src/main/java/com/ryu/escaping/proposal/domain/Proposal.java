@@ -1,5 +1,9 @@
 package com.ryu.escaping.proposal.domain;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,5 +35,9 @@ public class Proposal {
 	
 	private String contents;
 	private String state;
+	
+	@CreationTimestamp
+	@Column(name="createdAt")
+	private LocalDateTime createdAt;
 	
 }

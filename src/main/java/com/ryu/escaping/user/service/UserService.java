@@ -1,9 +1,19 @@
 package com.ryu.escaping.user.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import com.ryu.escaping.admin.theme.domain.Theme;
+import com.ryu.escaping.admin.theme.service.ThemeService;
 import com.ryu.escaping.common.MD5HashingEncoder;
+import com.ryu.escaping.community.domain.Community;
+import com.ryu.escaping.community.sevice.CommunityService;
+import com.ryu.escaping.proposal.domain.Proposal;
+import com.ryu.escaping.proposal.service.ProposalService;
 import com.ryu.escaping.user.domain.User;
+import com.ryu.escaping.user.dto.ForMyProposal;
 import com.ryu.escaping.user.repository.UserRepository;
 
 import jakarta.persistence.PersistenceException;
@@ -12,9 +22,40 @@ import jakarta.persistence.PersistenceException;
 public class UserService {
 
 	private final UserRepository userRepository;
+	private final ThemeService themeService;
+	private final CommunityService communityService;
+	private final ProposalService proposalService;
 	
-	public UserService(UserRepository userRepository) {
+	public UserService(ThemeService themeService
+					, CommunityService communityService
+					, ProposalService proposalService
+					, UserRepository userRepository) {
 		this.userRepository = userRepository;
+		this.communityService = communityService;
+		this.proposalService = proposalService;
+		this.themeService = themeService;
+	}
+	
+	// 내가작성한 제안서 dto
+	public List<ForMyProposal> getMyProposal(int userId) {
+		List<ForMyProposal> myProposalList = new ArrayList<>();
+		List<Proposal> proposalList = proposalService.getProposalList(userId);
+		for(Proposal proposal:proposalList) {
+			
+			Community community = communityService.getCommunityEntity(proposal.getCommunityId());
+			
+			Theme theme = themeService.getThemeById(community.getThemeId());
+			
+			ForMyProposal ForMyDto = ForMyProposal.builder()
+									.imagePath(theme.getImagePath())
+									.themeName(theme.getThemeName())
+									.recruitCount(community.getRecruitCount())
+									.state(proposal.getState())
+									.createdAt(proposal.getCreatedAt())
+									.build();
+			myProposalList.add(ForMyDto);
+		}
+		return myProposalList;
 	}
 	
 	// 로그인 서비스

@@ -16,17 +16,17 @@
 							<tr class="d-flex justify-content-around">
 								<th>테마</th>
 								<th>모집인원</th>
-								<th>상태</th>
+								<th>상태(내가 작성한 제안서)</th>
 								<th>작성일시</th>
 								<th>edit</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="mt-4 d-flex justify-content-around" >
-								<td><img width=100><span>테마이름</span></td>
-								<td >룸이스케이프</td>
-								<td >45,000원</td>
-								<td >80분</td>
+							<tr class="mt-4 d-flex justify-content-around" th:each="myPro:${proposalList}">
+								<td><img th:src="${myPro.imagePath}" width=100><span th:text="${myPro.themeName}">테마이름</span></td>
+								<td th:text="|${myPro.recruitCount}명|">룸이스케이프</td>
+								<td th:text="${myPro.state}">45,000원</td>
+								<td th:text="${#temporals.format(myPro.createdAt, 'yyyy-MM-dd HH:mm')}">80분</td>
 								<td><button  class="btn delete-btn btn-danger" >삭제</button></td>
 							</tr>
 						</tbody>
