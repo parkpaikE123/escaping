@@ -7,6 +7,7 @@
 				<a href="/user/logout" class="ml-2 btn btn-danger logout-btn" >로그아웃</a>
 				<br>
 				<a class="btn btn-success mt-2" th:href="|/reservation/personal?id=${session.userId}|">나의 예약내역</a>
+				<a class="btn btn-info mt-2" th:href="|/user/my-community/proposal-view?userId=${session.userId}|">나의 커뮤니티</a>
 			</div>
 		</div>
 </header>

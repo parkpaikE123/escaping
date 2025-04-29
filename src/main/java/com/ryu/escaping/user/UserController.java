@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ryu.escaping.user.dto.ForMyProposal;
+import com.ryu.escaping.user.dto.ForReceiveProposal;
 import com.ryu.escaping.user.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -49,13 +50,24 @@ public class UserController {
 	
 	// 내가 작성한 제안서
 	@GetMapping("/my-proposal-view")
-	public String proposal(@RequestParam int userId
-						, HttpSession session
+	public String proposal(HttpSession session
 						, Model model) {
 		int userId1 = (Integer)session.getAttribute("userId");
 		List<ForMyProposal> proposalList = userService.getMyProposal(userId1);
 		model.addAttribute("proposalList",proposalList);
 		return "/proposal/mine";
+	}
+	
+	// 내가 받은 제안서 보기 화면
+	@GetMapping("/my-community/proposal-view")
+	public String reciveProposal(HttpSession session
+								, Model model) {
+		
+		int userSessionId = (Integer)session.getAttribute("userId");
+		List<ForReceiveProposal> receiveProposalList = userService.getReceiveProposal(userSessionId);
+		model.addAttribute("receiveProposalList", receiveProposalList);
+		
+		return "/community/receive";
 	}
 	
 	// 로그아웃

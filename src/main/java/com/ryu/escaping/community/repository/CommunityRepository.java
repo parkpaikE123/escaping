@@ -9,6 +9,8 @@ import com.ryu.escaping.community.domain.Community;
 public interface CommunityRepository extends JpaRepository<Community,Integer> {
 
 	
+	public List<Community> findByUserId(int userId);
+	
 	public List<Community> findListBythemeIdOrderByIdDesc(int themeId);
 	
 	public List<Community> findTop3ListBythemeIdOrderByIdDesc(int themeId);

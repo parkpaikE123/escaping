@@ -8,8 +8,15 @@
 .branch-create {
 	width: 1200px;
 }
-header{
-	
+.proposal-1 {
+	width:400px;
+}
+.proposal-2 {
+	width:800px;
+}
+.proposal-box {
+	width:600px;
+	height:200px;
 }
 .head-bar {
 	height:80px;

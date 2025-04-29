@@ -10,4 +10,5 @@ public interface ProposalRepository extends JpaRepository<Proposal, Integer> {
 
 	public List<Proposal> findByUserId(int userId);
 	
+	public List<Proposal> findByCommunityId(int communityId);
 }

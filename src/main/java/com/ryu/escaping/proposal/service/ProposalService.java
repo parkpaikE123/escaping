@@ -19,6 +19,10 @@ public class ProposalService {
 		this.proposalRepository = proposalRepository;
 	}
 	
+	public List<Proposal> getProposalListByCommunityId(int communityId) {
+		return proposalRepository.findByCommunityId(communityId);
+	}
+	
 	public List<Proposal> getProposalList(int userId) {
 		List<Proposal> proposalList = proposalRepository.findByUserId(userId);
 		return proposalList;

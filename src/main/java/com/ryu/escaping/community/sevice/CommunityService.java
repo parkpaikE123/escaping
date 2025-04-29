@@ -28,6 +28,11 @@ public class CommunityService {
 		return communityList;
 	}
 	
+	public List<Community> getCommunityListByUserId(int userId) {
+		List<Community> communityList = communityRepository.findByUserId(userId);
+		return communityList;
+	}
+	
 	public List<Community> getCommunity(int themeId) {
 		List<Community> communityList = communityRepository.findListBythemeIdOrderByIdDesc(themeId);
 		return communityList;

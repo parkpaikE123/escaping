@@ -1,0 +1,45 @@
+<html lang="ko" 
+		xmlns:th="http://www.thymeleaf.org" 
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/compliance}">
+     <div layout:fragment="contents">
+     <hr>
+	     <div class="d-flex justify-content-center">
+	     	<h3 class="mr-4">내가 받은 제안서</h3>
+	     </div>
+	     <hr>
+		<div class="main-box d-flex justify-content-around">
+			<div class="proposal-1">
+				<img width="300" height="300" th:src="${theme.imagePath}" alt="테마 포스터 이미지">
+			</div>
+			<div class="proposal-2 text-left d-flex">
+				<div>
+					<div class="proposal-box" th:each="proposal:${proposalDetailList}">
+						<span th:text="|지원자 닉네임: ${proposal.proposalUserName}|">지원자 닉네임: OOO</span>
+						<hr>
+						<span th:text="|지원 내용: ${proposal.contents}|">지원내용 가나다마람난아ㅏㅇ라</span>
+						<div class="d-flex justify-content-between mt-4">
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<button class="btn btn-success">수락하기</button>
+							<button class="btn btn-danger">거절하기</button>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+		<hr>
+	</div>
+	<script layout:fragment="script">
+		$(function() {
+			
+		});
+	</script>
+	
+</html>

@@ -1,0 +1,49 @@
+<html lang="ko" 
+		xmlns:th="http://www.thymeleaf.org" 
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/compliance}">
+     <div layout:fragment="contents">
+			<hr>
+		<nav class="mt-2 d-flex justify-content-center align-items-center">
+			<b><span class="w-100 text-center">나의 커뮤니티 글<span >(지점명)</span></span></b>
+		</nav>
+			<hr>
+		<section>
+			<article class="">
+				<div class="main-zone">
+					<table class="w-100 mt-4">
+						<thead>
+							<tr class="d-flex justify-content-around">
+								<th>테마</th>
+								<th>모집인원</th>
+								<th>제안을 보낸 사람 수</th>
+								<th>상태</th>
+								<th>예약일시</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="mt-4 d-flex justify-content-around" th:each="receive:${receiveProposalList}">
+								<td><img th:src="${receive.imagePath}" width=100><span th:text="${receive.themeName}">테마이름</span></td>
+								<td th:text="|${receive.recruitCount}명|">룸이스케이프</td>
+								<td class="d-flex">
+									<span th:text="|${receive.sendCount}명|"></span>
+									<div th:if="${receive.sendCount != 0}">
+										<a th:href="|/proposal/detail-view?communityId=${receive.communityId}|" class="btn btn-info ml-2" id="proposalBtn">제안서 보러가기</a>
+									</div>
+								</td>
+								<td th:text="${receive.state}">80분</td>
+								<td th:text="${receive.createdAt}">2027-12-02</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</article>
+		</section>
+	</div>
+	<script layout:fragment="script">
+		$(function() {
+			
+		});
+	</script>
+	
+</html>
