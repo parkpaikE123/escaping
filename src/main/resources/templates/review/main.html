@@ -56,8 +56,8 @@
 					,url:"/review/delete"
 					,data:{"id":id}
 					,success:function(response){
-						if(reponse.result == "success") {
-							location.href="/review-main-view?themeId="+themeId;
+						if(response.result == "success") {
+							location.reload();
 						} else {
 							alert("리뷰삭제 실패");
 						}

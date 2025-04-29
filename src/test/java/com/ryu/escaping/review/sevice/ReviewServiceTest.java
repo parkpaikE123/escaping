@@ -17,7 +17,7 @@ class ReviewServiceTest {
 	// 리뷰 생성
 	@Transactional
 	@Test
-	public void createReview() {
+	public void reviewTest() {
 		int userId =1;
 		int themeId = 1;
 		String reviewUserName = "qwer";
@@ -29,6 +29,9 @@ class ReviewServiceTest {
 		boolean success1 = reviewService.addReview(userId, themeId, reviewUserName, point, contents, level, success);
 		
 		assertEquals(success1,true);
+		
+		assertEquals(reviewService.deleteReivew(1),true);
+		
 	}
 
 }
