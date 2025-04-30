@@ -5,7 +5,7 @@
      <div layout:fragment="contents">
 		<nav class="mt-2 d-flex justify-content-center align-items-center">
 			<hr>
-			<b><span class="w-100 text-center">테마 관리<span th:text="${branch?.name}">(지점명)</span></span></b>
+			<h2><span class="w-100 text-center" th:text="${branch?.name}">(지점명)</span></h2>
 			<hr>
 		</nav>
 		<section>
@@ -13,7 +13,7 @@
 				<div class="main-zone">
 					<table class="table mt-4 text-center">
 						<thead>
-							<tr class="">
+							<tr>
 								<th>테마</th>
 								<th>최소가격(2인)</th>
 								<th>제한시간</th>
@@ -21,8 +21,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="theme:${themeList}" class="" >
-								<td class="d-flex align-items-center ">
+							<tr th:each="theme:${themeList}">
+								<td>
 									<a th:href="|/theme/detail-view?id=${theme.id}|">
 										<img width=100 th:src="${theme.imagePath}">
 									</a>

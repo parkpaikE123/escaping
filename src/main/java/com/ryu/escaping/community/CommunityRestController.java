@@ -3,6 +3,7 @@ package com.ryu.escaping.community;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,18 @@ public class CommunityRestController {
 	private final CommunityService communityService;
 	public CommunityRestController(CommunityService communityService) {
 		this.communityService = communityService;
+	}
+	
+	// 커뮤니티 삭제
+	@DeleteMapping("/delete")
+	public Map<String, String> deleteCommunity(@RequestParam int id) {
+		Map<String, String> resultMap = new HashMap<>();
+		if(communityService.deleteCommunity(id)) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		return resultMap;
 	}
 	
 	// 커뮤니티 생성

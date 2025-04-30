@@ -37,7 +37,9 @@ public class BranchController {
 	@GetMapping("/detail-view")
 	public String detailBranch(@RequestParam int id
 							,Model model) {
+		Branch branch = branchService.getBranchById(id);
 		List<Theme> themeList = themeService.getThemeByBranchId(id);
+		model.addAttribute("branch",branch);
 		model.addAttribute("themeList", themeList);
 		return "/branch/detail";
 	}
