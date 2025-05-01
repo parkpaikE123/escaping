@@ -19,6 +19,27 @@ public class ProposalService {
 		this.proposalRepository = proposalRepository;
 	}
 	
+	// 상태 업데이트
+	public boolean updateProposal(int id, String state) {
+		Optional<Proposal> optionalProposal = proposalRepository.findById(id);
+		if(optionalProposal.isPresent()) {
+			Proposal proposal = optionalProposal.get();
+			if(proposal.getId() != id) {
+				return false;
+			}
+			try {
+				Proposal updateProposal = proposalRepository.updateProposalState(id, state);
+				proposalRepository.save(updateProposal);
+			} catch(PersistenceException e) {
+				return false;
+			}
+		} else{
+			return false;
+		}
+		return true;
+	}
+	
+	// 삭제
 	public boolean deleteProposal(int id) {
 		Optional<Proposal> optionalProposal = proposalRepository.findById(id);
 		if(optionalProposal.isPresent()) {

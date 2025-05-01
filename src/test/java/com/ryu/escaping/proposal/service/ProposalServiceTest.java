@@ -18,13 +18,11 @@ class ProposalServiceTest {
 	@Transactional
 	public void testProposal() {
 		// 준비 
-		int userId = 2;
-		int communityId = 5;	
-		String contents = "가나다라마바사";
-		String state = "대기중";
+		int id = 2;
+		String state = "거절";
 		
 		// 진행
-		boolean success = proposalService.addProposal(userId, communityId, contents, state);
+		boolean success = proposalService.updateProposal(id, state);
 		
 		// 결과 
 		assertEquals(success, true);

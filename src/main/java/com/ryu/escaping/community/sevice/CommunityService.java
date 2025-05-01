@@ -44,7 +44,7 @@ public class CommunityService {
 		
 	}
 	
-	// 커뮤니티 삭세 (제안서도 함께 삭제)
+	// 커뮤니티 삭세 (커뮤니티PK를 통한 제안서도 함께 삭제)
 	@Transactional
 	public boolean deleteCommunity(int id) {
 		Optional<Community> optionalCommunity = communityRepository.findById(id);

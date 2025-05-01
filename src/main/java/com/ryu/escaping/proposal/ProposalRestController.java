@@ -22,6 +22,7 @@ public class ProposalRestController {
 		this.proposalService = proposalService;
 	}
 	
+	// 제안서 업데이트	
 	// 삭제
 	@DeleteMapping("/delete")
 	public Map<String, String> deleteProposal(int id) {
