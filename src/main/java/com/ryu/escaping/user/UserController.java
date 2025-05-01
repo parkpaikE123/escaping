@@ -61,8 +61,7 @@ public class UserController {
 	// 내가 받은 제안서 보기 화면
 	@GetMapping("/my-community/proposal-view")
 	public String reciveProposal(HttpSession session
-								, Model model) {
-		
+								, Model model) {	
 		int userSessionId = (Integer)session.getAttribute("userId");
 		List<ForReceiveProposal> receiveProposalList = userService.getReceiveProposal(userSessionId);
 		model.addAttribute("receiveProposalList", receiveProposalList);
