@@ -1,6 +1,7 @@
 package com.ryu.escaping.proposal.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -14,9 +15,26 @@ public class ProposalService {
 
 	private final ProposalRepository proposalRepository;
 
-	
 	public ProposalService(ProposalRepository proposalRepository) {
 		this.proposalRepository = proposalRepository;
+	}
+	
+	public boolean deleteProposal(int id) {
+		Optional<Proposal> optionalProposal = proposalRepository.findById(id);
+		if(optionalProposal.isPresent()) {
+			Proposal proposal = optionalProposal.get();
+			if(proposal.getId() != id) {
+				return false;
+			}
+			try {
+				proposalRepository.delete(proposal);
+			} catch(PersistenceException e) {
+				return false;
+			}
+		} else {
+			return false;
+		}
+		return true;
 	}
 	
 	public List<Proposal> getProposalListByCommunityId(int communityId) {

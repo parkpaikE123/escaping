@@ -68,7 +68,6 @@ public class CommunityService {
 		}
 		return true;
 	}
-	
 	// 커뮤니티 생성
 	public boolean addCommunity(int userId
 								,String userName

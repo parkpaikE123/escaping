@@ -27,7 +27,7 @@
 								<td th:text="|${myPro.recruitCount}명|">룸이스케이프</td>
 								<td th:text="${myPro.state}">45,000원</td>
 								<td th:text="${#temporals.format(myPro.createdAt, 'yyyy-MM-dd HH:mm')}">80분</td>
-								<td><button  class="btn delete-btn btn-danger" >삭제</button></td>
+								<td><button  class="btn delete-btn btn-danger" th:if="${myPro.state == 거절}">삭제</button></td>
 							</tr>
 						</tbody>
 					</table>
