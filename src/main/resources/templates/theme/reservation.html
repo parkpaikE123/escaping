@@ -12,22 +12,24 @@
 					<div>
 						<label>예약 날짜</label>
 						<br>
-						<form name="date" method="get" th:action="|/theme/reservation-view?themeId=${theme.id}|">
+					<form id="dateForm">
 						<input type="date"
 							   id="dateInput"
 							   max="2030-06-20"
 							   min="2025-05-01">
-						</form>
+							   <br>
+							   <button type="submit" class="btn btn-info col-4 mt-3 form-control date-btn">날짜 선택</button>
+					</form>
 					</div>
-					<div class="select-time d-none">
+					<div class="select-time d-none mt-4">
 						<label>예약 시간</label>
 						<form name="time" method="get" th:action="|/theme/reservation-view?themeId=${theme.id}|">
 							<div class="time-box d-flex">
-									<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="12:30" >
-									<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="14:30" >
-									<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="16:30" >
-									<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="18:30" >
-									<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="20:30" >
+								<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="12:30" >
+								<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="14:30" >
+								<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="16:30" >
+								<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="18:30" >
+								<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="20:30" >
 							</div>
 						</form>
 					</div>
@@ -65,9 +67,15 @@
 	<script layout:fragment="script">
 		$(function() {
 			var date = null
+			$("#dateForm").on("submit", function(e) {
+				e.preventDefault();
+				date = $("#dateInput").val();
 			if(date != null) {
 				$(".select-time").removeClass("d-none");
+				$(".date-btn").addClass("d-none");
 			}
+			});
+			
 			
 		});
 	</script>
