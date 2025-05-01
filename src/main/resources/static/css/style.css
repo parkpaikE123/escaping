@@ -60,7 +60,9 @@
 
 	height:150px;
 }
-
+.time-box{
+	flex-wrap: wrap;
+}
 
 .btn-bar {
 	width:1200px;
@@ -95,8 +97,22 @@ article1{
 	font-size:20px;
 	font-weight:bold;
 }
-.recommend-theme {
+.reser-zone {
+	width:1200px;
+}
+.reser-img{
+	height:200px;
+}
 
+.info-1{
+	width:500px;
+	height:600px;
+}
+.info-2{
+	width:700px;
+}
+.reser-payment{
+	height:200px;
 }
 footer{
 	height:60px;

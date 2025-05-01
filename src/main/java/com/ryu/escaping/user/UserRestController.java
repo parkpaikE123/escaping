@@ -72,6 +72,7 @@ public class UserRestController {
 		
 		if(user != null) {
 			// 세션에 필요한 사용자 정보 저장
+			session.setAttribute("phoneNumber", user.getPhoneNumber());
 			session.setAttribute("name", user.getName());
 			session.setAttribute("loginId", user.getLoginId());
 			session.setAttribute("userId", user.getId());

@@ -51,6 +51,14 @@ public class ThemeController {
 		return "/theme/search";
 	}
 	
+	@GetMapping("/reservation-view")
+	public String createReservation(int themeId
+									,Model model) {
+		Theme theme = themeService.getThemeById(themeId);
+		model.addAttribute("theme",theme);
+		return "/theme/reservation";
+	}
+	
 	@GetMapping("/detail-view")
 	public String detailTheme(@RequestParam int id
 							,HttpSession session

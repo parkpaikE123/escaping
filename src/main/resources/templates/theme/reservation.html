@@ -1,0 +1,75 @@
+<html lang="ko"
+		xmlns:th="http://www.thymeleaf.org" 
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/compliance}">
+     <div layout:fragment="contents">
+		<div class="reser-zone">
+			<div class="reser-img d-flex justify-content-center">
+				<img width=200 alt="포스터이미지" th:src="${theme.imagePath}">
+			</div>
+			<div class="reser-info d-flex mt-4">
+				<div class="info-1 text-center mr-4">
+					<div>
+						<label>예약 날짜</label>
+						<br>
+						<form name="date" method="get" th:action="|/theme/reservation-view?themeId=${theme.id}|">
+						<input type="date"
+							   id="dateInput"
+							   max="2030-06-20"
+							   min="2025-05-01">
+						</form>
+					</div>
+					<div class="select-time d-none">
+						<label>예약 시간</label>
+						<form name="time" method="get" th:action="|/theme/reservation-view?themeId=${theme.id}|">
+							<div class="time-box d-flex">
+									<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="12:30" >
+									<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="14:30" >
+									<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="16:30" >
+									<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="18:30" >
+									<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="20:30" >
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="info-2">
+					<label th:text="|지점명: ${theme.branchName}|">지점명: </label>
+					<hr>
+					<label id="result">예약 날짜 시간: </label>
+					<hr>
+					<label th:text="|예약 테마: ${theme.themeName}|">예약 테마: </label>
+					<hr>
+					<label th:text="|예약자명: ${session.name}|">예약자 명: </label>
+					<hr>
+					<label th:text="|연락처: ${session.phoneNumber}|">연락처: </label>
+					<hr>
+					<label>인원: </label>
+					<select>
+						<option value="none">선택
+						<option value="2">2
+						<option value="3">3
+						<option value="4">4
+						<option value="5">5
+						<option value="6">6
+					</select>
+					<hr>
+					<label th:text="|결제금액: ${theme.price}원|">결제금액:OOOO원</label>
+					<hr>
+				</div>
+			</div>
+			<div class="reser-payment bg-primary">
+				
+			</div>
+		</div>
+	</div>
+	<script layout:fragment="script">
+		$(function() {
+			var date = null
+			if(date != null) {
+				$(".select-time").removeClass("d-none");
+			}
+			
+		});
+	</script>
+	
+</html>
