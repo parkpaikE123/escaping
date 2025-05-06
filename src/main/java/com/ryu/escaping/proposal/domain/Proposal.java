@@ -40,4 +40,8 @@ public class Proposal {
 	@Column(name="createdAt")
 	private LocalDateTime createdAt;
 	
+	public void changeState(String state) {
+		this.state = state;
+	}
+	
 }
