@@ -23,6 +23,17 @@ public class ProposalRestController {
 	}
 	
 	// 제안서 업데이트	
+	@PostMapping("/update")
+	public Map<String, String> updateProposal(@RequestParam int id
+											,@RequestParam String state) {
+		Map<String, String> resultMap = new HashMap<>();
+		if(proposalService.updateProposal(id, state)) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		return resultMap;
+	}
 	// 삭제
 	@DeleteMapping("/delete")
 	public Map<String, String> deleteProposal(int id) {
