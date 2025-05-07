@@ -24,7 +24,7 @@
 								<button class="btn refuse-btn btn-danger" th:data-btn-id="${proposal.proposalId}">거절하기</button>
 							</div>
 						</div>
-						<span class="d-none close-proposal">선택이 완료된 제안입니다</span>
+						<span class="d-none close-proposal" th:data-btn-id="${proposal.proposalId}">선택이 완료된 제안입니다</span>
 					</div>
 				</div>	
 			</div>
@@ -34,14 +34,35 @@
 	<script layout:fragment="script">
 		$(function() {
 			$(".agree-btn").on("click", function () {
+				
+				let state = "수락";
+				let id = $(".proposal-box").data("proposal-id");
+				
 				alert("수락하였습니다");
-				$("#btnZone").addClass("d-none");
-				return;
+				$.ajax({
+					type:"post"
+					,url:"/proposal/update"
+					,data:{"id":id, "state":state}
+					,success:function(response){
+						if(response.result == "success") {
+							$(".proposal-box").addClass("d-none");
+							location.reload();
+						} else {
+							alert("제안답변 실패");
+						}
+						
+					}
+					,error:function(){
+						alert("제안 답변에러");
+					}
+				});
+				
 				
 			});
 			$(".refuse-btn").on("click", function() {
+				let state = "거절";
 				alert("거절하였습니다");
-				return;
+				
 			});
 		});
 	</script>
