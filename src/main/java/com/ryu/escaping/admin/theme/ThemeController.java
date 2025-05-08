@@ -47,6 +47,7 @@ public class ThemeController {
 							,Model model) {
 		
 		List<Theme> themeList =themeService.getThemeListBySearch(genre);
+		model.addAttribute("genre",genre);
 		model.addAttribute("themeList",themeList);
 		return "/theme/search";
 	}

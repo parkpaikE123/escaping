@@ -29,7 +29,7 @@ public class BranchController {
 							,Model model) {
 		
 		List<Branch> branchList = branchService.getListBySearch(locationKey);
-		
+		model.addAttribute("location",locationKey);
 		model.addAttribute("branchList", branchList);		
 		return "/branch/search";
 	}
