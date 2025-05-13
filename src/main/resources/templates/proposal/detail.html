@@ -15,9 +15,8 @@
 			<div class="proposal-2 text-left d-flex">
 				<div>
 					<div class="proposal-box" th:each="proposal:${proposalDetailList}" th:data-proposal-id="${proposal.proposalId}">
-					<th:block>
 						<span th:text="|지원자 닉네임: ${proposal.proposalUserName}|">지원자 닉네임: OOO</span>
-						<hr>
+						<hr>							
 						<span th:text="|지원 내용: ${proposal.contents}|">지원내용 가나다마람난아ㅏㅇ라</span>
 						<div class="d-flex justify-content-end mt-4">
 							<div id="btn-zone" th:data-btn-id="${proposal.proposalId}">
@@ -26,7 +25,6 @@
 							</div>
 						</div>
 						<span class="d-none close-proposal" th:data-btn-id="${proposal.proposalId}">선택이 완료된 제안입니다</span>
-					</th:block>
 					</div>
 				</div>	
 			</div>
@@ -46,7 +44,7 @@
 					,data:{"id":id, "state":state}
 					,success:function(response){
 						if(response.result == "success") {
-							location.reload();
+							$(".proposal-box").addClass("d-none");
 						} else {
 							alert("제안답변 실패");
 						}
@@ -56,7 +54,6 @@
 						alert("제안 답변에러");
 					}
 				});
-				
 				
 			});
 			$(".refuse-btn").on("click", function() {
