@@ -9,6 +9,7 @@ import com.ryu.escaping.proposal.domain.Proposal;
 import com.ryu.escaping.proposal.repository.ProposalRepository;
 
 import jakarta.persistence.PersistenceException;
+import jakarta.transaction.Transactional;
 
 @Service
 public class ProposalService {
@@ -20,6 +21,7 @@ public class ProposalService {
 	}
 	
 	// 상태 업데이트
+	@Transactional
 	public boolean updateProposal(int id, String state) {
 		
 		Optional<Proposal>optionalProposal = proposalRepository.findById(id);
@@ -29,7 +31,15 @@ public class ProposalService {
 				return false;
 			}
 			try {
-				proposal.changeState(state);
+				 Proposal newProposal = Proposal.builder()
+						 .state(state)
+						 .communityId(proposal.getCommunityId())
+						 .userId(proposal.getUserId())
+						 .contents(proposal.getContents())
+						 .id(proposal.getId())
+						 .createdAt(proposal.getCreatedAt())
+						 .build();
+				 proposalRepository.save(newProposal);
 			} catch(PersistenceException e) {
 				return false;
 			}
