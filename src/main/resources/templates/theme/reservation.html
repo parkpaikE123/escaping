@@ -54,18 +54,15 @@
 						<option value="5">5
 						<option value="6">6
 					</select>
-					<%
-						int value
-					%>
 					<hr>
 					<label th:text="|결제금액: ${theme.price}원|">결제금액:OOOO원</label>
 					<hr>
-				</div>
-			</div>
-			<div class="reser-payment bg-primary">
-				<button id="kaobtn" style="background: #fee500; color:#000; border-radius:12px; padding: 10px 20px;">
-				카카오페이
+			<div class="reser-payment">
+				<button class="col-3" id="kaobtn" style="background: #fee500; color:#000; border-radius:12px; padding: 10px 20px;">
+				결제하기
 				</button>
+			</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -84,14 +81,27 @@
 					}
 				});
 			});
-			var date = null
 			$("#dateForm").on("submit", function(e) {
 				e.preventDefault();
-				date = $("#dateInput").val();
-			if(date != null) {
-				$(".select-time").removeClass("d-none");
-				$(".date-btn").addClass("d-none");
-			}
+				let date = $("#dateInput").val();
+				let dateYear = Number(date.split("-")[0]);
+				let dateMonth = Number(date.split("-")[1]);
+				let dateDay = Number(date.split("-")[2]);
+				totalDate = dateYear + dateMonth + dateDay;
+				
+				let today = new Date();   
+				let toYear = Number(today.getFullYear()); // 년도
+				let toMonth = Number(today.getMonth()) + 1;  // 월
+				let toDate = Number(today.getDate());  // 날짜
+				let totalToDate = toYear + toMonth + toDate;
+				if(totalDate >= totalToDate) {
+					$(".select-time").removeClass("d-none");
+					$(".date-btn").addClass("d-none");
+					return;
+				} else{
+					alert("유효하지 않은 날짜입니다");
+					return;
+				}
 			});
 			
 			

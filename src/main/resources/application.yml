@@ -18,5 +18,6 @@ spring:
         cache: false
     mvc:
         static-path-pattern: /static/**
-mybatis:
-    mapper-locations: mappers/*Mapper.xml 
+kakaopay:
+  admin-key: 380b3c62947e7678993d92dbb88f2302
+  cid: TC0ONETIME
