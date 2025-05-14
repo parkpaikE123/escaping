@@ -63,12 +63,27 @@
 				</div>
 			</div>
 			<div class="reser-payment bg-primary">
-				
+				<button id="kaobtn" style="background: #fee500; color:#000; border-radius:12px; padding: 10px 20px;">
+				카카오페이
+				</button>
 			</div>
 		</div>
 	</div>
 	<script layout:fragment="script">
 		$(function() {
+			$("kaobtn").click(function() {
+				/**
+					결제 버트 클릭 시
+					테마이름 가격 등등 필수 정보 입력 유효성체크
+				**/
+				$.ajax({
+					type:"get"
+					,url:"/pay/ready"
+					,data:{
+						payment:"payment"
+					}
+				});
+			});
 			var date = null
 			$("#dateForm").on("submit", function(e) {
 				e.preventDefault();
