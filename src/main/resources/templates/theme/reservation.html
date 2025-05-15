@@ -12,32 +12,25 @@
 					<div>
 						<label>예약 날짜</label>
 						<br>
-					<form id="dateForm">
-						<input type="date"
-							   id="dateInput"
-							   max="2030-06-20"
-							   min="2025-05-01">
+						<input id="datePicker">
 							   <br>
-							   <button type="submit" class="btn btn-info col-4 mt-3 form-control date-btn">날짜 선택</button>
-					</form>
+						<button type="button" class="btn btn-info col-4 mt-3 form-control" id="dateBtn">날짜 선택</button>
 					</div>
 					<div class="select-time d-none mt-4">
 						<label>예약 시간</label>
-						<form name="time" method="get" th:action="|/theme/reservation-view?themeId=${theme.id}|">
-							<div class="time-box d-flex">
-								<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="12:30" >
-								<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="14:30" >
-								<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="16:30" >
-								<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="18:30" >
-								<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="20:30" >
-							</div>
-						</form>
+						<div class="time-box d-flex">
+							<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="radio" value="12:30" >12:30
+							<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="radio" value="14:30" >14:30
+							<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="radio" value="16:30" >16:30
+							<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="radio" value="18:30" >18:30
+							<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="radio" value="20:30" >20:30
+						</div>
 					</div>
 				</div>
 				<div class="info-2">
 					<label th:text="|지점명: ${theme.branchName}|">지점명: </label>
 					<hr>
-					<label id="result">예약 날짜 시간: </label>
+					<label>예약 날짜 시간: <span id="result"> </span> </label>
 					<hr>
 					<label th:text="|예약 테마: ${theme.themeName}|">예약 테마: </label>
 					<hr>
@@ -46,16 +39,15 @@
 					<label th:text="|연락처: ${session.phoneNumber}|">연락처: </label>
 					<hr>
 					<label>인원: </label>
-					<select>
-						<option value="none">선택
-						<option value="2">2
+					<select id="memberCount">
+						<option value="2">2명(최소인원)
 						<option value="3">3
 						<option value="4">4
 						<option value="5">5
 						<option value="6">6
 					</select>
 					<hr>
-					<label th:text="|결제금액: ${theme.price}원|">결제금액:OOOO원</label>
+					<label>결제금액:<span id="priceResult" th:data-price-id="${theme.price}" th:text="${theme.price}"> </span>원</label>
 					<hr>
 			<div class="reser-payment">
 				<button class="col-3" id="kaobtn" style="background: #fee500; color:#000; border-radius:12px; padding: 10px 20px;">
@@ -68,6 +60,41 @@
 	</div>
 	<script layout:fragment="script">
 		$(function() {
+			var date = null;
+			var count = $("#priceResult").data("price-id");
+			
+			$("#memberCount").change(function() {
+				let total = 0;
+				total = count * $(this).val() * 0.5;
+				$("#priceResult").text(total);
+			});
+			
+			$("#dateBtn").on("click", function() {
+				date = $("#datePicker").val();
+				if(date != null) {
+					$(this).addClass("d-none");
+					$(".select-time").removeClass("d-none");
+				}
+			});
+			
+			$("#datePicker").datepicker({
+				dayNamesMin:['일', '월', '화', '수', '목', '금', '토'],
+				dateFormat:"yy-mm-dd",
+				minDate:0,
+				onSelect:function(dateString) {
+					
+				}
+			});
+			
+			
+			
+			$(".choice-time").on("click", function() {
+				$(this).prop("checked", true);
+				var time = $(this).val();
+				var selectTime =" " + date + "  " + "(" +time + ")";
+				$("#result").text(selectTime);
+			});
+			
 			$("kaobtn").click(function() {
 				/**
 					결제 버트 클릭 시
@@ -81,29 +108,6 @@
 					}
 				});
 			});
-			$("#dateForm").on("submit", function(e) {
-				e.preventDefault();
-				let date = $("#dateInput").val();
-				let dateYear = Number(date.split("-")[0]);
-				let dateMonth = Number(date.split("-")[1]);
-				let dateDay = Number(date.split("-")[2]);
-				totalDate = dateYear + dateMonth + dateDay;
-				
-				let today = new Date();   
-				let toYear = Number(today.getFullYear()); // 년도
-				let toMonth = Number(today.getMonth()) + 1;  // 월
-				let toDate = Number(today.getDate());  // 날짜
-				let totalToDate = toYear + toMonth + toDate;
-				if(totalDate >= totalToDate) {
-					$(".select-time").removeClass("d-none");
-					$(".date-btn").addClass("d-none");
-					return;
-				} else{
-					alert("유효하지 않은 날짜입니다");
-					return;
-				}
-			});
-			
 			
 		});
 	</script>

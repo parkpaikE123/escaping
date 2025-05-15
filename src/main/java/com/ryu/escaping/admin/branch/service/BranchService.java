@@ -16,6 +16,7 @@ import com.ryu.escaping.admin.theme.repository.ThemeRepository;
 import com.ryu.escaping.common.FileManager;
 
 import jakarta.persistence.PersistenceException;
+import jakarta.transaction.Transactional;
 
 @Service
 public class BranchService {
@@ -42,7 +43,7 @@ public class BranchService {
 	}
 	
 	
-	
+	@Transactional
 	public boolean deleteBranch(int id) {
 		
 		Optional<Branch> optionalBranch = branchRepository.findById(id);
