@@ -21,7 +21,7 @@ public class ReservationRestController {
 		this.reservationService = reservationService;
 	}
 	
-	// 예약 기능
+	// 예약 생성
 	public Map<String, String> createReservation(@RequestParam int themeId
 												,@RequestParam Date reservationDate
 												,@RequestParam String reservationTime

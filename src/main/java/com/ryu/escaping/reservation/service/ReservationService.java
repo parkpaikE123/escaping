@@ -20,10 +20,10 @@ public class ReservationService {
 	
 	// 예약 생성
 	public boolean addReservation(int userId
-											,int themeId
-											,Date reservationDate
-											,String reservationTime
-											,int memberCount) {
+								,int themeId
+								,Date reservationDate
+								,String reservationTime
+								,int memberCount) {
 		Reservation reservation = Reservation.builder()
 								.userId(userId)
 								.themeId(themeId)

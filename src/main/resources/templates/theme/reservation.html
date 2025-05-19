@@ -58,10 +58,12 @@
 			</div>
 		</div>
 	</div>
+	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 	<script layout:fragment="script">
 		$(function() {
 			var date = null;
 			var count = $("#priceResult").data("price-id");
+			IMP.init('imp65505110');
 			
 			$("#memberCount").change(function() {
 				let total = 0;
