@@ -30,11 +30,11 @@
 				<div class="info-2">
 					<label th:text="|지점명: ${theme.branchName}|">지점명: </label>
 					<hr>
-					<label>예약 날짜 시간: <span id="result"> </span> </label>
+					<label>예약 날짜 시간: <span id="result"></span> </label>
 					<hr>
-					<label th:text="|예약 테마: ${theme.themeName}|">예약 테마: </label>
+					<label id="themeNameBar" th:text="|예약 테마: ${theme.themeName}|">예약 테마: </label>
 					<hr>
-					<label th:text="|예약자명: ${session.name}|">예약자 명: </label>
+					<label id="userNameBar" th:text="|예약자명: ${session.name}|">예약자 명: </label>
 					<hr>
 					<label th:text="|연락처: ${session.phoneNumber}|">연락처: </label>
 					<hr>
@@ -58,12 +58,10 @@
 			</div>
 		</div>
 	</div>
-	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 	<script layout:fragment="script">
 		$(function() {
 			var date = null;
 			var count = $("#priceResult").data("price-id");
-			IMP.init('imp65505110');
 			
 			$("#memberCount").change(function() {
 				let total = 0;
@@ -73,9 +71,12 @@
 			
 			$("#dateBtn").on("click", function() {
 				date = $("#datePicker").val();
-				if(date != null) {
+				if(date != "") {
 					$(this).addClass("d-none");
 					$(".select-time").removeClass("d-none");
+				} else {
+					alert("날짜를 먼저 선택해주세요");
+					return;
 				}
 			});
 			
@@ -97,16 +98,28 @@
 				$("#result").text(selectTime);
 			});
 			
-			$("kaobtn").click(function() {
+			$("#kaobtn").on("click", function() {
 				/**
 					결제 버트 클릭 시
 					테마이름 가격 등등 필수 정보 입력 유효성체크
 				**/
+				if($("#result").text() == "") {
+					alert("날짜시간을 선택해주세요");
+					return;
+				}
+				let itemName = $("#themeNameBar").text().split(":")[1];
+				let quantity = 1;
+				let totalAmount = $("#priceResult").text();
+				let Amount = (Number)(totalAmount);
 				$.ajax({
-					type:"get"
+					type:"post"
 					,url:"/pay/ready"
-					,data:{
-						payment:"payment"
+					,data:{"itemName":itemName, "quantity": quantity,"totalAmount": Amount, "vatAmount":0,"taxFree":0}
+					,success:function(response) {
+						location.href=response.next_redirect_pc_url;
+					}
+					,error:function() {
+						alert();
 					}
 				});
 			});

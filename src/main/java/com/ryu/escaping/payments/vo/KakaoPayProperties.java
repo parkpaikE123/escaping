@@ -6,13 +6,13 @@ import org.springframework.stereotype.Component;
 public class KakaoPayProperties {
 
 	private String cid;
-	private String adminkey;
+	private String secretKey;
 	
-	public String getAdminKey() {
-		return adminkey;
+	public String getSecretKey() {
+		return secretKey;
 	}
-	public void setAdminKey(String adminKey) {
-		this.adminkey = adminKey;
+	public void setSecretKey(String secretKey) {
+		this.secretKey = secretKey;
 	}
 	public String getCid() {
 		return cid;

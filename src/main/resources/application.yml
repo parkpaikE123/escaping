@@ -19,5 +19,5 @@ spring:
     mvc:
         static-path-pattern: /static/**
 kakaopay:
-  admin-key: 380b3c62947e7678993d92dbb88f2302
+  secretKey: ${kakao.secretKey}
   cid: TC0ONETIME
