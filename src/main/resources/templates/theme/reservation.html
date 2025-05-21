@@ -99,14 +99,12 @@
 			});
 			
 			$("#kaobtn").on("click", function() {
-				/**
-					결제 버트 클릭 시
-					테마이름 가격 등등 필수 정보 입력 유효성체크
-				**/
+				
 				if($("#result").text() == "") {
 					alert("날짜시간을 선택해주세요");
 					return;
 				}
+				
 				let itemName = $("#themeNameBar").text().split(":")[1];
 				let quantity = 1;
 				let totalAmount = $("#priceResult").text();

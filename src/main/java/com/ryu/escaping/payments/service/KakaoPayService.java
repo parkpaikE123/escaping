@@ -36,7 +36,8 @@ public class KakaoPayService {
 	}
 	
 	// 결제 완료 요청
-	public KakaoReadyResponse kakaoPayReady(String orderId
+	public KakaoReadyResponse kakaoPayReady(
+											String orderId
 											,String userId
 											,String itemName
 											,int quantity
@@ -49,19 +50,19 @@ public class KakaoPayService {
 		parameters.put("cid", "TC0ONETIME");
 		parameters.put("partner_order_id", orderId);
 		parameters.put("partner_user_id", userId);
-		parameters.put("item_name", itemName);
-		parameters.put("quantity", quantity);
-		parameters.put("total_amount", totalAmount);
-		parameters.put("vat_amount", vatAmount);
-		parameters.put("tax_free_amount", taxFree); 
-		parameters.put("approval_url", "https://localhost:8080/success");
-		parameters.put("fail_url", "https://localhost:8080/fail");
-		parameters.put("cancel_url", "https://localhost:8080/cancel");
+		parameters.put("item_name", itemName+"");
+		parameters.put("quantity", quantity+"");
+		parameters.put("total_amount", totalAmount+"");
+		parameters.put("vat_amount", vatAmount+"");
+		parameters.put("tax_free_amount", taxFree+""); 
+		parameters.put("approval_url", "http://localhost:8080/pay/success");
+		parameters.put("fail_url", "http://localhost:8080/fail");
+		parameters.put("cancel_url", "http://localhost:8080/cancel");
 		
 		HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(parameters,this.getHeader());
 		
 		// 외부에 보낼 url
-		RestTemplate resTemplate = new RestTemplate();
+		RestTemplate restTemplate = new RestTemplate();
 		
 		kakaoReady = restTemplate.postForObject(
 											"https://open-api.kakaopay.com/online/v1/payment/ready"
@@ -71,18 +72,20 @@ public class KakaoPayService {
 	}
 	
 	// 결제 완료 승인
-	public KakaoApproveResponse approveResponse(String pgToken) {
+	public KakaoApproveResponse approveResponse(String pgToken
+												,String userId
+												,String orderId) {
+		
 		// 카카오 요청
 		Map<String, String> parameters = new HashMap<>();
 		parameters.put("cid", "TC0ONETIME");
 		parameters.put("tid", kakaoReady.getTid());
-		parameters.put("partner_order_id", "파트너오더아이디");
-		parameters.put("partner_uset_id", "주문유저아이디");
+		parameters.put("partner_order_id", orderId);
+		parameters.put("partner_user_id", userId);
 		parameters.put("pg_token", pgToken);
 		
 		// 파라미터, 헤더
 		HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(parameters,this.getHeader());
-		System.out.println(requestEntity);
 		
 		// 외부에 보내 url
 		RestTemplate restTemplate = new RestTemplate();
@@ -91,8 +94,6 @@ public class KakaoPayService {
 												"https://open-api.kakaopay.com/online/v1/payment/approve"
 												, requestEntity
 												, KakaoApproveResponse.class);
-
-		System.out.println(approveResponse);
 
 		return approveResponse;
 	}
