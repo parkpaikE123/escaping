@@ -25,6 +25,37 @@ public class ReservationService {
 		this.reservationRepository = reservationRepository;
 		this.themeRepository = themeRepository;
 	}
+	// 관리자용 모든 예약 내역 보이기
+	public List<MineReservation> getAllReservationListForAdmin() {
+		List<Reservation> reservationList = reservationRepository.findAll();
+		List<MineReservation> myReservationList = new ArrayList<>();
+		for(Reservation res:reservationList) {
+			int themeId = res.getThemeId();
+			Optional<Theme> optionalTheme = themeRepository.findById(themeId);
+			if(optionalTheme.isPresent()) {
+				Theme theme = optionalTheme.get();
+				String themeName = theme.getThemeName();
+				String imagePath = theme.getImagePath();
+				int runningTime = theme.getRunningTime();
+				int memberCount = res.getMemberCount();
+				int reservationId = res.getId();
+				Date reservationDate = res.getReservationDate();
+				String reservationTime = res.getReservationTime();
+				MineReservation myreservation = MineReservation.builder()
+												.themeName(themeName)
+												.reservationId(reservationId)
+												.memberCount(memberCount)
+												.reservationDate(reservationDate)
+												.reservationTime(reservationTime)
+												.imagePath(imagePath)
+												.runningTime(runningTime)
+												.build();
+				myReservationList.add(myreservation);
+			} 
+		}
+		return myReservationList;
+	}
+	
 	// userId로 유저의 예약 목록 리스트, 및 테마의 정보 DTO
 	public List<MineReservation> getMyReservationList(int userId) {
 		List<Reservation> reservationList = reservationRepository.findByUserId(userId);
