@@ -4,7 +4,7 @@
         layout:decorate="~{layout/compliance}">
      <div layout:fragment="contents">
 		<div class="reser-zone">
-			<div class="reser-img d-flex justify-content-center">
+			<div class="reser-img d-flex justify-content-center" th:data-theme-id="${theme.id}">
 				<img width=200 alt="포스터이미지" th:src="${theme.imagePath}">
 			</div>
 			<div class="reser-info d-flex mt-4">
@@ -104,7 +104,10 @@
 					alert("날짜시간을 선택해주세요");
 					return;
 				}
-				
+				let themeId = $(".reser-img").data("theme-id");
+				let reservationDate = $("#datePicker").val();
+				let reservationTime = $(".choice-time").prop("checked",true).val();
+				let memberCount = $("#memberCount").val();
 				let itemName = $("#themeNameBar").text().split(":")[1];
 				let quantity = 1;
 				let totalAmount = $("#priceResult").text();
@@ -112,7 +115,8 @@
 				$.ajax({
 					type:"post"
 					,url:"/pay/ready"
-					,data:{"itemName":itemName, "quantity": quantity,"totalAmount": Amount, "vatAmount":0,"taxFree":0}
+					,data:{"themeId":themeId, "memberCount":memberCount, "reservationDate":reservationDate
+							, "reservationTime":reservationTime, "itemName":itemName, "quantity": quantity,"totalAmount": Amount, "vatAmount":0,"taxFree":0}
 					,success:function(response) {
 						location.href=response.next_redirect_pc_url;
 					}

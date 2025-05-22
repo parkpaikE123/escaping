@@ -55,7 +55,7 @@ public class KakaoPayService {
 		parameters.put("total_amount", totalAmount+"");
 		parameters.put("vat_amount", vatAmount+"");
 		parameters.put("tax_free_amount", taxFree+""); 
-		parameters.put("approval_url", "http://localhost:8080/pay/success");
+		parameters.put("approval_url", "http://localhost:8080/pay/success?orderId=" + orderId);
 		parameters.put("fail_url", "http://localhost:8080/fail");
 		parameters.put("cancel_url", "http://localhost:8080/cancel");
 		

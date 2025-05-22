@@ -1,0 +1,68 @@
+<html lang="ko" 
+		xmlns:th="http://www.thymeleaf.org" 
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/compliance}">
+     <div layout:fragment="contents">
+		<div class="main-zone">
+			<hr>
+			<div class="text-center">
+				<h2>나의 예약내역</h2>
+			</div>
+			<table class="table">
+				<thead height=100>
+					<tr>
+						<th>테마</th>
+						<th>날짜</th>
+						<th>제한시간</th>
+						<th>시각</th>
+						<th>예약 인원</th>
+						<th>edit</th>
+					</tr>
+				</thead>
+				<tbody height=200>
+					<tr th:each="reservation:${reservationList}">
+						<td>
+							<span th:text="${reservation.themeName}">
+							</span>
+							<br>
+							<img width=50 th:src="${reservation.imagePath}">
+						</td>
+						<td th:text="${reservation.reservationDate}">날짜</td>
+						<td th:text="${reservation.runningTime}">시각</td>
+						<td th:text="${reservation.reservationTime}">예약 인원</td>
+						<td th:text="${reservation.memberCount}"></td>
+						<td><button class="btn btn-danger delete-btn" th:data-reservation-id="${reservation.reservationId}">예약취소</button></td>
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+		</div>
+		<div class="d-flex justify-content-between">
+			<div></div>
+
+		</div>
+	</div>
+	<script layout:fragment="script">
+		$(function() {
+			$(".delete-btn").on("click",function() {
+				let id = $(this).data("reservation-id");
+				$.ajax({
+					type:"delete"
+					,url:"/reservation/delete"
+					,data:{"id":id}
+					,success:function(response) {
+						if(response.result == "success") {
+							location.reload();
+						} else {
+							alert("삭제 실패");
+						}
+					}
+					,error:function() {
+						alert("삭제 에러");
+					}
+				});
+			});
+		});
+	</script>
+	
+</html>
