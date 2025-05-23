@@ -40,7 +40,6 @@ public class KakaoPay {
 											,@RequestParam int totalAmount
 											,@RequestParam int vatAmount
 											,@RequestParam int taxFree) {
-		
 		int userId = (Integer)session.getAttribute("userId");
 		int reservationPk = reservationService.createReservationForPay(userId, themeId, reservationDate, reservationTime, memberCount);
 		
