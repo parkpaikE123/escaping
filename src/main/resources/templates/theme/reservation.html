@@ -4,7 +4,7 @@
         layout:decorate="~{layout/compliance}">
      <div layout:fragment="contents">
 		<div class="reser-zone">
-			<div class="reser-img d-flex justify-content-center">
+			<div class="reser-img d-flex justify-content-center" th:data-theme-id="${theme.id}">
 				<img width=200 alt="포스터이미지" th:src="${theme.imagePath}">
 			</div>
 			<div class="reser-info d-flex mt-4">
@@ -12,73 +12,119 @@
 					<div>
 						<label>예약 날짜</label>
 						<br>
-					<form id="dateForm">
-						<input type="date"
-							   id="dateInput"
-							   max="2030-06-20"
-							   min="2025-05-01">
+						<input id="datePicker">
 							   <br>
-							   <button type="submit" class="btn btn-info col-4 mt-3 form-control date-btn">날짜 선택</button>
-					</form>
+						<button type="button" class="btn btn-info col-4 mt-3 form-control" id="dateBtn">날짜 선택</button>
 					</div>
 					<div class="select-time d-none mt-4">
 						<label>예약 시간</label>
-						<form name="time" method="get" th:action="|/theme/reservation-view?themeId=${theme.id}|">
-							<div class="time-box d-flex">
-								<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="12:30" >
-								<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="14:30" >
-								<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="16:30" >
-								<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="18:30" >
-								<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="button" value="20:30" >
-							</div>
-						</form>
+						<div class="time-box d-flex">
+							<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="radio" value="12:30" >12:30
+							<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="radio" value="14:30" >14:30
+							<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="radio" value="16:30" >16:30
+							<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="radio" value="18:30" >18:30
+							<input id="time" class="choice-time form-control col-3" name="choiceBtn" type="radio" value="20:30" >20:30
+						</div>
 					</div>
 				</div>
 				<div class="info-2">
 					<label th:text="|지점명: ${theme.branchName}|">지점명: </label>
 					<hr>
-					<label id="result">예약 날짜 시간: </label>
+					<label>예약 날짜 시간: <span id="result"></span> </label>
 					<hr>
-					<label th:text="|예약 테마: ${theme.themeName}|">예약 테마: </label>
+					<label id="themeNameBar" th:text="|예약 테마: ${theme.themeName}|">예약 테마: </label>
 					<hr>
-					<label th:text="|예약자명: ${session.name}|">예약자 명: </label>
+					<label id="userNameBar" th:text="|예약자명: ${session.name}|">예약자 명: </label>
 					<hr>
 					<label th:text="|연락처: ${session.phoneNumber}|">연락처: </label>
 					<hr>
 					<label>인원: </label>
-					<select>
-						<option value="none">선택
-						<option value="2">2
+					<select id="memberCount">
+						<option value="2">2명(최소인원)
 						<option value="3">3
 						<option value="4">4
 						<option value="5">5
 						<option value="6">6
 					</select>
-					<%!
-						int value
-					%>
 					<hr>
-					<label th:text="|결제금액: ${theme.price}원|">결제금액:OOOO원</label>
+					<label>결제금액:<span id="priceResult" th:data-price-id="${theme.price}" th:text="${theme.price}"> </span>원</label>
 					<hr>
-				</div>
+			<div class="reser-payment">
+				<button class="col-3" id="kaobtn" style="background: #fee500; color:#000; border-radius:12px; padding: 10px 20px;">
+				결제하기
+				</button>
 			</div>
-			<div class="reser-payment bg-primary">
-				
+				</div>
 			</div>
 		</div>
 	</div>
 	<script layout:fragment="script">
 		$(function() {
-			var date = null
-			$("#dateForm").on("submit", function(e) {
-				e.preventDefault();
-				date = $("#dateInput").val();
-			if(date != null) {
-				$(".select-time").removeClass("d-none");
-				$(".date-btn").addClass("d-none");
-			}
+			var date = null;
+			var count = $("#priceResult").data("price-id");
+			
+			$("#memberCount").change(function() {
+				let total = 0;
+				total = count * $(this).val() * 0.5;
+				$("#priceResult").text(total);
 			});
 			
+			$("#dateBtn").on("click", function() {
+				date = $("#datePicker").val();
+				if(date != "") {
+					$(this).addClass("d-none");
+					$(".select-time").removeClass("d-none");
+				} else {
+					alert("날짜를 먼저 선택해주세요");
+					return;
+				}
+			});
+			
+			$("#datePicker").datepicker({
+				dayNamesMin:['일', '월', '화', '수', '목', '금', '토'],
+				dateFormat:"yy-mm-dd",
+				minDate:0,
+				onSelect:function(dateString) {
+					
+				}
+			});
+			
+			
+			
+			$(".choice-time").on("click", function() {
+				$(this).prop("checked", true);
+				var time = $(this).val();
+				var selectTime =" " + date + "  " + "(" +time + ")";
+				$("#result").text(selectTime);
+			});
+			
+			$("#kaobtn").on("click", function() {
+				
+				if($("#result").text() == "") {
+					alert("날짜시간을 선택해주세요");
+					return;
+				}
+				let themeId = $(".reser-img").data("theme-id");
+				let reservationDate = $("#datePicker").val();
+				let reservationTime = $(".choice-time").prop("checked",true).val();
+				let memberCount = $("#memberCount").val();
+				let itemName = $("#themeNameBar").text().split(":")[1];
+				let quantity = 1;
+				let totalAmount = $("#priceResult").text();
+				let Amount = (Number)(totalAmount);
+				$.ajax({
+					type:"post"
+					,url:"/pay/ready"
+					,data:{"themeId":themeId, "memberCount":memberCount, "reservationDate":reservationDate
+							, "reservationTime":reservationTime, "itemName":itemName, "quantity": quantity,"totalAmount": Amount, "vatAmount":0,"taxFree":0}
+					,success:function(response) {
+						location.href=response.next_redirect_pc_url;
+					}
+					,error:function() {
+						alert();
+					}
+				});
+			});
 			
 		});
 	</script>

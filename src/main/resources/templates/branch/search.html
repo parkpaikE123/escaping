@@ -4,14 +4,8 @@
         layout:decorate="~{layout/compliance}">
      <div layout:fragment="contents">
 		<div class="main-zone">
-		<div class="search-zone">
-			<div class="d-flex justify-content-center mt-4">
-				<input type="text" class="form-control col-5">
-				<label class="ml-2 btn btn-info form-control col-1">검색</label>
-			</div>
-		</div>
 		<hr>
-		<h2 class="text-center">지역별, 지점 검색 결과</h2>
+		<h2 class="text-center" th:text="|(${location})지점|">지역별 지점</h2>
 		<hr>
 		<div class="location-zone d-flex align-items-center" th:if="${branchList} != null">
 			<div class="w-100 d-flex justify-content-around align-items-center">

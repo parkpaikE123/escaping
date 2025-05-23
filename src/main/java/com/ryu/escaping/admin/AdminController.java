@@ -13,6 +13,8 @@ import com.ryu.escaping.admin.branch.dto.BranchForAdmin;
 import com.ryu.escaping.admin.branch.service.BranchService;
 import com.ryu.escaping.admin.theme.domain.Theme;
 import com.ryu.escaping.admin.theme.service.ThemeService;
+import com.ryu.escaping.reservation.dto.MineReservation;
+import com.ryu.escaping.reservation.service.ReservationService;
 
 @Controller
 @RequestMapping("/admin")
@@ -20,9 +22,11 @@ public class AdminController {
 
 	private BranchService branchService;
 	private ThemeService themeService;
+	private final ReservationService reservationService;
 	
-	public AdminController(BranchService branchService, ThemeService themeService) {
+	public AdminController(BranchService branchService, ThemeService themeService,ReservationService reservationService) {
 		this.branchService = branchService;
+		this.reservationService = reservationService;
 		this.themeService = themeService;
 	}
 	
@@ -65,7 +69,9 @@ public class AdminController {
 	
 	// 예약 관리
 	@GetMapping("/reservation-view")
-	public String adminReservation() {
+	public String adminReservation(Model model) {
+		List<MineReservation> reservationList = reservationService.getAllReservationListForAdmin();
+		model.addAttribute("reservationList",reservationList);
 		return "admin/reservation/list";
 	}
 	

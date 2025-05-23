@@ -42,7 +42,6 @@ public class BranchService {
 		
 	}
 	
-	
 	@Transactional
 	public boolean deleteBranch(int id) {
 		

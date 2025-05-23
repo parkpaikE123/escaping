@@ -18,5 +18,6 @@ spring:
         cache: false
     mvc:
         static-path-pattern: /static/**
-mybatis:
-    mapper-locations: mappers/*Mapper.xml 
+kakaopay:
+  secretKey: ${kakao.secretKey}
+  cid: TC0ONETIME

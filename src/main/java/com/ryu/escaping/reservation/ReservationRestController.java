@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,19 @@ public class ReservationRestController {
 		this.reservationService = reservationService;
 	}
 	
-	// 예약 기능
+	// 예약 삭제
+	@DeleteMapping("/delete")
+	public Map<String, String> deleteReservation(@RequestParam int id) {
+		Map<String, String> resultMap = new HashMap<>();
+		if(reservationService.deleteReservation(id)) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		return resultMap;
+	}
+	
+	// 예약 생성
 	public Map<String, String> createReservation(@RequestParam int themeId
 												,@RequestParam Date reservationDate
 												,@RequestParam String reservationTime
